@@ -16,6 +16,29 @@ mvn archetype:create \
  -DartifactId=kitchenapp \
  -Dversion=1.0-SNAPSHOT
 
+in pom.xml Java8 Compiler nehmen: http://maven.apache.org/plugins/maven-compiler-plugin/examples/set-compiler-source-and-target.html
+
+<project>
+  [...]
+  <build>
+    [...]
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.2</version>
+        <configuration>
+          <source>1.4</source>
+          <target>1.4</target>
+        </configuration>
+      </plugin>
+    </plugins>
+    [...]
+  </build>
+  [...]
+</project>
+
+mvn clean package
 
 -------
 | git |
