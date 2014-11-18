@@ -5,13 +5,17 @@ import java.util.List;
 
 public class HelloWorld {
 
-    public static void main(String[] args) {
+    public static String helloWorldTomcatJava8() {
 
-        String[] helloWorld = { "", "Hello", " ", "", "World", "!" };
+        String[] helloWorld = { "", "Hello", " ", "", "World", " Tomcat", " Java8 ", "!" };
 
         List<String> list = Arrays.asList(helloWorld);
 
-        list.stream().filter(s -> !s.isEmpty()).forEach(s -> System.out.print(s));
+        StringBuilder sb = new StringBuilder();
+
+        list.stream().filter(s -> !s.isEmpty()).forEach(s -> sb.append(s));
+
+        return sb.toString();
 
     }
 
