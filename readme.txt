@@ -54,7 +54,11 @@ git init
 
 Auch in Eclipse eintragen unter TOMCAT7_HOME = /opt/mercateo/3rdparty/tomcat7
 
-Ant?
+
+export CATALINA_HOME=/opt/mercateo/3rdparty/tomcat7
+cp ~/workspaces/workspace_agents/kitchenapp/target/kitchenapp.war /opt/mercateo/3rdparty/tomcat7/webapps/
+sh /opt/mercateo/3rdparty/tomcat7/bin/catalina.sh start
+
 
 ----------
 | Wicket |
