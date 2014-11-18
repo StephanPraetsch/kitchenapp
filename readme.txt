@@ -9,6 +9,8 @@ export JAVA_HOME=/opt/mercateo/3rdparty/java8_64bit
 /opt/mercateo/3rdparty/apache-tomcat-8.0.15/
 /opt/mercateo/3rdparty/tomcat8 -> apache-tomcat-8.0.15
 
+Ant?
+
 ----------
 | Wicket |
 ----------
