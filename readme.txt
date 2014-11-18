@@ -64,6 +64,11 @@ sh /opt/mercateo/3rdparty/tomcat7/bin/catalina.sh start
 | Wicket |
 ----------
 
+mvn archetype:generate -DarchetypeGroupId=org.apache.wicket -DarchetypeArtifactId=wicket-archetype-quickstart -DarchetypeVersion=6.18.0 -DgroupId=com.mercateo -DartifactId=kitchenapp -DarchetypeRepository=https://repository.apache.org/ -DinteractiveMode=false
+cd kitchenapp
+mvn eclipse:eclipse
+
+
 -----------
 | MongoDB |
 -----------
