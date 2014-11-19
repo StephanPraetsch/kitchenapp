@@ -7,7 +7,7 @@ import org.apache.wicket.protocol.http.WebApplication;
  * Application object for your web application. If you want to run this
  * application without deploying, run the Start class.
  * 
- * @see com.mercateo.Start#main(String[])
+ * @see com.mercateo.StartEmbeddedJetty#main(String[])
  */
 public class WicketApplication extends WebApplication {
     /**
