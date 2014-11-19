@@ -112,3 +112,15 @@ system.indexes
 > db.system.indexes.find();
 { "v" : 1, "key" : { "_id" : 1 }, "name" : "_id_", "ns" : "local.startup_log" }
 
+
+
+    <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>mongo-java-driver</artifactId>
+        <version>2.10.1</version>
+    </dependency>
+
+
+classpath eintrage, zB
+    <classpathentry kind="var" path="M2_REPO/org/mongodb/mongo-java-driver/2.10.1/mongo-java-driver-2.10.1.jar"/>
+
