@@ -1,7 +1,5 @@
 package com.mercateo;
 
-import java.net.UnknownHostException;
-
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -18,7 +16,7 @@ public class HomePage extends WebPage {
 
     private static final long serialVersionUID = 1L;
 
-    public HomePage(final PageParameters parameters) throws UnknownHostException {
+    public HomePage(final PageParameters parameters) {
         super(parameters);
 
         StringValue stringValue = parameters.get(WicketConstants.STATUS);

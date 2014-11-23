@@ -2,6 +2,7 @@ package com.mercateo.sso;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.AbstractItem;
@@ -14,6 +15,8 @@ import com.mercateo.db.mongo.UserAccessCreationException;
 import com.mercateo.db.mongo.UserAccessFactory;
 
 public class UsersListView extends RepeatingView {
+
+    private final Logger logger = Logger.getLogger(UsersListView.class);
 
     public UsersListView(String id, UserAccessFactory userAccessFactory) {
         super(id);
@@ -56,7 +59,7 @@ public class UsersListView extends RepeatingView {
             }
 
         } catch (UserAccessCreationException e) {
-            System.out.println("internal error: '" + e.getMessage() + "'");
+            logger.error("internal error: '" + e.getMessage() + "'");
         }
 
     }
