@@ -2,14 +2,18 @@ package com.mercateo.db.mongo;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 import com.mercateo.WicketConstants;
 import com.mercateo.sso.Email;
+import com.mercateo.sso.Password;
 import com.mercateo.sso.User;
 import com.mercateo.sso.Username;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 
 public class UserAccessMongoDb implements UserAccess, Serializable {
 
@@ -74,6 +78,24 @@ public class UserAccessMongoDb implements UserAccess, Serializable {
         });
 
         userCollection.insert(newDbUser);
+
+    }
+
+    @Override
+    public List<User> listAllUsers() {
+
+        List<User> allUsers = new LinkedList<>();
+
+        DBCursor allUsersDbObjects = userCollection.find();
+
+        for (DBObject userDbObject : allUsersDbObjects) {
+            Username username = Username.of((String) userDbObject.get(WicketConstants.USERNAME));
+            Password password = Password.of((String) userDbObject.get(WicketConstants.PASSWORD));
+            Email email = Email.of((String) userDbObject.get(WicketConstants.EMAIL));
+            allUsers.add(User.of(username, password, email));
+        }
+
+        return allUsers;
 
     }
 
