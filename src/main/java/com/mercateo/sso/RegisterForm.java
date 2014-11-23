@@ -42,7 +42,7 @@ public class RegisterForm extends Form<Object> {
         Password password = Password.of(passwordField.getModelObject());
         Email email = Email.of(emailField.getModelObject());
 
-        User user = new User(username, password, email);
+        User user = User.of(username, password, email);
 
         PageParameters pageParameters = new PageParameters();
 

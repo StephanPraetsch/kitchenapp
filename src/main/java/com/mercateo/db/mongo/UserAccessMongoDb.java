@@ -3,7 +3,9 @@ package com.mercateo.db.mongo;
 import java.io.Serializable;
 import java.util.HashMap;
 
+import com.mercateo.sso.Email;
 import com.mercateo.sso.User;
+import com.mercateo.sso.Username;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
@@ -30,14 +32,22 @@ public class UserAccessMongoDb implements UserAccess, Serializable {
     }
 
     private boolean existsUsername(User user) {
-        BasicDBObject username = new BasicDBObject("username", user.getUsername().asString());
-        DBCursor usernames = userCollection.find(username);
+        Username username = user.getUsername();
+        if (username == null) {
+            return false;
+        }
+        BasicDBObject usernameDbObject = new BasicDBObject("username", username.asString());
+        DBCursor usernames = userCollection.find(usernameDbObject);
         return usernames.size() > 0;
     }
 
     private boolean existsEmail(User user) {
-        BasicDBObject email = new BasicDBObject("email", user.getEmail().asString());
-        DBCursor emails = userCollection.find(email);
+        Email email = user.getEmail();
+        if (email == null) {
+            return false;
+        }
+        BasicDBObject emailDbObject = new BasicDBObject("email", email.asString());
+        DBCursor emails = userCollection.find(emailDbObject);
         return emails.size() > 0;
     }
 

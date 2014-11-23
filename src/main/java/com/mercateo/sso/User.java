@@ -8,7 +8,19 @@ public class User {
 
     private final Email email;
 
-    public User(Username username, Password password, Email email) {
+    public static User of(Username username, Password password) {
+        return new User(username, password, null);
+    }
+
+    public static User of(Email email, Password password) {
+        return new User(null, password, email);
+    }
+
+    public static User of(Username username, Password password, Email email) {
+        return new User(username, password, email);
+    }
+
+    private User(Username username, Password password, Email email) {
         this.username = username;
         this.password = password;
         this.email = email;

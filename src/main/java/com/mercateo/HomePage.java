@@ -9,6 +9,7 @@ import org.apache.wicket.util.string.StringValue;
 
 import com.mercateo.db.mongo.MongoDbAccess;
 import com.mercateo.db.mongo.MongoDbConfiguration;
+import com.mercateo.db.mongo.UserAccessFactory;
 import com.mercateo.db.mongo.UserAccessFactoryForMongoDb;
 import com.mercateo.sso.LoginForm;
 import com.mercateo.sso.RegisterForm;
@@ -31,9 +32,12 @@ public class HomePage extends WebPage {
 
         add(new Label("helloWorldMongo", new MongoDbAccess().sayHello()));
 
-        add(new LoginForm("loginForm"));
+        UserAccessFactory userAccessFactory = new UserAccessFactoryForMongoDb(
+                new MongoDbConfiguration());
 
-        add(new RegisterForm("registerForm", new UserAccessFactoryForMongoDb(new MongoDbConfiguration())));
+        add(new LoginForm("loginForm", userAccessFactory));
+
+        add(new RegisterForm("registerForm", userAccessFactory));
 
     }
 
