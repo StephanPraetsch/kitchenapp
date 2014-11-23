@@ -6,6 +6,6 @@ public interface UserAccess {
 
     public boolean userExists(User user);
 
-    public void addUser(User user) throws UserAlreadyExistsException;
+    public void addUser(User user) throws UserAlreadyExistsException, EmailAlreadyExistsExcpetion;
 
 }

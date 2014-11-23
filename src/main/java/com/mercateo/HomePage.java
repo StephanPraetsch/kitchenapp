@@ -21,9 +21,9 @@ public class HomePage extends WebPage {
     public HomePage(final PageParameters parameters) throws UnknownHostException {
         super(parameters);
 
-        StringValue stringValue = parameters.get("msg");
+        StringValue stringValue = parameters.get(WicketConstants.STATUS);
         if (stringValue != null) {
-            add(new Label("msg", stringValue));
+            add(new Label(WicketConstants.STATUS, stringValue));
         }
 
         add(new Label("version", getApplication().getFrameworkSettings().getVersion()));

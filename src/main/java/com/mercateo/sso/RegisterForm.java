@@ -7,6 +7,8 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.mercateo.HomePage;
+import com.mercateo.WicketConstants;
+import com.mercateo.db.mongo.EmailAlreadyExistsExcpetion;
 import com.mercateo.db.mongo.UserAccess;
 import com.mercateo.db.mongo.UserAccessCreationException;
 import com.mercateo.db.mongo.UserAccessFactory;
@@ -26,9 +28,9 @@ public class RegisterForm extends Form<Object> {
         super(id);
         this.userAccessFactory = userAccessFactory;
 
-        this.usernameField = new TextField<>("username", Model.of(""));
-        this.passwordField = new PasswordTextField("password", Model.of(""));
-        this.emailField = new TextField<>("email", Model.of(""));
+        this.usernameField = new TextField<>(WicketConstants.USERNAME, Model.of(""));
+        this.passwordField = new PasswordTextField(WicketConstants.PASSWORD, Model.of(""));
+        this.emailField = new TextField<>(WicketConstants.EMAIL, Model.of(""));
 
         add(usernameField);
         add(passwordField);
@@ -49,11 +51,13 @@ public class RegisterForm extends Form<Object> {
         try {
             UserAccess userAccess = userAccessFactory.create();
             userAccess.addUser(user);
-            pageParameters.add("msg", "created user");
-        } catch (UserAlreadyExistsException e) {
-            pageParameters.add("msg", "user already exists");
+            pageParameters.add(WicketConstants.STATUS, "created user");
         } catch (UserAccessCreationException e) {
-            pageParameters.add("msg", "internal error: " + e.getMessage());
+            pageParameters.add(WicketConstants.STATUS, "internal error: " + e.getMessage());
+        } catch (UserAlreadyExistsException e) {
+            pageParameters.add(WicketConstants.STATUS, "user already exists");
+        } catch (EmailAlreadyExistsExcpetion e) {
+            pageParameters.add(WicketConstants.STATUS, "email already exists");
         }
 
         setResponsePage(HomePage.class, pageParameters);

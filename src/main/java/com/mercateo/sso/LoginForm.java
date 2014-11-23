@@ -7,6 +7,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.mercateo.HomePage;
+import com.mercateo.WicketConstants;
 import com.mercateo.db.mongo.UserAccess;
 import com.mercateo.db.mongo.UserAccessCreationException;
 import com.mercateo.db.mongo.UserAccessFactory;
@@ -24,7 +25,7 @@ public class LoginForm extends Form<Object> {
         this.userAccessFactory = userAccessFactory;
 
         this.usernameOrEmailField = new TextField<>("usernameOrEmail", Model.of(""));
-        this.passwordField = new PasswordTextField("password", Model.of(""));
+        this.passwordField = new PasswordTextField(WicketConstants.PASSWORD, Model.of(""));
 
         add(usernameOrEmailField);
         add(passwordField);
@@ -47,7 +48,7 @@ public class LoginForm extends Form<Object> {
             }
 
         } catch (UserAccessCreationException e) {
-            pageParameters.add("msg", "internal error: '" + e.getMessage() + "'");
+            pageParameters.add(WicketConstants.STATUS, "internal error: '" + e.getMessage() + "'");
         }
 
         setResponsePage(HomePage.class, pageParameters);
@@ -59,7 +60,7 @@ public class LoginForm extends Form<Object> {
         String password = passwordField.getModelObject();
         User userOfUsername = User.of(Username.of(username), Password.of(password));
         if (userAccess.userExists(userOfUsername)) {
-            pageParameters.add("msg", "logged in by username '" + username + "'");
+            pageParameters.add(WicketConstants.STATUS, "logged in by username '" + username + "'");
             return true;
         }
         return false;
@@ -70,14 +71,14 @@ public class LoginForm extends Form<Object> {
         String password = passwordField.getModelObject();
         User userOfEmail = User.of(Email.of(email), Password.of(password));
         if (userAccess.userExists(userOfEmail)) {
-            pageParameters.add("msg", "logged in by email '" + email + "'");
+            pageParameters.add(WicketConstants.STATUS, "logged in by email '" + email + "'");
             return true;
         }
         return false;
     }
 
     private void couldNotLogIn(PageParameters pageParameters) {
-        pageParameters.add("msg", "could not log in");
+        pageParameters.add(WicketConstants.STATUS, "could not log in");
     }
 
 }

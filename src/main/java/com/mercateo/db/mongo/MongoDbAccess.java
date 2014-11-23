@@ -4,6 +4,7 @@ import java.net.UnknownHostException;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.mercateo.WicketConstants;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -54,12 +55,12 @@ public class MongoDbAccess {
 
     private void insertOneDocument() {
 
-        String username = "username";
+        String username = WicketConstants.USERNAME;
         String password = "passwordHash";
 
         BasicDBObject user = new BasicDBObject();
 
-        user.append("_id", username).append("password", password);
+        user.append("_id", username).append(WicketConstants.PASSWORD, password);
 
         try {
             collection.remove(user);

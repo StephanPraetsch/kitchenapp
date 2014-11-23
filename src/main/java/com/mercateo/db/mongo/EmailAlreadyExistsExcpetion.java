@@ -2,9 +2,9 @@ package com.mercateo.db.mongo;
 
 import com.mercateo.sso.User;
 
-public class UserAlreadyExistsException extends Exception {
+public class EmailAlreadyExistsExcpetion extends Exception {
 
-    public UserAlreadyExistsException(User user) {
+    public EmailAlreadyExistsExcpetion(User user) {
         super("user already exists: " + user);
     }
 

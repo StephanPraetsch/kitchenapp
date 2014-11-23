@@ -3,6 +3,7 @@ package com.mercateo.db.mongo;
 import java.io.Serializable;
 import java.util.HashMap;
 
+import com.mercateo.WicketConstants;
 import com.mercateo.sso.Email;
 import com.mercateo.sso.User;
 import com.mercateo.sso.Username;
@@ -36,7 +37,8 @@ public class UserAccessMongoDb implements UserAccess, Serializable {
         if (username == null) {
             return false;
         }
-        BasicDBObject usernameDbObject = new BasicDBObject("username", username.asString());
+        BasicDBObject usernameDbObject = new BasicDBObject(WicketConstants.USERNAME, username
+                .asString());
         DBCursor usernames = userCollection.find(usernameDbObject);
         return usernames.size() > 0;
     }
@@ -46,23 +48,28 @@ public class UserAccessMongoDb implements UserAccess, Serializable {
         if (email == null) {
             return false;
         }
-        BasicDBObject emailDbObject = new BasicDBObject("email", email.asString());
+        BasicDBObject emailDbObject = new BasicDBObject(WicketConstants.EMAIL, email.asString());
         DBCursor emails = userCollection.find(emailDbObject);
         return emails.size() > 0;
     }
 
     @Override
-    public void addUser(final User user) throws UserAlreadyExistsException {
+    public void addUser(final User user) throws UserAlreadyExistsException,
+            EmailAlreadyExistsExcpetion {
 
-        if (userExists(user)) {
+        if (existsUsername(user)) {
             throw new UserAlreadyExistsException(user);
+        }
+
+        if (existsEmail(user)) {
+            throw new EmailAlreadyExistsExcpetion(user);
         }
 
         BasicDBObject newDbUser = new BasicDBObject(new HashMap<String, String>() {
             {
-                put("username", user.getUsername().asString());
-                put("password", user.getPassword().asString());
-                put("email", user.getEmail().asString());
+                put(WicketConstants.USERNAME, user.getUsername().asString());
+                put(WicketConstants.PASSWORD, user.getPassword().asString());
+                put(WicketConstants.EMAIL, user.getEmail().asString());
             }
         });
 
