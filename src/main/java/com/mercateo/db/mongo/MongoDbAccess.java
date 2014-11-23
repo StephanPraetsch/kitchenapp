@@ -1,4 +1,4 @@
-package com.mercateo.mongo;
+package com.mercateo.db.mongo;
 
 import java.net.UnknownHostException;
 import java.util.LinkedList;
