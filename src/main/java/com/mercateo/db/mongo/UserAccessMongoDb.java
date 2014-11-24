@@ -6,6 +6,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.mercateo.WicketConstants;
+import com.mercateo.db.EmailAlreadyExistsExcpetion;
+import com.mercateo.db.UserAccess;
+import com.mercateo.db.UserAlreadyExistsException;
 import com.mercateo.sso.Email;
 import com.mercateo.sso.Password;
 import com.mercateo.sso.User;
@@ -26,7 +29,7 @@ public class UserAccessMongoDb implements UserAccess, Serializable {
     }
 
     @Override
-    public boolean userExists(User user) {
+    public boolean existsUser(User user) {
 
         boolean usernameExists = existsUsername(user);
 

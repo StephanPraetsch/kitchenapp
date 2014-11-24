@@ -1,4 +1,4 @@
-package com.mercateo.db.mongo;
+package com.mercateo.db;
 
 public class UserAccessCreationException extends Exception {
 

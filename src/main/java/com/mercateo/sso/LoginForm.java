@@ -8,9 +8,9 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.mercateo.HomePage;
 import com.mercateo.WicketConstants;
-import com.mercateo.db.mongo.UserAccess;
-import com.mercateo.db.mongo.UserAccessCreationException;
-import com.mercateo.db.mongo.UserAccessFactory;
+import com.mercateo.db.UserAccess;
+import com.mercateo.db.UserAccessCreationException;
+import com.mercateo.db.UserAccessFactory;
 
 public class LoginForm extends Form<Object> {
 
@@ -59,7 +59,7 @@ public class LoginForm extends Form<Object> {
         String username = usernameOrEmailField.getModelObject();
         String password = passwordField.getModelObject();
         User userOfUsername = User.of(Username.of(username), Password.of(password));
-        if (userAccess.userExists(userOfUsername)) {
+        if (userAccess.existsUser(userOfUsername)) {
             pageParameters.add(WicketConstants.STATUS, "logged in by username '" + username + "'");
             return true;
         }
@@ -70,7 +70,7 @@ public class LoginForm extends Form<Object> {
         String email = usernameOrEmailField.getModelObject();
         String password = passwordField.getModelObject();
         User userOfEmail = User.of(Email.of(email), Password.of(password));
-        if (userAccess.userExists(userOfEmail)) {
+        if (userAccess.existsUser(userOfEmail)) {
             pageParameters.add(WicketConstants.STATUS, "logged in by email '" + email + "'");
             return true;
         }

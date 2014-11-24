@@ -1,4 +1,4 @@
-package com.mercateo.db.mongo;
+package com.mercateo.db;
 
 import java.io.Serializable;
 

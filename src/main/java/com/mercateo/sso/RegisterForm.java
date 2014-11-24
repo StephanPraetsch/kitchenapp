@@ -8,11 +8,11 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.mercateo.HomePage;
 import com.mercateo.WicketConstants;
-import com.mercateo.db.mongo.EmailAlreadyExistsExcpetion;
-import com.mercateo.db.mongo.UserAccess;
-import com.mercateo.db.mongo.UserAccessCreationException;
-import com.mercateo.db.mongo.UserAccessFactory;
-import com.mercateo.db.mongo.UserAlreadyExistsException;
+import com.mercateo.db.EmailAlreadyExistsExcpetion;
+import com.mercateo.db.UserAccess;
+import com.mercateo.db.UserAccessCreationException;
+import com.mercateo.db.UserAccessFactory;
+import com.mercateo.db.UserAlreadyExistsException;
 
 public class RegisterForm extends Form<Object> {
 
