@@ -17,7 +17,8 @@ import com.mercateo.profile.User;
 
 public class UsersListView extends RepeatingView {
 
-    private final Logger logger = Logger.getLogger(UsersListView.class);
+    // TODO transient logger?
+    private transient final Logger logger = Logger.getLogger(UsersListView.class);
 
     public UsersListView(String id, UserAccessFactory userAccessFactory) {
         super(id);
