@@ -1,4 +1,6 @@
-package com.mercateo.sso;
+package com.mercateo.profile;
+
+import com.mercateo.util.StringBasedValue;
 
 public class Username extends StringBasedValue {
 

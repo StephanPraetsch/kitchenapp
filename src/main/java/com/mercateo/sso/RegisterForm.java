@@ -13,6 +13,10 @@ import com.mercateo.db.UserAccess;
 import com.mercateo.db.UserAccessCreationException;
 import com.mercateo.db.UserAccessFactory;
 import com.mercateo.db.UserAlreadyExistsException;
+import com.mercateo.profile.Email;
+import com.mercateo.profile.Password;
+import com.mercateo.profile.User;
+import com.mercateo.profile.Username;
 
 public class RegisterForm extends Form<Object> {
 

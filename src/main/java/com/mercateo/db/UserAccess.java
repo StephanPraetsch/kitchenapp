@@ -2,7 +2,7 @@ package com.mercateo.db;
 
 import java.util.List;
 
-import com.mercateo.sso.User;
+import com.mercateo.profile.User;
 
 public interface UserAccess {
 

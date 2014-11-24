@@ -1,4 +1,4 @@
-package com.mercateo.sso;
+package com.mercateo.profile;
 
 public class User {
 

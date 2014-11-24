@@ -13,6 +13,7 @@ import com.mercateo.WicketConstants;
 import com.mercateo.db.UserAccess;
 import com.mercateo.db.UserAccessCreationException;
 import com.mercateo.db.UserAccessFactory;
+import com.mercateo.profile.User;
 
 public class UsersListView extends RepeatingView {
 
