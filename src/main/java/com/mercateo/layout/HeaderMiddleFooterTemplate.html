@@ -2,7 +2,7 @@
 <html xmlns:wicket="http://wicket.apache.org">
 <head>
 <meta charset="utf-8" />
-<title>Profile</title>
+<title>Apache Wicket Quickstart</title>
 <link
 	href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold'
 	rel='stylesheet' type='text/css' />
@@ -10,13 +10,13 @@
 	title="Stylesheet" />
 </head>
 <body>
-	<div>
-		Username:
-		<wicket:container wicket:id="username" />
+	<div id="headerPanel" wicket:id="headerPanel">header</div>
+	<div id="middlePanel">
+		<div id="menuPanel" wicket:id="menuPanel"></div>
+		<div>
+			<wicket:child />
+		</div>
 	</div>
-	<div>
-		Password:
-		<wicket:container wicket:id="password" />
-	</div>
+	<div id="footerPanel" wicket:id="footerPanel">footer</div>
 </body>
 </html>

@@ -1,79 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:wicket="http://wicket.apache.org">
+<html>
 <head>
-<meta charset="utf-8" />
-<title>Apache Wicket Quickstart</title>
-<link
-		href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold'
-		rel='stylesheet' type='text/css'
-/>
-<link rel="stylesheet" href="style.css" type="text/css" media="screen"
-		title="Stylesheet"
-/>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
-		<div id="headerPanel" wicket:id="headerPanel">header</div>
-		<div>
-				<p>
-						<wicket:container wicket:id="status" />
-				</p>
-		</div>
-		<div>
-				<form id="loginForm" method="get" wicket:id="loginForm">
-						<fieldset>
-								<legend style="color: #F90">Login</legend>
-								<span>Username: </span><input wicket:id="usernameOrEmail"
-										type="text" id="usernameOrEmail"
-								/><br /> <span>Password: </span><input wicket:id="password"
-										type="password" id="password"
-								/>
-								<p>
-										<input type="submit" name="Login" value="Login" />
-								</p>
-						</fieldset>
-				</form>
-		</div>
-		<div>
-				<form id="registerForm" method="get" wicket:id="registerForm">
-						<fieldset>
-								<legend style="color: #F90">Register</legend>
-								<span>Username: </span><input wicket:id="username" type="text"
-										id="username"
-								/><br /> <span>Password: </span><input wicket:id="password"
-										type="password" id="password"
-								/><br /> <span>Email: </span><input wicket:id="email"
-										type="text" id="email"
-								/>
-								<p>
-										<input type="submit" name="Register" value="Register" />
-								</p>
-						</fieldset>
-				</form>
-		</div>
-		<div>
-				<p>
-						<b><wicket:container wicket:id="helloWorldJava8">foo</wicket:container></b>
-				</p>
-		</div>
-		<div>
-				<table cellspacing="0" class="dataview">
-						<tr>
-								<th>Username</th>
-								<th>Password</th>
-								<th>Email</th>
-						</tr>
-						<tr wicket:id="usersList">
-								<td><span wicket:id="username">[username]</span></td>
-								<td><span wicket:id="password">[password]</span></td>
-								<td><span wicket:id="email">[email]</span></td>
-						</tr>
-				</table>
-		</div>
-		<p>
-				Wicket version:
-				<wicket:container wicket:id="version">1.5-SNAPSHOT</wicket:container>
-				.
-		</p>
-		<div id="ft"></div>
+	<wicket:extend>
+		<div wicket:id="welcome">Here must be a welcome message!</div>
+	</wicket:extend>
 </body>
 </html>
