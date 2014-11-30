@@ -37,6 +37,8 @@ public class HomePage extends WebPage {
 
         add(new UsersListView("usersList", userAccessFactory));
 
+        add(new HeaderPanel("headerPanel"));
+
     }
 
 }
