@@ -16,11 +16,22 @@
  */
 package com.mercateo.layout;
 
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
+
+import com.mercateo.profile.Profile;
 
 public class MenuPanel extends Panel {
 
-	public MenuPanel(String id) {
-		super(id);		
-	}
+    public MenuPanel(String id) {
+        super(id);
+
+        add(new Link("profile") {
+            @Override
+            public void onClick() {
+                setResponsePage(Profile.class);
+            }
+        });
+
+    }
 }

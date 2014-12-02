@@ -68,6 +68,9 @@ mvn archetype:generate -DarchetypeGroupId=org.apache.wicket -DarchetypeArtifactI
 cd kitchenapp
 mvn eclipse:eclipse
 
+in .classpath
+<classpathentry kind="var"
+                path="M2_REPO/org/apache/wicket/wicket-auth-roles/6.16.0/wicket-auth-roles-6.16.0.jar" />
 
 -----------
 | MongoDB |

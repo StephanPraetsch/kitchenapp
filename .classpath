@@ -22,6 +22,8 @@
 		path="M2_REPO/org/apache/wicket/wicket-request/6.18.0/wicket-request-6.18.0.jar"
 		sourcepath="M2_REPO/org/apache/wicket/wicket-request/6.18.0/wicket-request-6.18.0-sources.jar" />
 	<classpathentry kind="var"
+		path="M2_REPO/org/apache/wicket/wicket-auth-roles/6.16.0/wicket-auth-roles-6.16.0.jar" />
+	<classpathentry kind="var"
 		path="M2_REPO/org/slf4j/slf4j-log4j12/1.6.4/slf4j-log4j12-1.6.4.jar"
 		sourcepath="M2_REPO/org/slf4j/slf4j-log4j12/1.6.4/slf4j-log4j12-1.6.4-sources.jar" />
 	<classpathentry kind="var"

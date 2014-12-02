@@ -10,13 +10,15 @@
 	title="Stylesheet" />
 </head>
 <body>
-	<div>
-		Username:
-		<wicket:container wicket:id="username" />
-	</div>
-	<div>
-		Password:
-		<wicket:container wicket:id="password" />
-	</div>
+	<wicket:extend>
+		<div>
+			Username:
+			<wicket:container wicket:id="username" />
+		</div>
+		<div>
+			Password:
+			<wicket:container wicket:id="password" />
+		</div>
+	</wicket:extend>
 </body>
 </html>
