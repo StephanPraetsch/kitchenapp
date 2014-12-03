@@ -2,12 +2,13 @@ package com.mercateo.layout;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.basic.Label;
 
 import com.mercateo.HeaderPanel;
 
 public class HeaderMiddleFooterTemplate extends WebPage {
 
-    public static final String CONTENT_ID = "contentComponent";
+    public static final String MESSAGE_ID = "message";
 
     private Component headerPanel;
 
@@ -19,7 +20,7 @@ public class HeaderMiddleFooterTemplate extends WebPage {
         add(headerPanel = new HeaderPanel("headerPanel"));
         add(menuPanel = new MenuPanel("menuPanel"));
         add(footerPanel = new FooterPanel("footerPanel"));
-//        add(new Label(CONTENT_ID, "Put your content here"));
+        add(new Label(MESSAGE_ID, ""));
     }
 
     protected Component getMenuPanel() {
