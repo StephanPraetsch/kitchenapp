@@ -4,6 +4,8 @@ import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSessio
 import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.markup.html.WebPage;
 
+import com.mercateo.db.UserAccessFactory;
+import com.mercateo.db.mongo.UserAccessFactoryForMongoDb;
 import com.mercateo.sso.BasicAuthenticationSession;
 import com.mercateo.sso.SignInPage;
 
@@ -17,6 +19,8 @@ public class WicketApplication extends AuthenticatedWebApplication {
     @Override
     public void init() {
         super.init();
+        System.setProperty(UserAccessFactory.USER_ACCESS_FACTORY,
+                UserAccessFactoryForMongoDb.class.getCanonicalName());
     }
 
     @Override

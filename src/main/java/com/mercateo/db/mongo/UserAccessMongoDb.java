@@ -18,13 +18,13 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 
-public class UserAccessMongoDb implements UserAccess, Serializable {
+class UserAccessMongoDb implements UserAccess, Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private final DBCollection userCollection;
 
-    public UserAccessMongoDb(MongoDbObjectCreator mongoDbObjectCreator) {
+    UserAccessMongoDb(MongoDbObjectCreator mongoDbObjectCreator) {
         userCollection = mongoDbObjectCreator.getUserCollection();
     }
 
@@ -44,8 +44,8 @@ public class UserAccessMongoDb implements UserAccess, Serializable {
         if (username == null) {
             return false;
         }
-        BasicDBObject usernameDbObject = new BasicDBObject(WicketConstants.USERNAME, username
-                .asString());
+        BasicDBObject usernameDbObject = new BasicDBObject(WicketConstants.USERNAME,
+                username.asString());
         DBCursor usernames = userCollection.find(usernameDbObject);
         return usernames.size() > 0;
     }

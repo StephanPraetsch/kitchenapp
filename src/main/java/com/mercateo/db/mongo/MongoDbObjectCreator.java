@@ -7,7 +7,7 @@ import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 
-public class MongoDbObjectCreator {
+class MongoDbObjectCreator {
 
     private final MongoDbConfiguration mongoDbConfiguration;
 
@@ -15,7 +15,7 @@ public class MongoDbObjectCreator {
 
     private final DB mongoDatabase;
 
-    public MongoDbObjectCreator(MongoDbConfiguration mongoDbConfiguration)
+    MongoDbObjectCreator(MongoDbConfiguration mongoDbConfiguration)
             throws UnknownHostException {
         this.mongoDbConfiguration = mongoDbConfiguration;
         this.mongoClient = new MongoClient(new MongoClientURI(mongoDbConfiguration
@@ -23,15 +23,15 @@ public class MongoDbObjectCreator {
         this.mongoDatabase = mongoClient.getDB(mongoDbConfiguration.getDbName());
     }
 
-    public MongoClient getClient() {
+    MongoClient getClient() {
         return mongoClient;
     }
 
-    public DBCollection getUserCollection() {
+    DBCollection getUserCollection() {
         return mongoDatabase.getCollection(mongoDbConfiguration.getCollectionNameUsers());
     }
 
-    public DB getMongoDatabase() {
+    DB getMongoDatabase() {
         return mongoDatabase;
     }
 

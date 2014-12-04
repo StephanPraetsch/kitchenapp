@@ -2,7 +2,9 @@ package com.mercateo;
 
 import org.apache.wicket.markup.html.basic.Label;
 
+import com.mercateo.db.UserAccessFactoryCache;
 import com.mercateo.layout.HeaderMiddleFooterTemplate;
+import com.mercateo.sso.UsersListView;
 
 public class HomePage extends HeaderMiddleFooterTemplate {
 
@@ -10,6 +12,7 @@ public class HomePage extends HeaderMiddleFooterTemplate {
 
     public HomePage() {
         add(new Label("welcome", "welcome"));
+        add(new UsersListView("usersList", UserAccessFactoryCache.get()));
     }
 
 }

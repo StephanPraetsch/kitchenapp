@@ -7,6 +7,21 @@
 <body>
 	<wicket:extend>
 		<div wicket:id="welcome">Here must be a welcome message!</div>
+		<div>
+			all registered users
+			<table cellspacing="0" class="dataview">
+				<tr>
+					<th>Username</th>
+					<th>Password</th>
+					<th>Email</th>
+				</tr>
+				<tr wicket:id="usersList">
+					<td><span wicket:id="username">[username]</span></td>
+					<td><span wicket:id="password">[password]</span></td>
+					<td><span wicket:id="email">[email]</span></td>
+				</tr>
+			</table>
+		</div>
 	</wicket:extend>
 </body>
 </html>
