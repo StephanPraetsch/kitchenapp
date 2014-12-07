@@ -19,7 +19,9 @@ package com.mercateo.layout;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 
-import com.mercateo.profile.Profile;
+import com.mercateo.profile.ProfilePage;
+import com.mercateo.roles.admin.AdminPage;
+import com.mercateo.roles.editor.EditorPage;
 
 public class MenuPanel extends Panel {
 
@@ -29,7 +31,21 @@ public class MenuPanel extends Panel {
         add(new Link("profile") {
             @Override
             public void onClick() {
-                setResponsePage(Profile.class);
+                setResponsePage(ProfilePage.class);
+            }
+        });
+
+        add(new Link("admin") {
+            @Override
+            public void onClick() {
+                setResponsePage(AdminPage.class);
+            }
+        });
+
+        add(new Link("editor") {
+            @Override
+            public void onClick() {
+                setResponsePage(EditorPage.class);
             }
         });
 

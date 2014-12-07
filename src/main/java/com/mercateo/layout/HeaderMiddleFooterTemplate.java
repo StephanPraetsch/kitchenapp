@@ -6,7 +6,7 @@ import org.apache.wicket.markup.html.basic.Label;
 
 import com.mercateo.HeaderPanel;
 
-public class HeaderMiddleFooterTemplate extends WebPage {
+public abstract class HeaderMiddleFooterTemplate extends WebPage {
 
     public static final String MESSAGE_ID = "message";
 

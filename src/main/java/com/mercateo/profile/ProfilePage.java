@@ -1,19 +1,17 @@
 package com.mercateo.profile;
 
-import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
-import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.string.StringValue;
 
 import com.mercateo.WicketConstants;
-import com.mercateo.layout.HeaderMiddleFooterTemplate;
+import com.mercateo.layout.SignInNeededTemplate;
 
-public class Profile extends HeaderMiddleFooterTemplate {
+public class ProfilePage extends SignInNeededTemplate {
 
     private static final long serialVersionUID = 1L;
 
-    public Profile(PageParameters parameters) {
+    public ProfilePage(PageParameters parameters) {
 
         StringValue username = parameters.get(WicketConstants.USERNAME);
         if (username != null) {
@@ -23,18 +21,6 @@ public class Profile extends HeaderMiddleFooterTemplate {
         StringValue password = parameters.get(WicketConstants.PASSWORD);
         if (password != null) {
             add(new Label(WicketConstants.PASSWORD, password));
-        }
-
-    }
-
-    @Override
-    protected void onConfigure() {
-
-        AuthenticatedWebApplication app = (AuthenticatedWebApplication) AuthenticatedWebApplication
-                .get();
-
-        if (!AuthenticatedWebSession.get().isSignedIn()) {
-            app.restartResponseAtSignInPage();
         }
 
     }
