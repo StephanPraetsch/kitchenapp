@@ -18,7 +18,6 @@ public class WicketApplication extends AuthenticatedWebApplication {
 
     @Override
     public void init() {
-        super.init();
         System.setProperty(UserAccessFactory.USER_ACCESS_FACTORY,
                 UserAccessFactoryForMongoDb.class.getCanonicalName());
     }

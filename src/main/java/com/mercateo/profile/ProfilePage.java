@@ -13,9 +13,9 @@ public class ProfilePage extends SignInNeededTemplate {
 
     public ProfilePage(PageParameters parameters) {
 
-        StringValue username = parameters.get(WicketConstants.USERNAME);
-        if (username != null) {
-            add(new Label(WicketConstants.USERNAME, username));
+        StringValue email = parameters.get(WicketConstants.EMAIL);
+        if (email != null) {
+            add(new Label(WicketConstants.EMAIL, email));
         }
 
         StringValue password = parameters.get(WicketConstants.PASSWORD);

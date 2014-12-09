@@ -43,9 +43,8 @@ public class UsersListView extends RepeatingView {
 
                 repeating.add(item);
 
-                item.add(new Label(WicketConstants.USERNAME, user.getUsername().asString()));
-                item.add(new Label(WicketConstants.PASSWORD, user.getPassword().asString()));
                 item.add(new Label(WicketConstants.EMAIL, user.getEmail().asString()));
+                item.add(new Label(WicketConstants.PASSWORD, user.getPassword().asString()));
 
                 final int idx = index;
                 item.add(AttributeModifier.replace("class", new AbstractReadOnlyModel<String>() {

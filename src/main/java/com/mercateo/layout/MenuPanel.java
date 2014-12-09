@@ -20,8 +20,8 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.mercateo.profile.ProfilePage;
-import com.mercateo.roles.admin.AdminPage;
-import com.mercateo.roles.editor.EditorPage;
+import com.mercateo.sso.roles.admin.AdminPage;
+import com.mercateo.sso.roles.editor.EditorPage;
 
 public class MenuPanel extends Panel {
 

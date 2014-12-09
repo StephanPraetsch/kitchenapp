@@ -14,11 +14,10 @@ import com.mercateo.db.UserAccessFactory;
 import com.mercateo.profile.Email;
 import com.mercateo.profile.Password;
 import com.mercateo.profile.User;
-import com.mercateo.profile.Username;
 
 public class LoginForm extends Form<Object> {
 
-    private final TextField<String> usernameOrEmailField;
+    private final TextField<String> emailField;
 
     private final PasswordTextField passwordField;
 
@@ -28,10 +27,10 @@ public class LoginForm extends Form<Object> {
         super(id);
         this.userAccessFactory = userAccessFactory;
 
-        this.usernameOrEmailField = new TextField<>("usernameOrEmail", Model.of(""));
+        this.emailField = new TextField<>(WicketConstants.EMAIL, Model.of(""));
         this.passwordField = new PasswordTextField(WicketConstants.PASSWORD, Model.of(""));
 
-        add(usernameOrEmailField);
+        add(emailField);
         add(passwordField);
     }
 
@@ -44,11 +43,8 @@ public class LoginForm extends Form<Object> {
 
             UserAccess userAccess = userAccessFactory.create();
 
-            // TODO awful wording / flow
-            if (!logInByUsername(pageParameters, userAccess)) {
-                if (!logInByEmail(pageParameters, userAccess)) {
-                    couldNotLogIn(pageParameters);
-                }
+            if (!logInByEmail(pageParameters, userAccess)) {
+                couldNotLogIn(pageParameters);
             }
 
         } catch (UserAccessCreationException e) {
@@ -59,22 +55,11 @@ public class LoginForm extends Form<Object> {
 
     }
 
-    private boolean logInByUsername(PageParameters pageParameters, UserAccess userAccess) {
-        String username = usernameOrEmailField.getModelObject();
-        String password = passwordField.getModelObject();
-        User userOfUsername = User.of(Username.of(username), Password.of(password));
-        if (userAccess.existsUser(userOfUsername)) {
-            pageParameters.add(WicketConstants.STATUS, "logged in by username '" + username + "'");
-            return true;
-        }
-        return false;
-    }
-
     private boolean logInByEmail(PageParameters pageParameters, UserAccess userAccess) {
-        String email = usernameOrEmailField.getModelObject();
+        String email = emailField.getModelObject();
         String password = passwordField.getModelObject();
-        User userOfEmail = User.of(Email.of(email), Password.of(password));
-        if (userAccess.existsUser(userOfEmail)) {
+        User user = User.of(Email.of(email), Password.of(password));
+        if (userAccess.existsUser(user)) {
             pageParameters.add(WicketConstants.STATUS, "logged in by email '" + email + "'");
             return true;
         }

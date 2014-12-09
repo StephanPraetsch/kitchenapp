@@ -12,15 +12,11 @@ import com.mercateo.db.EmailAlreadyExistsExcpetion;
 import com.mercateo.db.UserAccess;
 import com.mercateo.db.UserAccessCreationException;
 import com.mercateo.db.UserAccessFactory;
-import com.mercateo.db.UserAlreadyExistsException;
 import com.mercateo.profile.Email;
 import com.mercateo.profile.Password;
 import com.mercateo.profile.User;
-import com.mercateo.profile.Username;
 
 public class RegisterForm extends Form<Object> {
-
-    private final TextField<String> usernameField;
 
     private final PasswordTextField passwordField;
 
@@ -32,11 +28,9 @@ public class RegisterForm extends Form<Object> {
         super(id);
         this.userAccessFactory = userAccessFactory;
 
-        this.usernameField = new TextField<>(WicketConstants.USERNAME, Model.of(""));
-        this.passwordField = new PasswordTextField(WicketConstants.PASSWORD, Model.of(""));
         this.emailField = new TextField<>(WicketConstants.EMAIL, Model.of(""));
+        this.passwordField = new PasswordTextField(WicketConstants.PASSWORD, Model.of(""));
 
-        add(usernameField);
         add(passwordField);
         add(emailField);
     }
@@ -44,11 +38,10 @@ public class RegisterForm extends Form<Object> {
     @Override
     public final void onSubmit() {
 
-        Username username = Username.of(usernameField.getModelObject());
-        Password password = Password.of(passwordField.getModelObject());
         Email email = Email.of(emailField.getModelObject());
+        Password password = Password.of(passwordField.getModelObject());
 
-        User user = User.of(username, password, email);
+        User user = User.of(email, password);
 
         PageParameters pageParameters = new PageParameters();
 
@@ -58,8 +51,6 @@ public class RegisterForm extends Form<Object> {
             pageParameters.add(WicketConstants.STATUS, "created user");
         } catch (UserAccessCreationException e) {
             pageParameters.add(WicketConstants.STATUS, "internal error: " + e.getMessage());
-        } catch (UserAlreadyExistsException e) {
-            pageParameters.add(WicketConstants.STATUS, "user already exists");
         } catch (EmailAlreadyExistsExcpetion e) {
             pageParameters.add(WicketConstants.STATUS, "email already exists");
         }
