@@ -40,6 +40,10 @@ in pom.xml Java8 Compiler nehmen: http://maven.apache.org/plugins/maven-compiler
 
 mvn clean package
 
+# downloading sources
+mvn eclipse:eclipse -DdownloadSources=true
+mvn dependency:sources
+
 -------
 | git |
 ------
