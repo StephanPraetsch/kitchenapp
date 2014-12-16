@@ -6,25 +6,50 @@
 </head>
 <body>
 	<wicket:extend>
-		<form action="" wicket:id="form">
-			<legend>Name = PW</legend>
-			<br />
-			<div style="display: table; border: solid 1px; padding: 5px">
-				<div style="display: table-row;">
-					<div style="display: table-cell;">Email:</div>
-					<div style="display: table-cell;">
-						<input type="text" wicket:id="email" />
+		<div id="login">
+			<form action="" wicket:id="signInForm">
+				<legend>Login / SignIn</legend>
+				<div style="display: table; border: solid 1px; padding: 5px">
+					<div style="display: table-row;">
+						<div style="display: table-cell;">Email:</div>
+						<div style="display: table-cell;">
+							<input type="text" wicket:id="email" />
+						</div>
+					</div>
+					<div style="display: table-row;">
+						<div style="display: table-cell;">Password:</div>
+						<div style="display: table-cell;">
+							<input type="password" wicket:id="password" />
+						</div>
 					</div>
 				</div>
-				<div style="display: table-row;">
-					<div style="display: table-cell;">Password:</div>
-					<div style="display: table-cell;">
-						<input type="password" wicket:id="password" />
+				<input type="submit" value="Login" />
+			</form>
+		</div>
+
+		<br />
+
+		<div id="register">
+			<form action="" wicket:id="signUpForm">
+				<legend>Register / SignUp</legend>
+				<div style="display: table; border: solid 1px; padding: 5px">
+					<div style="display: table-row;">
+						<div style="display: table-cell;">Email:</div>
+						<div style="display: table-cell;">
+							<input type="text" wicket:id="email" />
+						</div>
+					</div>
+					<div style="display: table-row;">
+						<div style="display: table-cell;">Password:</div>
+						<div style="display: table-cell;">
+							<input type="password" wicket:id="password" />
+						</div>
 					</div>
 				</div>
-			</div>
-			<input type="submit" value="Submit" />
-		</form>
+				<input type="submit" value="Register" />
+			</form>
+		</div>
+
 	</wicket:extend>
 </body>
 </html>

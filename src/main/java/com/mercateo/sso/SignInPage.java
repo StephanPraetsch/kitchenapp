@@ -6,7 +6,8 @@ import com.mercateo.layout.HeaderMiddleFooterTemplate;
 public class SignInPage extends HeaderMiddleFooterTemplate {
 
     public SignInPage() {
-        add(new SignInForm("form", UserAccessFactoryCache.get()));
+        add(new SignInForm("signInForm", UserAccessFactoryCache.get()));
+        add(new SignUpForm("signUpForm", UserAccessFactoryCache.get()));
     }
 
 }
