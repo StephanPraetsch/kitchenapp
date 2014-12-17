@@ -44,7 +44,11 @@ public class BasicAuthenticationSession extends AuthenticatedWebSession {
 
     @Override
     public Roles getRoles() {
-        return userRolesProvider.provide(email);
+        if (isSignedIn()) {
+            return userRolesProvider.provide(email);
+        } else {
+            return null;
+        }
     }
 
     @Override
