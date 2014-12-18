@@ -1,15 +1,15 @@
 package com.mercateo;
 
 import org.apache.wicket.authorization.IAuthorizationStrategy;
-import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
-import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
-import org.apache.wicket.authroles.authorization.strategies.role.annotations.AnnotationsRoleAuthorizationStrategy;
 import org.apache.wicket.markup.html.WebPage;
 
 import com.mercateo.db.UserAccessFactory;
 import com.mercateo.db.mongo.UserAccessFactoryForMongoDb;
-import com.mercateo.sso.BasicAuthenticationSession;
 import com.mercateo.sso.SignInPage;
+import com.mercateo.sso.authorization.AbstractAuthenticatedWebSession;
+import com.mercateo.sso.authorization.AnnotationsRoleAuthorizationStrategy;
+import com.mercateo.sso.authorization.AuthenticatedWebApplication;
+import com.mercateo.sso.authorization.BasicAuthenticationSession;
 
 public class WicketApplication extends AuthenticatedWebApplication {
 

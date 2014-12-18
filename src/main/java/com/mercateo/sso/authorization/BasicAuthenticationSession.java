@@ -1,7 +1,7 @@
-package com.mercateo.sso;
+package com.mercateo.sso.authorization;
 
-import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
-import org.apache.wicket.authroles.authorization.strategies.role.Roles;
+import java.util.Set;
+
 import org.apache.wicket.request.Request;
 
 import com.mercateo.profile.Email;
@@ -43,7 +43,7 @@ public class BasicAuthenticationSession extends AuthenticatedWebSession {
     }
 
     @Override
-    public Roles getRoles() {
+    public Set<UserRole> getRoles() {
         if (isSignedIn()) {
             return userRolesProvider.provide(email);
         } else {

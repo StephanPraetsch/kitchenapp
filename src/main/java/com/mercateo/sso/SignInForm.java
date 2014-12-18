@@ -1,6 +1,5 @@
 package com.mercateo.sso;
 
-import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;
@@ -17,6 +16,7 @@ import com.mercateo.db.UserAccessFactory;
 import com.mercateo.profile.Email;
 import com.mercateo.profile.Password;
 import com.mercateo.profile.User;
+import com.mercateo.sso.authorization.AuthenticatedWebSession;
 
 public class SignInForm extends Form<Object> {
 

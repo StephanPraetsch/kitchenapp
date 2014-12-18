@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.mercateo.profile.Email;
 import com.mercateo.profile.User;
-import com.mercateo.sso.UserRole;
+import com.mercateo.sso.authorization.UserRole;
 
 public interface UserAccess {
 

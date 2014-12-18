@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 import com.mercateo.db.dummy.DummyUserAccessFactory;
 import com.mercateo.db.mongo.MongoDbConfiguration;
 import com.mercateo.db.mongo.UserAccessFactoryForMongoDb;
-import com.mercateo.sso.Authenticator;
+import com.mercateo.sso.authorization.Authenticator;
 
 public class UserAccessFactoryCache {
 

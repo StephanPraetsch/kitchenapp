@@ -1,9 +1,8 @@
 package com.mercateo.sso.roles.admin;
 
-import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
-
 import com.mercateo.layout.SignInNeededTemplate;
-import com.mercateo.sso.UserRole;
+import com.mercateo.sso.authorization.AuthorizeInstantiation;
+import com.mercateo.sso.authorization.UserRole;
 
 @AuthorizeInstantiation(UserRole.ADMIN)
 public class AdminPage extends SignInNeededTemplate {

@@ -11,7 +11,7 @@ import com.mercateo.db.EmailDoesNotExistException;
 import com.mercateo.db.UserAccess;
 import com.mercateo.profile.Email;
 import com.mercateo.profile.User;
-import com.mercateo.sso.UserRole;
+import com.mercateo.sso.authorization.UserRole;
 import com.mongodb.DBObject;
 
 class UserAccessMongoDb implements UserAccess, Serializable {

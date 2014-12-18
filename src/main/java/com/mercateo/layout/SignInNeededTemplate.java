@@ -1,7 +1,7 @@
 package com.mercateo.layout;
 
-import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
-import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
+import com.mercateo.sso.authorization.AuthenticatedWebApplication;
+import com.mercateo.sso.authorization.AuthenticatedWebSession;
 
 public abstract class SignInNeededTemplate extends HeaderMiddleFooterTemplate {
 

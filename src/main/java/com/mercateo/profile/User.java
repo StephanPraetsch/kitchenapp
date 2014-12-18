@@ -3,7 +3,7 @@ package com.mercateo.profile;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.mercateo.sso.UserRole;
+import com.mercateo.sso.authorization.UserRole;
 
 public class User {
 

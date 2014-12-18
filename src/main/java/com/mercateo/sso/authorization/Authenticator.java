@@ -1,4 +1,4 @@
-package com.mercateo.sso;
+package com.mercateo.sso.authorization;
 
 import com.mercateo.db.UserAccessCreationException;
 import com.mercateo.db.UserAccessFactoryCache;

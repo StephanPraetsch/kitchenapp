@@ -1,9 +1,9 @@
-package com.mercateo.sso;
+package com.mercateo.sso.authorization;
 
+import java.util.Collections;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
-import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 
 import com.mercateo.db.EmailDoesNotExistException;
 import com.mercateo.db.UserAccess;
@@ -15,9 +15,9 @@ public class UserRolesProvider {
 
     private static final Logger logger = Logger.getLogger(UserRolesProvider.class);
 
-    private static final Roles EMPTY_ROLES = new Roles();
+    private static final Set<UserRole> EMPTY_ROLES = Collections.emptySet();
 
-    public Roles provide(Email email) {
+    public Set<UserRole> provide(Email email) {
 
         try {
             return getRoles(email);
@@ -27,12 +27,8 @@ public class UserRolesProvider {
 
     }
 
-    private Roles getRoles(Email email) throws UserAccessCreationException, EmailDoesNotExistException {
-
-        Set<UserRole> userRoles = getUserRoles(email);
-
-        return transformUserRoleToRoles(userRoles);
-
+    private Set<UserRole> getRoles(Email email) throws UserAccessCreationException, EmailDoesNotExistException {
+        return getUserRoles(email);
     }
 
     private Set<UserRole> getUserRoles(Email email) throws UserAccessCreationException,
@@ -44,15 +40,7 @@ public class UserRolesProvider {
 
     }
 
-    private Roles transformUserRoleToRoles(Set<UserRole> userRoles) {
-        Roles roles = new Roles();
-        for (UserRole userRole : userRoles) {
-            roles.add(userRole.asString());
-        }
-        return roles;
-    }
-
-    private Roles handleException(Exception e) {
+    private Set<UserRole> handleException(Exception e) {
         logger.warn(e);
         return EMPTY_ROLES;
     }

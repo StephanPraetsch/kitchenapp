@@ -1,9 +1,10 @@
 package com.mercateo;
 
-import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
+
+import com.mercateo.sso.authorization.AuthenticatedWebSession;
 
 public class HeaderPanel extends Panel {
 
