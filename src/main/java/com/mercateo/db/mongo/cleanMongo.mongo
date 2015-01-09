@@ -1,0 +1,4 @@
+use kitchen
+db.users.drop()
+db.users.insert( { "email": "admin", "password": "admin", "userRoles" : [ "ADMIN", "EDITOR" ]  } );
+db.users.find()

@@ -55,7 +55,7 @@ public class SignUpForm extends Form<Object> {
             User user = User.of(email, password);
 
             userAccess.addUser(user);
-
+            
             AuthenticatedWebSession.get().signIn(email.asString(), password.asString());
 
             setResponsePage(ProfilePage.class, pageParameters);

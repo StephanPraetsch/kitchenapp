@@ -1,5 +1,6 @@
 package com.mercateo.profile;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,12 +15,40 @@ public class User {
     private Set<UserRole> userRoles = new HashSet<>();
 
     public static User of(Email email, Password password) {
-        return new User(email, password);
+        return builder().email(email).password(password).build();
     }
 
-    private User(Email email, Password password) {
-        this.email = email;
-        this.password = password;
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+
+        private final User user = new User();
+
+        public Builder email(Email email) {
+            user.email = email;
+            return this;
+        }
+
+        public Builder password(Password password) {
+            user.password = password;
+            return this;
+        }
+
+        public Builder userRoles(Set<UserRole> userRoles) {
+            user.userRoles = userRoles;
+            return this;
+        }
+
+        public User build() {
+            return user;
+        }
+
+    }
+
+    private User() {
+        // for builder
     }
 
     public Email getEmail() {
@@ -30,12 +59,8 @@ public class User {
         return password;
     }
 
-    public void addUserRole(UserRole userRole) {
-        userRoles.add(userRole);
-    }
-
     public Set<UserRole> getUserRoles() {
-        return userRoles;
+        return Collections.unmodifiableSet(userRoles);
     }
 
 }

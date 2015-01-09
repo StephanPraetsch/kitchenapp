@@ -1,5 +1,6 @@
 package com.mercateo.sso.authorization;
 
+import java.util.Collections;
 import java.util.Set;
 
 import org.apache.wicket.request.Request;
@@ -47,7 +48,7 @@ public class BasicAuthenticationSession extends AuthenticatedWebSession {
         if (isSignedIn()) {
             return userRolesProvider.provide(email);
         } else {
-            return null;
+            return Collections.emptySet();
         }
     }
 
