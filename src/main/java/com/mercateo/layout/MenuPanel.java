@@ -16,10 +16,12 @@
  */
 package com.mercateo.layout;
 
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.mercateo.profile.ProfilePage;
+import com.mercateo.sso.authorization.AuthenticatedWebSession;
 import com.mercateo.sso.roles.admin.AdminPage;
 import com.mercateo.sso.roles.editor.EditorPage;
 
@@ -48,6 +50,20 @@ public class MenuPanel extends Panel {
                 setResponsePage(EditorPage.class);
             }
         });
+
+        if (AuthenticatedWebSession.get().isSignedIn()) {
+            add(new Link("logOut") {
+
+                @Override
+                public void onClick() {
+                    AuthenticatedWebSession.get().invalidate();
+                    setResponsePage(getApplication().getHomePage());
+                }
+            });
+
+        } else {
+            add(new Label("logOut"));
+        }
 
     }
 }
