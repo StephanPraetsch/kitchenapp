@@ -1,4 +1,4 @@
-package com.mercateo.sso;
+package com.mercateo.pages.home;
 
 import java.util.List;
 
@@ -15,11 +15,11 @@ import com.mercateo.db.UserAccessFactory;
 import com.mercateo.profile.User;
 import com.mercateo.util.WicketConstants;
 
-public class UsersListView extends RepeatingView {
+class UsersListView extends RepeatingView {
 
     private static final Logger logger = Logger.getLogger(UsersListView.class);
 
-    public UsersListView(UserAccessFactory userAccessFactory) {
+    UsersListView(UserAccessFactory userAccessFactory) {
         super("usersList");
         add(createView(userAccessFactory));
     }

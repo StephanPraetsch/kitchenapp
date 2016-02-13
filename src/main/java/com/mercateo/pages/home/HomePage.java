@@ -5,7 +5,6 @@ import org.apache.wicket.markup.html.basic.Label;
 import com.mercateo.WicketGuiceHelper;
 import com.mercateo.db.UserAccessFactory;
 import com.mercateo.layout.HeaderMiddleFooterTemplate;
-import com.mercateo.sso.UsersListView;
 
 public class HomePage extends HeaderMiddleFooterTemplate {
 
