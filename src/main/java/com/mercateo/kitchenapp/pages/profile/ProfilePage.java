@@ -4,21 +4,22 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.string.StringValue;
 
-import com.mercateo.kitchenapp.pages.general.GenealPageSignInNeeded;
+import com.mercateo.kitchenapp.pages.general.GeneralPageSignInNeeded;
 import com.mercateo.kitchenapp.util.WicketConstants;
 
-public class ProfilePage extends GenealPageSignInNeeded {
+public class ProfilePage extends GeneralPageSignInNeeded {
 
     private static final long serialVersionUID = 1L;
 
-    public ProfilePage(PageParameters parameters) {
+    public ProfilePage(PageParameters params) {
+        super(params);
 
-        StringValue email = parameters.get(WicketConstants.EMAIL);
+        StringValue email = params.get(WicketConstants.EMAIL);
         if (email != null) {
             add(new Label(WicketConstants.EMAIL, email));
         }
 
-        StringValue password = parameters.get(WicketConstants.PASSWORD);
+        StringValue password = params.get(WicketConstants.PASSWORD);
         if (password != null) {
             add(new Label(WicketConstants.PASSWORD, password));
         }

@@ -1,12 +1,17 @@
 package com.mercateo.kitchenapp.pages.general;
 
 import org.apache.wicket.RestartResponseAtInterceptPageException;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.mercateo.kitchenapp.WicketGuiceHelper;
 import com.mercateo.kitchenapp.pages.PagesRegistry;
 import com.mercateo.kitchenapp.sso.authorization.AuthenticatedWebSession;
 
-public abstract class GenealPageSignInNeeded extends GeneralPage {
+public abstract class GeneralPageSignInNeeded extends GeneralPage {
+
+    public GeneralPageSignInNeeded(PageParameters params) {
+        super(params);
+    }
 
     @Override
     protected void onConfigure() {
