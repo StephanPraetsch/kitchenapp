@@ -2,10 +2,12 @@ package com.mercateo.db.mongo;
 
 import java.util.HashMap;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Function;
 
 import com.mercateo.data.Password;
 import com.mercateo.data.User;
+import com.mercateo.sso.roles.UserRole;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
@@ -19,7 +21,7 @@ public class TransformerUserToDbObject implements Function<User, DBObject> {
             {
                 put(MongoDbConstants.EMAIL, getEmail(user));
                 getPassword(user).ifPresent(pw -> put(MongoDbConstants.PASSWORD, pw));
-                // put(MongoDbConstants.USER_ROLES, getUserRoles(user));
+                getUserRoles(user).ifPresent(roles -> put(MongoDbConstants.USER_ROLES, roles));
             }
 
         });
@@ -36,10 +38,16 @@ public class TransformerUserToDbObject implements Function<User, DBObject> {
         return Optional.ofNullable(user.getPassword()).map(Password::asString);
     }
 
-    private BasicDBList getUserRoles(User user) {
+    private Optional<BasicDBList> getUserRoles(User user) {
+        Set<UserRole> roles = user.getUserRoles();
+        if (roles.isEmpty()) {
+            return Optional.empty();
+        }
         BasicDBList list = new BasicDBList();
-        user.getUserRoles().forEach((role) -> list.add(String.valueOf(role)));
-        return list;
+        user.getUserRoles().stream() //
+                .map(String::valueOf) //
+                .forEach(list::add);
+        return Optional.of(list);
     }
 
 }
