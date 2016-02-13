@@ -3,9 +3,11 @@ package com.mercateo;
 import org.apache.wicket.authorization.IAuthorizationStrategy;
 import org.apache.wicket.markup.html.WebPage;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import com.mercateo.db.UserAccessFactory;
 import com.mercateo.db.mongo.UserAccessFactoryForMongoDb;
-import com.mercateo.sso.SignInPage;
+import com.mercateo.pages.PagesRegistry;
 import com.mercateo.sso.authorization.AbstractAuthenticatedWebSession;
 import com.mercateo.sso.authorization.AnnotationsRoleAuthorizationStrategy;
 import com.mercateo.sso.authorization.AuthenticatedWebApplication;
@@ -13,21 +15,25 @@ import com.mercateo.sso.authorization.BasicAuthenticationSession;
 
 public class WicketApplication extends AuthenticatedWebApplication {
 
+    private Injector inj;
+
     @Override
     public Class<? extends WebPage> getHomePage() {
-        return HomePage.class;
+        return inj.getInstance(PagesRegistry.class).getHomePage();
     }
 
     @Override
     public void init() {
+        this.inj = Guice.createInjector(new KitchenAppModule(getSecuritySettings(),
+                getApplicationSettings()));
         configureUserAccess();
         configureAuthorization();
         configureAuthentication();
     }
 
     private void configureUserAccess() {
-        System.setProperty(UserAccessFactory.USER_ACCESS_FACTORY,
-                UserAccessFactoryForMongoDb.class.getCanonicalName());
+        System.setProperty(UserAccessFactory.USER_ACCESS_FACTORY, UserAccessFactoryForMongoDb.class
+                .getCanonicalName());
     }
 
     private void configureAuthorization() {
@@ -58,7 +64,7 @@ public class WicketApplication extends AuthenticatedWebApplication {
 
     @Override
     protected Class<? extends WebPage> getSignInPageClass() {
-        return SignInPage.class;
+        return inj.getInstance(PagesRegistry.class).getSignInPageClass();
     }
 
 }
