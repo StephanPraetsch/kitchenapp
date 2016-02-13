@@ -1,5 +1,7 @@
 package com.mercateo.sso.session;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import javax.inject.Inject;
 
 import org.apache.wicket.Session;
@@ -18,11 +20,13 @@ public class SessionProvider {
 
     @Inject
     SessionProvider(Authenticator authenticator, UserRolesProvider userRolesProvider) {
-        this.authenticator = authenticator;
-        this.userRolesProvider = userRolesProvider;
+        this.authenticator = checkNotNull(authenticator);
+        this.userRolesProvider = checkNotNull(userRolesProvider);
     }
 
     public Session newSession(Request request, Response response) {
+        checkNotNull(request);
+        checkNotNull(response);
         return new BasicAuthenticationSession(request, authenticator, userRolesProvider);
     }
 
