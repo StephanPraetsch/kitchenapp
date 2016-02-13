@@ -4,8 +4,8 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.string.StringValue;
 
-import com.mercateo.WicketConstants;
 import com.mercateo.layout.SignInNeededTemplate;
+import com.mercateo.util.WicketConstants;
 
 public class ProfilePage extends SignInNeededTemplate {
 

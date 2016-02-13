@@ -1,4 +1,4 @@
-package com.mercateo;
+package com.mercateo.util;
 
 public class WicketConstants {
 
