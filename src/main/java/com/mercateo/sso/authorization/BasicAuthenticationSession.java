@@ -1,11 +1,12 @@
 package com.mercateo.sso.authorization;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.Collections;
 import java.util.Set;
 
 import org.apache.wicket.request.Request;
 
-import com.mercateo.WicketGuiceHelper;
 import com.mercateo.profile.Email;
 import com.mercateo.profile.Password;
 import com.mercateo.profile.User;
@@ -20,10 +21,11 @@ public class BasicAuthenticationSession extends AuthenticatedWebSession {
 
     private Password password;
 
-    public BasicAuthenticationSession(Request request) {
+    public BasicAuthenticationSession(Request request, Authenticator authenticator,
+            UserRolesProvider userRolesProvider) {
         super(request);
-        this.authenticator = WicketGuiceHelper.get().getInstance(Authenticator.class);
-        this.userRolesProvider = WicketGuiceHelper.get().getInstance(UserRolesProvider.class);
+        this.authenticator = checkNotNull(authenticator);
+        this.userRolesProvider = checkNotNull(userRolesProvider);
     }
 
     @Override
