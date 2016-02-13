@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.apache.wicket.request.Request;
 
+import com.mercateo.WicketGuiceHelper;
 import com.mercateo.profile.Email;
 import com.mercateo.profile.Password;
 import com.mercateo.profile.User;
@@ -21,8 +22,8 @@ public class BasicAuthenticationSession extends AuthenticatedWebSession {
 
     public BasicAuthenticationSession(Request request) {
         super(request);
-        this.authenticator = new Authenticator();
-        this.userRolesProvider = new UserRolesProvider();
+        this.authenticator = WicketGuiceHelper.get().getInstance(Authenticator.class);
+        this.userRolesProvider = WicketGuiceHelper.get().getInstance(UserRolesProvider.class);
     }
 
     @Override

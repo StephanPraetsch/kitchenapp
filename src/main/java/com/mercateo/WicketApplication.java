@@ -1,15 +1,17 @@
 package com.mercateo;
 
+import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.request.Request;
+import org.apache.wicket.request.Response;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.mercateo.db.UserAccessFactory;
 import com.mercateo.db.mongo.UserAccessFactoryForMongoDb;
 import com.mercateo.pages.PagesRegistry;
-import com.mercateo.sso.authorization.AbstractAuthenticatedWebSession;
 import com.mercateo.sso.authorization.AuthenticatedWebApplication;
-import com.mercateo.sso.authorization.BasicAuthenticationSession;
+import com.mercateo.sso.session.SessionProvider;
 
 public class WicketApplication extends AuthenticatedWebApplication {
 
@@ -24,6 +26,7 @@ public class WicketApplication extends AuthenticatedWebApplication {
     public void init() {
         this.inj = Guice.createInjector(new KitchenAppModule(getSecuritySettings(),
                 getApplicationSettings()));
+        WicketGuiceHelper.set(inj);
         configureUserAccess();
     }
 
@@ -33,13 +36,13 @@ public class WicketApplication extends AuthenticatedWebApplication {
     }
 
     @Override
-    protected Class<? extends AbstractAuthenticatedWebSession> getWebSessionClass() {
-        return BasicAuthenticationSession.class;
+    protected Class<? extends WebPage> getSignInPageClass() {
+        return inj.getInstance(PagesRegistry.class).getSignInPageClass();
     }
 
     @Override
-    protected Class<? extends WebPage> getSignInPageClass() {
-        return inj.getInstance(PagesRegistry.class).getSignInPageClass();
+    public Session newSession(Request request, Response response) {
+        return inj.getInstance(SessionProvider.class).newSession(request, response);
     }
 
 }

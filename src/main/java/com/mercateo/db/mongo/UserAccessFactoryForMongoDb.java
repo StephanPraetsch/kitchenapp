@@ -3,6 +3,8 @@ package com.mercateo.db.mongo;
 import java.io.Serializable;
 import java.net.UnknownHostException;
 
+import javax.inject.Inject;
+
 import com.mercateo.db.UserAccess;
 import com.mercateo.db.UserAccessCreationException;
 import com.mercateo.db.UserAccessFactory;
@@ -14,7 +16,8 @@ public class UserAccessFactoryForMongoDb implements UserAccessFactory, Serializa
 
     private final MongoDbConfiguration mongoDbConfiguration;
 
-    public UserAccessFactoryForMongoDb(MongoDbConfiguration mongoDbConfiguration) {
+    @Inject
+    UserAccessFactoryForMongoDb(MongoDbConfiguration mongoDbConfiguration) {
         this.mongoDbConfiguration = mongoDbConfiguration;
     }
 
