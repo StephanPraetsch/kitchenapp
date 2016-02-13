@@ -1,5 +1,7 @@
 package com.mercateo.kitchenapp.forms;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import javax.inject.Inject;
 
 import org.apache.wicket.markup.html.form.Form;
@@ -14,9 +16,6 @@ import com.mercateo.kitchenapp.data.Password;
 import com.mercateo.kitchenapp.data.User;
 import com.mercateo.kitchenapp.db.EmailAlreadyExistsExcpetion;
 import com.mercateo.kitchenapp.db.UserAccess;
-import com.mercateo.kitchenapp.db.UserAccessCreationException;
-import com.mercateo.kitchenapp.db.UserAccessFactory;
-import com.mercateo.kitchenapp.pages.home.HomePage;
 import com.mercateo.kitchenapp.pages.profile.ProfilePage;
 import com.mercateo.kitchenapp.pages.signin.SignInPage;
 import com.mercateo.kitchenapp.sso.authorization.AuthenticatedWebSession;
@@ -28,12 +27,12 @@ public class SignUpForm extends Form<Object> {
 
     private final PasswordTextField passwordField;
 
-    private final UserAccessFactory userAccessFactory;
+    private final UserAccess userAccess;
 
     @Inject
-    SignUpForm(UserAccessFactory userAccessFactory) {
+    SignUpForm(UserAccess userAccess) {
         super("signUpForm");
-        this.userAccessFactory = userAccessFactory;
+        this.userAccess = checkNotNull(userAccess);
 
         this.emailField = new TextField<>(WicketConstants.EMAIL, Model.of(""));
         this.passwordField = new PasswordTextField(WicketConstants.PASSWORD, Model.of(""));
@@ -51,7 +50,6 @@ public class SignUpForm extends Form<Object> {
         PageParameters pageParameters = new PageParameters();
 
         try {
-            UserAccess userAccess = userAccessFactory.create();
 
             Email email = Email.of(emailField.getModelObject());
             Password password = Password.of(passwordField.getModelObject());
@@ -64,9 +62,6 @@ public class SignUpForm extends Form<Object> {
 
             setResponsePage(ProfilePage.class, pageParameters);
 
-        } catch (UserAccessCreationException e) {
-            pageParameters.add(WicketConstants.STATUS, "internal error: '" + e.getMessage() + "'");
-            setResponsePage(HomePage.class, pageParameters);
         } catch (EmailAlreadyExistsExcpetion e) {
             pageParameters.add(WicketConstants.STATUS, "email already exists, try another one");
             setResponsePage(SignInPage.class, pageParameters);

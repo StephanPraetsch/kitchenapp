@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.inject.Inject;
+
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
@@ -12,6 +14,7 @@ public class UserCollection {
 
     private final DBCollection userCollection;
 
+    @Inject
     UserCollection(DBCollection userCollection) {
         this.userCollection = userCollection;
     }

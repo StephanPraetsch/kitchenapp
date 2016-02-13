@@ -1,5 +1,7 @@
 package com.mercateo.kitchenapp.sso.roles;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.Collections;
 import java.util.Set;
 
@@ -9,8 +11,6 @@ import org.apache.log4j.Logger;
 
 import com.mercateo.kitchenapp.data.User;
 import com.mercateo.kitchenapp.db.UserAccess;
-import com.mercateo.kitchenapp.db.UserAccessCreationException;
-import com.mercateo.kitchenapp.db.UserAccessFactory;
 import com.mercateo.kitchenapp.db.UserDoesNotExistException;
 
 public class UserRolesProvider {
@@ -19,25 +19,22 @@ public class UserRolesProvider {
 
     private static final Set<UserRole> EMPTY_ROLES = Collections.emptySet();
 
-    private final UserAccessFactory userAccessFactory;
+    private final UserAccess userAccess;
 
     @Inject
-    UserRolesProvider(UserAccessFactory userAccessFactory) {
-        this.userAccessFactory = userAccessFactory;
+    UserRolesProvider(UserAccess userAccess) {
+        this.userAccess = checkNotNull(userAccess);
     }
 
     public Set<UserRole> provide(User user) {
         try {
             return getUserRoles(user);
-        } catch (UserAccessCreationException | UserDoesNotExistException e) {
+        } catch (Exception e) {
             return handleException(e);
         }
     }
 
-    private Set<UserRole> getUserRoles(User user) throws UserAccessCreationException,
-            UserDoesNotExistException {
-
-        UserAccess userAccess = userAccessFactory.create();
+    private Set<UserRole> getUserRoles(User user) throws UserDoesNotExistException {
 
         return userAccess.getUserRoles(user);
 

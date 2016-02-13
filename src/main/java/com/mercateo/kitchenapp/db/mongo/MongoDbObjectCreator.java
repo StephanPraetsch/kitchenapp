@@ -2,12 +2,14 @@ package com.mercateo.kitchenapp.db.mongo;
 
 import java.net.UnknownHostException;
 
+import javax.inject.Inject;
+
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 
-class MongoDbObjectCreator {
+public class MongoDbObjectCreator {
 
     private final MongoDbConfiguration mongoDbConfiguration;
 
@@ -15,8 +17,8 @@ class MongoDbObjectCreator {
 
     private final DB mongoDatabase;
 
-    MongoDbObjectCreator(MongoDbConfiguration mongoDbConfiguration)
-            throws UnknownHostException {
+    @Inject
+    MongoDbObjectCreator(MongoDbConfiguration mongoDbConfiguration) throws UnknownHostException {
         this.mongoDbConfiguration = mongoDbConfiguration;
         this.mongoClient = new MongoClient(new MongoClientURI(mongoDbConfiguration
                 .getMongoURIString()));
@@ -27,7 +29,7 @@ class MongoDbObjectCreator {
         return mongoClient;
     }
 
-    DBCollection getUserCollection() {
+    public DBCollection getUserCollection() {
         return mongoDatabase.getCollection(mongoDbConfiguration.getCollectionNameUsers());
     }
 

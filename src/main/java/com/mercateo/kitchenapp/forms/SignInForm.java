@@ -10,7 +10,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.string.Strings;
 
-import com.mercateo.kitchenapp.db.UserAccessFactory;
+import com.mercateo.kitchenapp.db.UserAccess;
 import com.mercateo.kitchenapp.pages.home.HomePage;
 import com.mercateo.kitchenapp.sso.authorization.AuthenticatedWebSession;
 import com.mercateo.kitchenapp.util.WicketConstants;
@@ -22,7 +22,7 @@ public class SignInForm extends Form<Object> {
     private final PasswordTextField passwordField;
 
     @Inject
-    SignInForm(UserAccessFactory userAccessFactory) {
+    SignInForm(UserAccess userAccess) {
         super("signInForm");
 
         this.emailField = new TextField<>(WicketConstants.EMAIL, Model.of(""));

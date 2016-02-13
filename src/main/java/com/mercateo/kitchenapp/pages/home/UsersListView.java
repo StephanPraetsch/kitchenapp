@@ -2,7 +2,6 @@ package com.mercateo.kitchenapp.pages.home;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.AbstractItem;
@@ -11,59 +10,46 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 
 import com.mercateo.kitchenapp.data.User;
 import com.mercateo.kitchenapp.db.UserAccess;
-import com.mercateo.kitchenapp.db.UserAccessCreationException;
-import com.mercateo.kitchenapp.db.UserAccessFactory;
 import com.mercateo.kitchenapp.util.WicketConstants;
 
 class UsersListView extends RepeatingView {
 
-    private static final Logger logger = Logger.getLogger(UsersListView.class);
-
-    UsersListView(UserAccessFactory userAccessFactory) {
+    UsersListView(UserAccess userAccess) {
         super("usersList");
-        add(createView(userAccessFactory));
+        add(createView(userAccess));
     }
 
-    private RepeatingView createView(UserAccessFactory userAccessFactory) {
+    private RepeatingView createView(UserAccess userAccess) {
 
-        try {
+        RepeatingView repeating = new RepeatingView("repeating");
 
-            RepeatingView repeating = new RepeatingView("repeating");
+        List<User> allUsers = userAccess.listAllUsers();
 
-            UserAccess userAccess = userAccessFactory.create();
+        int index = 0;
+        for (User user : allUsers) {
 
-            List<User> allUsers = userAccess.listAllUsers();
+            AbstractItem item = new AbstractItem(repeating.newChildId());
 
-            int index = 0;
-            for (User user : allUsers) {
+            repeating.add(item);
 
-                AbstractItem item = new AbstractItem(repeating.newChildId());
+            item.add(new Label(WicketConstants.EMAIL, user.getEmail().asString()));
+            item.add(new Label(WicketConstants.PASSWORD, user.getPassword().asString()));
+            item.add(new Label("userRoles", user.getUserRoles().toString()));
 
-                repeating.add(item);
+            final int idx = index;
+            item.add(AttributeModifier.replace("class", new AbstractReadOnlyModel<String>() {
+                private static final long serialVersionUID = 1L;
 
-                item.add(new Label(WicketConstants.EMAIL, user.getEmail().asString()));
-                item.add(new Label(WicketConstants.PASSWORD, user.getPassword().asString()));
-                item.add(new Label("userRoles", user.getUserRoles().toString()));
+                @Override
+                public String getObject() {
+                    return (idx % 2 == 1) ? "even" : "odd";
+                }
+            }));
 
-                final int idx = index;
-                item.add(AttributeModifier.replace("class", new AbstractReadOnlyModel<String>() {
-                    private static final long serialVersionUID = 1L;
-
-                    @Override
-                    public String getObject() {
-                        return (idx % 2 == 1) ? "even" : "odd";
-                    }
-                }));
-
-                index++;
-            }
-
-            return repeating;
-
-        } catch (UserAccessCreationException e) {
-            logger.error("internal error: '" + e.getMessage() + "'");
-            throw new RuntimeException(e);
+            index++;
         }
+
+        return repeating;
 
     }
 

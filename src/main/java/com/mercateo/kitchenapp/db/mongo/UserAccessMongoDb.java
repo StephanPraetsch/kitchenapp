@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.inject.Inject;
+
 import org.apache.log4j.Logger;
 
 import com.mercateo.kitchenapp.data.User;
@@ -15,7 +17,7 @@ import com.mercateo.kitchenapp.db.UserDoesNotExistException;
 import com.mercateo.kitchenapp.sso.roles.UserRole;
 import com.mongodb.DBObject;
 
-class UserAccessMongoDb implements UserAccess, Serializable {
+public class UserAccessMongoDb implements UserAccess, Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -27,6 +29,7 @@ class UserAccessMongoDb implements UserAccess, Serializable {
 
     private final TransformerUserToDbObject transformerUserToDbObject;
 
+    @Inject
     UserAccessMongoDb(UserCollection userCollection,
             TransformerDbObjectToUser transformerDbObjectToUser,
             TransformerUserToDbObject transformerUserToDbObject) {

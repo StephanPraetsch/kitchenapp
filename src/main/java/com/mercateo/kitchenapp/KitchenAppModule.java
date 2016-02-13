@@ -9,9 +9,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Scopes;
 import com.google.inject.Singleton;
-import com.mercateo.kitchenapp.db.UserAccessFactory;
-import com.mercateo.kitchenapp.db.mongo.MongoDbConfiguration;
-import com.mercateo.kitchenapp.db.mongo.UserAccessFactoryForMongoDb;
+import com.mercateo.kitchenapp.db.UserAccess;
 import com.mercateo.kitchenapp.pages.PagesRegistry;
 import com.mercateo.kitchenapp.sso.authorization.AnnotationsRoleAuthorizationStrategy;
 import com.mercateo.kitchenapp.sso.authorization.UnauthorizedListenerImpl;
@@ -37,16 +35,10 @@ public class KitchenAppModule extends AbstractModule {
                 .to(UnauthorizedListenerImpl.class) //
                 .in(Scopes.SINGLETON);
 
-        bind(UserAccessFactory.class) //
-                .to(UserAccessFactoryForMongoDb.class) //
-                .in(Scopes.SINGLETON);
+        install(new MongoDbModule());
 
-    }
+        requireBinding(UserAccess.class);
 
-    @Provides
-    @Singleton
-    public MongoDbConfiguration provideMongoDbConfig() {
-        return new MongoDbConfiguration();
     }
 
     @Provides
