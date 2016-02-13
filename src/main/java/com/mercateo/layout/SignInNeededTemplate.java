@@ -3,6 +3,7 @@ package com.mercateo.layout;
 import org.apache.wicket.RestartResponseAtInterceptPageException;
 
 import com.mercateo.WicketGuiceHelper;
+import com.mercateo.layout.webpage.HeaderMiddleFooterTemplate;
 import com.mercateo.pages.PagesRegistry;
 import com.mercateo.sso.authorization.AuthenticatedWebSession;
 

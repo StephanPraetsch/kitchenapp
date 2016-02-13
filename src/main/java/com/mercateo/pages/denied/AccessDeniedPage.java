@@ -2,7 +2,7 @@ package com.mercateo.pages.denied;
 
 import org.apache.wicket.markup.html.basic.Label;
 
-import com.mercateo.layout.HeaderMiddleFooterTemplate;
+import com.mercateo.layout.webpage.HeaderMiddleFooterTemplate;
 
 public class AccessDeniedPage extends HeaderMiddleFooterTemplate {
 

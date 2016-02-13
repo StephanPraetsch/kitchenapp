@@ -1,8 +1,12 @@
-package com.mercateo.layout;
+package com.mercateo.layout.webpage;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+
+import com.mercateo.layout.footer.FooterPanel;
+import com.mercateo.layout.header.HeaderPanel;
+import com.mercateo.layout.menu.MenuPanel;
 
 public abstract class HeaderMiddleFooterTemplate extends WebPage {
 
