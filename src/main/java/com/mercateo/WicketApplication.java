@@ -25,23 +25,11 @@ public class WicketApplication extends AuthenticatedWebApplication {
         this.inj = Guice.createInjector(new KitchenAppModule(getSecuritySettings(),
                 getApplicationSettings()));
         configureUserAccess();
-        configureAuthorization();
-        configureAuthentication();
     }
 
     private void configureUserAccess() {
         System.setProperty(UserAccessFactory.USER_ACCESS_FACTORY, UserAccessFactoryForMongoDb.class
                 .getCanonicalName());
-    }
-
-    private void configureAuthorization() {
-
-        getApplicationSettings().setAccessDeniedPage(AccessDeniedPage.class);
-
-    }
-
-    private void configureAuthentication() {
-        // getSecuritySettings().setAuthenticationStrategy(authorizationStrategy);
     }
 
     @Override
