@@ -43,9 +43,4 @@ public class UserWebSession extends AuthenticatedWebSession {
         }
     }
 
-    @Override
-    public void signOut() {
-        super.signOut();
-    }
-
 }

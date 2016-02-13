@@ -16,7 +16,7 @@ public abstract class AuthenticatedWebSession extends AbstractAuthenticatedWebSe
         super(request);
     }
 
-    public final boolean signIn(final String username, final String password) {
+    public final boolean signIn(String username, String password) {
         signedIn = authenticate(username, password);
         if (signedIn) {
             bind();
