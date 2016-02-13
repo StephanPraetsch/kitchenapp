@@ -12,7 +12,7 @@ import com.mercateo.db.EmailAlreadyExistsExcpetion;
 import com.mercateo.db.UserAccess;
 import com.mercateo.db.UserDoesNotExistException;
 import com.mercateo.profile.User;
-import com.mercateo.sso.authorization.UserRole;
+import com.mercateo.sso.roles.UserRole;
 import com.mongodb.DBObject;
 
 class UserAccessMongoDb implements UserAccess, Serializable {

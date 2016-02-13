@@ -7,7 +7,7 @@ import java.util.Set;
 import com.mercateo.db.UserAccess;
 import com.mercateo.db.UserDoesNotExistException;
 import com.mercateo.profile.User;
-import com.mercateo.sso.authorization.UserRole;
+import com.mercateo.sso.roles.UserRole;
 
 public class DummyUserAccess implements UserAccess {
 

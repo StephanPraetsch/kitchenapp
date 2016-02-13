@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.mercateo.sso.authorization.UserRole;
+import com.mercateo.sso.roles.UserRole;
 
 public class User {
 

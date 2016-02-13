@@ -10,6 +10,8 @@ import org.apache.wicket.request.Request;
 import com.mercateo.profile.Email;
 import com.mercateo.profile.Password;
 import com.mercateo.profile.User;
+import com.mercateo.sso.roles.UserRole;
+import com.mercateo.sso.roles.UserRolesProvider;
 
 public class BasicAuthenticationSession extends AuthenticatedWebSession {
 

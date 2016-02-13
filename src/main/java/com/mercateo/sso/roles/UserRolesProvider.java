@@ -1,4 +1,4 @@
-package com.mercateo.sso.authorization;
+package com.mercateo.sso.roles;
 
 import java.util.Collections;
 import java.util.Set;

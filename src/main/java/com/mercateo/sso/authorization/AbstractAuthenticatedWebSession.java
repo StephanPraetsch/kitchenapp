@@ -6,6 +6,8 @@ import org.apache.wicket.Session;
 import org.apache.wicket.protocol.http.WebSession;
 import org.apache.wicket.request.Request;
 
+import com.mercateo.sso.roles.UserRole;
+
 public abstract class AbstractAuthenticatedWebSession extends WebSession {
 
     private static final long serialVersionUID = 1L;

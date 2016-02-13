@@ -14,8 +14,8 @@ import com.mercateo.db.mongo.MongoDbConfiguration;
 import com.mercateo.db.mongo.UserAccessFactoryForMongoDb;
 import com.mercateo.pages.PagesRegistry;
 import com.mercateo.sso.authorization.AnnotationsRoleAuthorizationStrategy;
-import com.mercateo.sso.authorization.IRoleCheckingStrategy;
 import com.mercateo.sso.authorization.UnauthorizedListenerImpl;
+import com.mercateo.sso.roles.RoleCheckingStrategy;
 import com.mercateo.sso.roles.RoleCheckingStrategyImpl;
 
 public class KitchenAppModule extends AbstractModule {
@@ -51,13 +51,13 @@ public class KitchenAppModule extends AbstractModule {
 
     @Provides
     @Singleton
-    public IRoleCheckingStrategy provideIRoleCheckingStrategy() {
+    public RoleCheckingStrategy provideIRoleCheckingStrategy() {
         return new RoleCheckingStrategyImpl();
     }
 
     @Provides
     @Singleton
-    public IAuthorizationStrategy provideIAuthorizationStrategy(IRoleCheckingStrategy roleChecking,
+    public IAuthorizationStrategy provideIAuthorizationStrategy(RoleCheckingStrategy roleChecking,
             IUnauthorizedComponentInstantiationListener listener, PagesRegistry pages) {
 
         IAuthorizationStrategy authorizationStrategy = null;

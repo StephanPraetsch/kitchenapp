@@ -1,4 +1,4 @@
-package com.mercateo.sso.authorization;
+package com.mercateo.sso.roles;
 
 
 public enum UserRole {

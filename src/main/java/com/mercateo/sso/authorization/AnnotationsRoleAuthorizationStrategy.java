@@ -8,11 +8,14 @@ import org.apache.wicket.authorization.Action;
 import org.apache.wicket.authorization.IAuthorizationStrategy;
 import org.apache.wicket.request.component.IRequestableComponent;
 
+import com.mercateo.sso.roles.RoleCheckingStrategy;
+import com.mercateo.sso.roles.UserRole;
+
 public class AnnotationsRoleAuthorizationStrategy implements IAuthorizationStrategy {
 
-    private final IRoleCheckingStrategy roleCheckingStrategy;
+    private final RoleCheckingStrategy roleCheckingStrategy;
 
-    public AnnotationsRoleAuthorizationStrategy(IRoleCheckingStrategy roleCheckingStrategy) {
+    public AnnotationsRoleAuthorizationStrategy(RoleCheckingStrategy roleCheckingStrategy) {
         this.roleCheckingStrategy = roleCheckingStrategy;
     }
 

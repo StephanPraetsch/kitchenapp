@@ -10,7 +10,7 @@ import org.apache.wicket.request.Response;
 
 import com.mercateo.sso.authorization.Authenticator;
 import com.mercateo.sso.authorization.BasicAuthenticationSession;
-import com.mercateo.sso.authorization.UserRolesProvider;
+import com.mercateo.sso.roles.UserRolesProvider;
 
 public class SessionProvider {
 
