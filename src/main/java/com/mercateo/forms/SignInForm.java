@@ -10,9 +10,9 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.string.Strings;
 
-import com.mercateo.HomePage;
 import com.mercateo.WicketConstants;
 import com.mercateo.db.UserAccessFactory;
+import com.mercateo.pages.home.HomePage;
 import com.mercateo.sso.authorization.AuthenticatedWebSession;
 
 public class SignInForm extends Form<Object> {

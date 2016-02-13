@@ -1,4 +1,4 @@
-package com.mercateo;
+package com.mercateo.pages.denied;
 
 import org.apache.wicket.markup.html.basic.Label;
 

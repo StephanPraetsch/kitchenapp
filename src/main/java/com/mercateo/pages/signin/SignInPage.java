@@ -1,4 +1,4 @@
-package com.mercateo.sso;
+package com.mercateo.pages.signin;
 
 import com.mercateo.WicketGuiceHelper;
 import com.mercateo.forms.SignInForm;

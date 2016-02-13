@@ -9,17 +9,17 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-import com.mercateo.HomePage;
 import com.mercateo.WicketConstants;
 import com.mercateo.db.EmailAlreadyExistsExcpetion;
 import com.mercateo.db.UserAccess;
 import com.mercateo.db.UserAccessCreationException;
 import com.mercateo.db.UserAccessFactory;
+import com.mercateo.pages.home.HomePage;
+import com.mercateo.pages.signin.SignInPage;
 import com.mercateo.profile.Email;
 import com.mercateo.profile.Password;
 import com.mercateo.profile.ProfilePage;
 import com.mercateo.profile.User;
-import com.mercateo.sso.SignInPage;
 import com.mercateo.sso.authorization.AuthenticatedWebSession;
 
 public class SignUpForm extends Form<Object> {

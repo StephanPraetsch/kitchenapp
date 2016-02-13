@@ -2,9 +2,9 @@ package com.mercateo.pages;
 
 import org.apache.wicket.markup.html.WebPage;
 
-import com.mercateo.AccessDeniedPage;
-import com.mercateo.HomePage;
-import com.mercateo.sso.SignInPage;
+import com.mercateo.pages.denied.AccessDeniedPage;
+import com.mercateo.pages.home.HomePage;
+import com.mercateo.pages.signin.SignInPage;
 
 public class PagesRegistry {
 
