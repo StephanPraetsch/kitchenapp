@@ -4,9 +4,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import com.mercateo.db.EmailDoesNotExistException;
 import com.mercateo.db.UserAccess;
-import com.mercateo.profile.Email;
+import com.mercateo.db.UserDoesNotExistException;
 import com.mercateo.profile.User;
 import com.mercateo.sso.authorization.UserRole;
 
@@ -34,7 +33,7 @@ public class DummyUserAccess implements UserAccess {
     }
 
     @Override
-    public Set<UserRole> getUserRoles(Email email) throws EmailDoesNotExistException {
+    public Set<UserRole> getUserRoles(User user) throws UserDoesNotExistException {
         return Collections.emptySet();
     }
 

@@ -5,11 +5,11 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
-import com.mercateo.db.EmailDoesNotExistException;
 import com.mercateo.db.UserAccess;
 import com.mercateo.db.UserAccessCreationException;
 import com.mercateo.db.UserAccessFactoryCache;
-import com.mercateo.profile.Email;
+import com.mercateo.db.UserDoesNotExistException;
+import com.mercateo.profile.User;
 
 public class UserRolesProvider {
 
@@ -17,26 +17,20 @@ public class UserRolesProvider {
 
     private static final Set<UserRole> EMPTY_ROLES = Collections.emptySet();
 
-    public Set<UserRole> provide(Email email) {
-
+    public Set<UserRole> provide(User user) {
         try {
-            return getRoles(email);
-        } catch (UserAccessCreationException | EmailDoesNotExistException e) {
+            return getUserRoles(user);
+        } catch (UserAccessCreationException | UserDoesNotExistException e) {
             return handleException(e);
         }
-
     }
 
-    private Set<UserRole> getRoles(Email email) throws UserAccessCreationException, EmailDoesNotExistException {
-        return getUserRoles(email);
-    }
-
-    private Set<UserRole> getUserRoles(Email email) throws UserAccessCreationException,
-            EmailDoesNotExistException {
+    private Set<UserRole> getUserRoles(User user) throws UserAccessCreationException,
+            UserDoesNotExistException {
 
         UserAccess userAccess = UserAccessFactoryCache.get().create();
 
-        return userAccess.getUserRoles(email);
+        return userAccess.getUserRoles(user);
 
     }
 

@@ -17,7 +17,7 @@ public class TransformerUserToDbObject implements Function<User, DBObject> {
             {
                 put(MongoDbConstants.EMAIL, getEmail(user));
                 put(MongoDbConstants.PASSWORD, getPassword(user));
-                put(MongoDbConstants.USER_ROLES, getUserRoles(user));
+                // put(MongoDbConstants.USER_ROLES, getUserRoles(user));
             }
 
         });

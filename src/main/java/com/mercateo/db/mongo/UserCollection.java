@@ -4,17 +4,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.log4j.Logger;
-
-import com.mercateo.profile.Email;
-import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 
 public class UserCollection {
-
-    private static final Logger logger = Logger.getLogger(UserAccessMongoDb.class);
 
     private final DBCollection userCollection;
 
@@ -22,23 +16,21 @@ public class UserCollection {
         this.userCollection = userCollection;
     }
 
-    Optional<DBObject> getUser(Email email) {
+    Optional<DBObject> findOne(DBObject dbObject) throws DuplicateFoundException {
 
-        BasicDBObject emailDbObject = new BasicDBObject(MongoDbConstants.EMAIL, email.asString());
+        DBCursor cursor = userCollection.find(dbObject);
 
-        DBCursor emailCursor = userCollection.find(emailDbObject);
-
-        if (emailCursor.size() == 0) {
+        if (cursor.size() == 0) {
             return Optional.empty();
         }
 
-        if (emailCursor.size() > 1) {
-            logger.error("duplicate email found: " + email);
+        if (cursor.size() > 1) {
+            throw new DuplicateFoundException(dbObject, cursor);
         }
 
-        DBObject userDbObject = emailCursor.next();
+        DBObject foundUserDbObject = cursor.next();
 
-        return Optional.of(userDbObject);
+        return Optional.of(foundUserDbObject);
 
     }
 

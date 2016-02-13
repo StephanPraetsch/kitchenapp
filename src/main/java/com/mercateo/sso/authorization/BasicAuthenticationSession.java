@@ -7,6 +7,7 @@ import org.apache.wicket.request.Request;
 
 import com.mercateo.profile.Email;
 import com.mercateo.profile.Password;
+import com.mercateo.profile.User;
 
 public class BasicAuthenticationSession extends AuthenticatedWebSession {
 
@@ -46,7 +47,7 @@ public class BasicAuthenticationSession extends AuthenticatedWebSession {
     @Override
     public Set<UserRole> getRoles() {
         if (isSignedIn()) {
-            return userRolesProvider.provide(email);
+            return userRolesProvider.provide(User.of(email, password));
         } else {
             return Collections.emptySet();
         }

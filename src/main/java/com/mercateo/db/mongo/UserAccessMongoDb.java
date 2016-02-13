@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
 import com.mercateo.db.EmailAlreadyExistsExcpetion;
-import com.mercateo.db.EmailDoesNotExistException;
 import com.mercateo.db.UserAccess;
-import com.mercateo.profile.Email;
+import com.mercateo.db.UserDoesNotExistException;
 import com.mercateo.profile.User;
 import com.mercateo.sso.authorization.UserRole;
 import com.mongodb.DBObject;
@@ -17,6 +18,8 @@ import com.mongodb.DBObject;
 class UserAccessMongoDb implements UserAccess, Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    private static final Logger logger = Logger.getLogger(UserAccessMongoDb.class);
 
     private final UserCollection userCollection;
 
@@ -34,20 +37,14 @@ class UserAccessMongoDb implements UserAccess, Serializable {
 
     @Override
     public boolean existsUser(User user) {
-        return existsEmail(user);
-    }
-
-    private boolean existsEmail(User user) {
-
-        Email email = user.getEmail();
-        if (email == null) {
-            return false;
+        try {
+            Optional<DBObject> userByEmail = userCollection.findOne(transformerUserToDbObject.apply(
+                    user));
+            return userByEmail.isPresent();
+        } catch (DuplicateFoundException e) {
+            logger.error("error while finding user " + user, e);
+            return true;
         }
-
-        Optional<DBObject> userByEmail = userCollection.getUser(email);
-
-        return userByEmail.isPresent();
-
     }
 
     @Override
@@ -61,30 +58,45 @@ class UserAccessMongoDb implements UserAccess, Serializable {
 
     }
 
+    private boolean existsEmail(User user) {
+        try {
+            Optional<DBObject> userByEmail = userCollection.findOne(transformerUserToDbObject.apply(
+                    User.of(user.getEmail(), null)));
+            return userByEmail.isPresent();
+        } catch (DuplicateFoundException e) {
+            logger.error("error while finding email for " + user, e);
+            return true;
+        }
+    }
+
     @Override
     public List<User> listAllUsers() {
 
         List<User> allUsers = new LinkedList<>();
 
-        userCollection.findAllUsers().forEach(
-                (DBObject d) -> allUsers.add(transformerDbObjectToUser.apply(d)));
+        userCollection.findAllUsers().forEach((DBObject d) -> allUsers.add(transformerDbObjectToUser
+                .apply(d)));
 
         return allUsers;
 
     }
 
     @Override
-    public Set<UserRole> getUserRoles(Email email) throws EmailDoesNotExistException {
+    public Set<UserRole> getUserRoles(User user) throws UserDoesNotExistException {
 
-        Optional<DBObject> userByEmail = userCollection.getUser(email);
+        try {
+            Optional<DBObject> userDbObjectOptional = userCollection.findOne(
+                    transformerUserToDbObject.apply(user));
 
-        if (!userByEmail.isPresent()) {
-            throw new EmailDoesNotExistException(email);
+            if (!userDbObjectOptional.isPresent()) {
+                throw new UserDoesNotExistException(user);
+            }
+
+            return transformerDbObjectToUser.apply(userDbObjectOptional.get()).getUserRoles();
+        } catch (DuplicateFoundException e) {
+            logger.error("error while finding user " + user, e);
+            throw new UserDoesNotExistException(user);
         }
-
-        User user = transformerDbObjectToUser.apply(userByEmail.get());
-
-        return user.getUserRoles();
 
     }
 
