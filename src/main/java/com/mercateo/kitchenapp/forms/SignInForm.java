@@ -15,7 +15,7 @@ import com.mercateo.kitchenapp.data.Email;
 import com.mercateo.kitchenapp.data.Password;
 import com.mercateo.kitchenapp.data.User;
 import com.mercateo.kitchenapp.pages.error.ErrorPage;
-import com.mercateo.kitchenapp.pages.home.HomePage;
+import com.mercateo.kitchenapp.pages.signin.SignInPage;
 import com.mercateo.kitchenapp.sso.authorization.AuthenticatedWebSession;
 import com.mercateo.kitchenapp.util.WicketConstants;
 
@@ -70,7 +70,7 @@ public class SignInForm extends Form<Object> {
     private void wrongCredentials() {
         PageParameters pageParameters = new PageParameters();
         pageParameters.add(WicketConstants.STATUS, "wrong email or password");
-        setResponsePage(HomePage.class, pageParameters);
+        setResponsePage(SignInPage.class, pageParameters);
     }
 
     private void handleException(Exception e) {
