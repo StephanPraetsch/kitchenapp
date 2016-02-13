@@ -16,6 +16,7 @@
  */
 package com.mercateo.layout;
 
+import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -31,40 +32,31 @@ public class MenuPanel extends Panel {
 
         PagesRegistry pages = WicketGuiceHelper.get().getInstance(PagesRegistry.class);
 
-        add(new Link("profile") {
-            @Override
-            public void onClick() {
-                setResponsePage(pages.getProfilePage());
-            }
-        });
-
-        add(new Link("admin") {
-            @Override
-            public void onClick() {
-                setResponsePage(pages.getAdminPage());
-            }
-        });
-
-        add(new Link("editor") {
-            @Override
-            public void onClick() {
-                setResponsePage(pages.getEditorPage());
-            }
-        });
-
+        add(link("profile", pages.getProfilePage()));
+        add(link("admin", pages.getAdminPage()));
+        add(link("editor", pages.getEditorPage()));
         if (AuthenticatedWebSession.get().isSignedIn()) {
+            Class<? extends WebPage> page = pages.getHomePage();
             add(new Link("logOut") {
-
                 @Override
                 public void onClick() {
                     AuthenticatedWebSession.get().invalidate();
-                    setResponsePage(pages.getHomePage());
+                    setResponsePage(page);
                 }
             });
-
         } else {
             add(new Label("logOut"));
         }
 
     }
+
+    private Link link(String id, Class<? extends WebPage> page) {
+        return new Link(id) {
+            @Override
+            public void onClick() {
+                setResponsePage(page);
+            }
+        };
+    }
+
 }
