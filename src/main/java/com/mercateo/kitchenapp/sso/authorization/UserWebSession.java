@@ -5,6 +5,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Collections;
 import java.util.Set;
 
+import org.apache.wicket.Session;
 import org.apache.wicket.request.Request;
 
 import com.mercateo.kitchenapp.data.User;
@@ -12,6 +13,10 @@ import com.mercateo.kitchenapp.sso.roles.UserRole;
 import com.mercateo.kitchenapp.sso.roles.UserRolesProvider;
 
 public class UserWebSession extends AuthenticatedWebSession {
+
+    public static UserWebSession get() {
+        return (UserWebSession) Session.get();
+    }
 
     private final Authenticator authenticator;
 
@@ -39,6 +44,10 @@ public class UserWebSession extends AuthenticatedWebSession {
         } else {
             return Collections.emptySet();
         }
+    }
+
+    public User getUser() {
+        return user;
     }
 
 }
