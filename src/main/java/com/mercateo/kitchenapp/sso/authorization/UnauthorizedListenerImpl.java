@@ -34,7 +34,7 @@ public class UnauthorizedListenerImpl implements IUnauthorizedComponentInstantia
     }
 
     public void restartResponseAtSignInPage() {
-        throw new RestartResponseAtInterceptPageException(pages.getSignInPageClass());
+        throw new RestartResponseAtInterceptPageException(pages.getSignInPage());
     }
 
     protected void onUnauthorizedPage(Page page) {

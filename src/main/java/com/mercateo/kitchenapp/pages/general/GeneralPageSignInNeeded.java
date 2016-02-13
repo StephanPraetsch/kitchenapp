@@ -18,7 +18,7 @@ public abstract class GeneralPageSignInNeeded extends GeneralPage {
 
         if (!AuthenticatedWebSession.get().isSignedIn()) {
             throw new RestartResponseAtInterceptPageException(WicketGuiceHelper.get().getInstance(
-                    PagesRegistry.class).getSignInPageClass());
+                    PagesRegistry.class).getSignInPage());
         }
 
     }

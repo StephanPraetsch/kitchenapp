@@ -11,11 +11,11 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mercateo.kitchenapp.WicketGuiceHelper;
 import com.mercateo.kitchenapp.data.Email;
 import com.mercateo.kitchenapp.data.Password;
 import com.mercateo.kitchenapp.data.User;
-import com.mercateo.kitchenapp.pages.error.ErrorPage;
-import com.mercateo.kitchenapp.pages.signin.SignInPage;
+import com.mercateo.kitchenapp.pages.PagesRegistry;
 import com.mercateo.kitchenapp.sso.authorization.AuthenticatedWebSession;
 import com.mercateo.kitchenapp.util.WicketConstants;
 
@@ -70,14 +70,16 @@ public class SignInForm extends Form<Object> {
     private void wrongCredentials() {
         PageParameters pageParameters = new PageParameters();
         pageParameters.add(WicketConstants.STATUS, "wrong email or password");
-        setResponsePage(SignInPage.class, pageParameters);
+        setResponsePage(WicketGuiceHelper.get().getInstance(PagesRegistry.class)
+                .getSignInPage(), pageParameters);
     }
 
     private void handleException(Exception e) {
         logger.error("could not sign in", e);
         PageParameters pageParameters = new PageParameters();
         pageParameters.add(WicketConstants.STATUS, "error while sign in");
-        setResponsePage(ErrorPage.class, pageParameters);
+        setResponsePage(WicketGuiceHelper.get().getInstance(PagesRegistry.class).getErrorPage(),
+                pageParameters);
     }
 
 }

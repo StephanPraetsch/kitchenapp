@@ -5,6 +5,7 @@ import org.apache.wicket.markup.html.WebPage;
 import com.mercateo.kitchenapp.pages.admin.AdminPage;
 import com.mercateo.kitchenapp.pages.denied.AccessDeniedPage;
 import com.mercateo.kitchenapp.pages.editor.EditorPage;
+import com.mercateo.kitchenapp.pages.error.ErrorPage;
 import com.mercateo.kitchenapp.pages.home.HomePage;
 import com.mercateo.kitchenapp.pages.profile.ProfilePage;
 import com.mercateo.kitchenapp.pages.signin.SignInPage;
@@ -15,7 +16,7 @@ public class PagesRegistry {
         return HomePage.class;
     }
 
-    public Class<? extends WebPage> getSignInPageClass() {
+    public Class<? extends WebPage> getSignInPage() {
         return SignInPage.class;
     }
 
@@ -33,6 +34,10 @@ public class PagesRegistry {
 
     public Class<? extends WebPage> getEditorPage() {
         return EditorPage.class;
+    }
+
+    public Class<? extends WebPage> getErrorPage() {
+        return ErrorPage.class;
     }
 
 }

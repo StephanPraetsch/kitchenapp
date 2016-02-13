@@ -17,9 +17,7 @@ import com.mercateo.kitchenapp.data.Password;
 import com.mercateo.kitchenapp.data.User;
 import com.mercateo.kitchenapp.db.EmailAlreadyExistsExcpetion;
 import com.mercateo.kitchenapp.db.UserAccess;
-import com.mercateo.kitchenapp.pages.error.ErrorPage;
-import com.mercateo.kitchenapp.pages.profile.ProfilePage;
-import com.mercateo.kitchenapp.pages.signin.SignInPage;
+import com.mercateo.kitchenapp.pages.PagesRegistry;
 import com.mercateo.kitchenapp.sso.authorization.AuthenticatedWebSession;
 import com.mercateo.kitchenapp.util.WicketConstants;
 
@@ -69,21 +67,23 @@ public class SignUpForm extends Form<Object> {
 
         AuthenticatedWebSession.get().signIn(user);
 
-        setResponsePage(ProfilePage.class);
+        setResponsePage(WicketGuiceHelper.get().getInstance(PagesRegistry.class).getProfilePage());
 
     }
 
     private void emailAlreadyExists() {
         PageParameters pageParameters = new PageParameters();
         pageParameters.add(WicketConstants.STATUS, "email already exists, try another one");
-        setResponsePage(SignInPage.class, pageParameters);
+        setResponsePage(WicketGuiceHelper.get().getInstance(PagesRegistry.class).getSignInPage(),
+                pageParameters);
     }
 
     private void handleException(Exception e) {
         logger.error("could not sign up", e);
         PageParameters pageParameters = new PageParameters();
         pageParameters.add(WicketConstants.STATUS, "error while sign up");
-        setResponsePage(ErrorPage.class, pageParameters);
+        setResponsePage(WicketGuiceHelper.get().getInstance(PagesRegistry.class).getErrorPage(),
+                pageParameters);
     }
 
 }
