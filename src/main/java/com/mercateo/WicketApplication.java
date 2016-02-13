@@ -1,6 +1,5 @@
 package com.mercateo;
 
-import org.apache.wicket.authorization.IAuthorizationStrategy;
 import org.apache.wicket.markup.html.WebPage;
 
 import com.google.inject.Guice;
@@ -9,7 +8,6 @@ import com.mercateo.db.UserAccessFactory;
 import com.mercateo.db.mongo.UserAccessFactoryForMongoDb;
 import com.mercateo.pages.PagesRegistry;
 import com.mercateo.sso.authorization.AbstractAuthenticatedWebSession;
-import com.mercateo.sso.authorization.AnnotationsRoleAuthorizationStrategy;
 import com.mercateo.sso.authorization.AuthenticatedWebApplication;
 import com.mercateo.sso.authorization.BasicAuthenticationSession;
 
@@ -37,17 +35,6 @@ public class WicketApplication extends AuthenticatedWebApplication {
     }
 
     private void configureAuthorization() {
-        IAuthorizationStrategy authorizationStrategy = null;
-        // IAuthorizationStrategy authorizationStrategy = new
-        // MetaDataRoleAuthorizationStrategy(this);
-        // MetaDataRoleAuthorizationStrategy.authorize(AdminPage.class,
-        // Roles.ADMIN);
-
-        authorizationStrategy = new AnnotationsRoleAuthorizationStrategy(this);
-
-        getSecuritySettings().setAuthorizationStrategy(authorizationStrategy);
-
-        getSecuritySettings().setUnauthorizedComponentInstantiationListener(this);
 
         getApplicationSettings().setAccessDeniedPage(AccessDeniedPage.class);
 

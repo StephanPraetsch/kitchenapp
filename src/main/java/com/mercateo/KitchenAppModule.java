@@ -52,6 +52,7 @@ public class KitchenAppModule extends AbstractModule {
         // MetaDataRoleAuthorizationStrategy.authorize(AdminPage.class,
         // Roles.ADMIN);
 
+        // authorizationStrategy = new RoleAuthorizationStrategy(roleChecking);
         authorizationStrategy = new AnnotationsRoleAuthorizationStrategy(roleChecking);
 
         securitySettings.setAuthorizationStrategy(authorizationStrategy);
