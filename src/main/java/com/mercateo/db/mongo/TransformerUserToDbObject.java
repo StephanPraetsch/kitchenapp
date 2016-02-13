@@ -1,8 +1,10 @@
 package com.mercateo.db.mongo;
 
 import java.util.HashMap;
+import java.util.Optional;
 import java.util.function.Function;
 
+import com.mercateo.data.Password;
 import com.mercateo.data.User;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
@@ -16,7 +18,7 @@ public class TransformerUserToDbObject implements Function<User, DBObject> {
         BasicDBObject dbUserObject = new BasicDBObject(new HashMap<String, Object>() {
             {
                 put(MongoDbConstants.EMAIL, getEmail(user));
-                put(MongoDbConstants.PASSWORD, getPassword(user));
+                getPassword(user).ifPresent(pw -> put(MongoDbConstants.PASSWORD, pw));
                 // put(MongoDbConstants.USER_ROLES, getUserRoles(user));
             }
 
@@ -30,8 +32,8 @@ public class TransformerUserToDbObject implements Function<User, DBObject> {
         return user.getEmail().asString();
     }
 
-    private String getPassword(User user) {
-        return user.getPassword().asString();
+    private Optional<String> getPassword(User user) {
+        return Optional.ofNullable(user.getPassword()).map(Password::asString);
     }
 
     private BasicDBList getUserRoles(User user) {
