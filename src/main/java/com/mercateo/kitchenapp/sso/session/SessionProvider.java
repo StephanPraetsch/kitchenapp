@@ -9,7 +9,7 @@ import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
 
 import com.mercateo.kitchenapp.sso.authorization.Authenticator;
-import com.mercateo.kitchenapp.sso.authorization.BasicAuthenticationSession;
+import com.mercateo.kitchenapp.sso.authorization.UserWebSession;
 import com.mercateo.kitchenapp.sso.roles.UserRolesProvider;
 
 public class SessionProvider {
@@ -27,7 +27,7 @@ public class SessionProvider {
     public Session newSession(Request request, Response response) {
         checkNotNull(request);
         checkNotNull(response);
-        return new BasicAuthenticationSession(request, authenticator, userRolesProvider);
+        return new UserWebSession(request, authenticator, userRolesProvider);
     }
 
 }

@@ -13,7 +13,7 @@ import com.mercateo.kitchenapp.data.User;
 import com.mercateo.kitchenapp.sso.roles.UserRole;
 import com.mercateo.kitchenapp.sso.roles.UserRolesProvider;
 
-public class BasicAuthenticationSession extends AuthenticatedWebSession {
+public class UserWebSession extends AuthenticatedWebSession {
 
     private final Authenticator authenticator;
 
@@ -21,7 +21,7 @@ public class BasicAuthenticationSession extends AuthenticatedWebSession {
 
     private User user;
 
-    public BasicAuthenticationSession(Request request, Authenticator authenticator,
+    public UserWebSession(Request request, Authenticator authenticator,
             UserRolesProvider userRolesProvider) {
         super(request);
         this.authenticator = checkNotNull(authenticator);
