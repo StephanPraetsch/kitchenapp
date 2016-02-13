@@ -20,34 +20,35 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 
-import com.mercateo.profile.ProfilePage;
+import com.mercateo.WicketGuiceHelper;
+import com.mercateo.pages.PagesRegistry;
 import com.mercateo.sso.authorization.AuthenticatedWebSession;
-import com.mercateo.sso.roles.admin.AdminPage;
-import com.mercateo.sso.roles.editor.EditorPage;
 
 public class MenuPanel extends Panel {
 
     public MenuPanel(String id) {
         super(id);
 
+        PagesRegistry pages = WicketGuiceHelper.get().getInstance(PagesRegistry.class);
+
         add(new Link("profile") {
             @Override
             public void onClick() {
-                setResponsePage(ProfilePage.class);
+                setResponsePage(pages.getProfilePage());
             }
         });
 
         add(new Link("admin") {
             @Override
             public void onClick() {
-                setResponsePage(AdminPage.class);
+                setResponsePage(pages.getAdminPage());
             }
         });
 
         add(new Link("editor") {
             @Override
             public void onClick() {
-                setResponsePage(EditorPage.class);
+                setResponsePage(pages.getEditorPage());
             }
         });
 
@@ -57,7 +58,7 @@ public class MenuPanel extends Panel {
                 @Override
                 public void onClick() {
                     AuthenticatedWebSession.get().invalidate();
-                    setResponsePage(getApplication().getHomePage());
+                    setResponsePage(pages.getHomePage());
                 }
             });
 
