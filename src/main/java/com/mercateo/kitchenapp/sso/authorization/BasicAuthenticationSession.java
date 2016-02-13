@@ -19,9 +19,7 @@ public class BasicAuthenticationSession extends AuthenticatedWebSession {
 
     private final UserRolesProvider userRolesProvider;
 
-    private Email email;
-
-    private Password password;
+    private User user;
 
     public BasicAuthenticationSession(Request request, Authenticator authenticator,
             UserRolesProvider userRolesProvider) {
@@ -32,27 +30,14 @@ public class BasicAuthenticationSession extends AuthenticatedWebSession {
 
     @Override
     public boolean authenticate(String email, String password) {
-        setEmail(email);
-        setPassword(password);
-        return authenticate();
-    }
-
-    private void setPassword(String password) {
-        this.password = Password.of(password);
-    }
-
-    private void setEmail(String email) {
-        this.email = Email.of(email);
-    }
-
-    private boolean authenticate() {
-        return authenticator.authenticate(email, password);
+        this.user = User.of(Email.of(email), Password.of(password));
+        return authenticator.authenticate(user);
     }
 
     @Override
     public Set<UserRole> getRoles() {
         if (isSignedIn()) {
-            return userRolesProvider.provide(User.of(email, password));
+            return userRolesProvider.provide(user);
         } else {
             return Collections.emptySet();
         }
@@ -61,16 +46,6 @@ public class BasicAuthenticationSession extends AuthenticatedWebSession {
     @Override
     public void signOut() {
         super.signOut();
-        unsetEmail();
-        unsetPassword();
-    }
-
-    private void unsetEmail() {
-        this.email = null;
-    }
-
-    private void unsetPassword() {
-        this.password = null;
     }
 
 }

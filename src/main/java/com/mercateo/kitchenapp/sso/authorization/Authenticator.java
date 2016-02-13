@@ -4,8 +4,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import javax.inject.Inject;
 
-import com.mercateo.kitchenapp.data.Email;
-import com.mercateo.kitchenapp.data.Password;
 import com.mercateo.kitchenapp.data.User;
 import com.mercateo.kitchenapp.db.UserAccess;
 
@@ -18,8 +16,8 @@ public class Authenticator {
         this.userAccess = checkNotNull(userAccess);
     }
 
-    public boolean authenticate(Email email, Password password) {
-        User user = User.of(email, password);
+    public boolean authenticate(User user) {
+        checkNotNull(user);
         return userAccess.existsUser(user);
     }
 
