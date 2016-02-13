@@ -17,24 +17,22 @@ import com.mercateo.util.WicketConstants;
 
 public class UsersListView extends RepeatingView {
 
-    // TODO transient logger?
-    private transient final Logger logger = Logger.getLogger(UsersListView.class);
+    private static final Logger logger = Logger.getLogger(UsersListView.class);
 
-    public UsersListView(String id, UserAccessFactory userAccessFactory) {
-        super(id);
-        listAllUsers(userAccessFactory);
+    public UsersListView(UserAccessFactory userAccessFactory) {
+        super("usersList");
+        add(createView(userAccessFactory));
     }
 
-    private void listAllUsers(UserAccessFactory userAccessFactory) {
+    private RepeatingView createView(UserAccessFactory userAccessFactory) {
 
         try {
+
+            RepeatingView repeating = new RepeatingView("repeating");
 
             UserAccess userAccess = userAccessFactory.create();
 
             List<User> allUsers = userAccess.listAllUsers();
-
-            RepeatingView repeating = new RepeatingView("repeating");
-            add(repeating);
 
             int index = 0;
             for (User user : allUsers) {
@@ -60,8 +58,11 @@ public class UsersListView extends RepeatingView {
                 index++;
             }
 
+            return repeating;
+
         } catch (UserAccessCreationException e) {
             logger.error("internal error: '" + e.getMessage() + "'");
+            throw new RuntimeException(e);
         }
 
     }

@@ -13,8 +13,7 @@ public class HomePage extends HeaderMiddleFooterTemplate {
 
     public HomePage() {
         add(new Label("welcome", "welcome"));
-        add(new UsersListView("usersList", WicketGuiceHelper.get().getInstance(
-                UserAccessFactory.class)));
+        add(new UsersListView(WicketGuiceHelper.get().getInstance(UserAccessFactory.class)));
     }
 
 }
