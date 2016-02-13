@@ -1,4 +1,6 @@
-package com.mercateo.sso;
+package com.mercateo.forms;
+
+import javax.inject.Inject;
 
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
@@ -17,6 +19,7 @@ import com.mercateo.profile.Email;
 import com.mercateo.profile.Password;
 import com.mercateo.profile.ProfilePage;
 import com.mercateo.profile.User;
+import com.mercateo.sso.SignInPage;
 import com.mercateo.sso.authorization.AuthenticatedWebSession;
 
 public class SignUpForm extends Form<Object> {
@@ -27,8 +30,9 @@ public class SignUpForm extends Form<Object> {
 
     private final UserAccessFactory userAccessFactory;
 
-    public SignUpForm(String id, UserAccessFactory userAccessFactory) {
-        super(id);
+    @Inject
+    SignUpForm(UserAccessFactory userAccessFactory) {
+        super("signUpForm");
         this.userAccessFactory = userAccessFactory;
 
         this.emailField = new TextField<>(WicketConstants.EMAIL, Model.of(""));
@@ -55,7 +59,7 @@ public class SignUpForm extends Form<Object> {
             User user = User.of(email, password);
 
             userAccess.addUser(user);
-            
+
             AuthenticatedWebSession.get().signIn(email.asString(), password.asString());
 
             setResponsePage(ProfilePage.class, pageParameters);

@@ -1,4 +1,6 @@
-package com.mercateo.sso;
+package com.mercateo.forms;
+
+import javax.inject.Inject;
 
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
@@ -19,8 +21,9 @@ public class SignInForm extends Form<Object> {
 
     private final PasswordTextField passwordField;
 
-    public SignInForm(String id, UserAccessFactory userAccessFactory) {
-        super(id);
+    @Inject
+    SignInForm(UserAccessFactory userAccessFactory) {
+        super("signInForm");
 
         this.emailField = new TextField<>(WicketConstants.EMAIL, Model.of(""));
         this.passwordField = new PasswordTextField(WicketConstants.PASSWORD, Model.of(""));
