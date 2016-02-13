@@ -43,11 +43,7 @@ public class SignInForm extends Form<Object> {
 
     @Override
     public void onSubmit() {
-        try {
-            login();
-        } catch (Exception e) {
-            handleException(e);
-        }
+        login();
     }
 
     private void login() {
@@ -70,15 +66,7 @@ public class SignInForm extends Form<Object> {
     private void wrongCredentials() {
         PageParameters pageParameters = new PageParameters();
         pageParameters.add(WicketConstants.STATUS, "wrong email or password");
-        setResponsePage(WicketGuiceHelper.get().getInstance(PagesRegistry.class)
-                .getSignInPage(), pageParameters);
-    }
-
-    private void handleException(Exception e) {
-        logger.error("could not sign in", e);
-        PageParameters pageParameters = new PageParameters();
-        pageParameters.add(WicketConstants.STATUS, "error while sign in");
-        setResponsePage(WicketGuiceHelper.get().getInstance(PagesRegistry.class).getErrorPage(),
+        setResponsePage(WicketGuiceHelper.get().getInstance(PagesRegistry.class).getSignInPage(),
                 pageParameters);
     }
 
