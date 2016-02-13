@@ -7,8 +7,6 @@ import java.util.Set;
 
 import org.apache.wicket.request.Request;
 
-import com.mercateo.kitchenapp.data.Email;
-import com.mercateo.kitchenapp.data.Password;
 import com.mercateo.kitchenapp.data.User;
 import com.mercateo.kitchenapp.sso.roles.UserRole;
 import com.mercateo.kitchenapp.sso.roles.UserRolesProvider;
@@ -29,8 +27,8 @@ public class UserWebSession extends AuthenticatedWebSession {
     }
 
     @Override
-    public boolean authenticate(String email, String password) {
-        this.user = User.of(Email.of(email), Password.of(password));
+    public boolean authenticate(User user) {
+        this.user = checkNotNull(user);
         return authenticator.authenticate(user);
     }
 

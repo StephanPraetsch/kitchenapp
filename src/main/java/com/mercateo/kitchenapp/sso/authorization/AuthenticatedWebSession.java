@@ -1,7 +1,11 @@
 package com.mercateo.kitchenapp.sso.authorization;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.apache.wicket.Session;
 import org.apache.wicket.request.Request;
+
+import com.mercateo.kitchenapp.data.User;
 
 public abstract class AuthenticatedWebSession extends AbstractAuthenticatedWebSession {
     private static final long serialVersionUID = 1L;
@@ -16,15 +20,20 @@ public abstract class AuthenticatedWebSession extends AbstractAuthenticatedWebSe
         super(request);
     }
 
-    public final boolean signIn(String username, String password) {
-        signedIn = authenticate(username, password);
+    public final boolean signIn(User user) {
+
+        checkNotNull(user);
+
+        signedIn = authenticate(user);
         if (signedIn) {
             bind();
         }
+
         return signedIn;
+
     }
 
-    public abstract boolean authenticate(final String username, final String password);
+    public abstract boolean authenticate(User user);
 
     protected final void signIn(boolean value) {
         signedIn = value;

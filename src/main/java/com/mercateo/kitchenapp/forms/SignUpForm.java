@@ -8,6 +8,8 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.mercateo.kitchenapp.WicketGuiceHelper;
 import com.mercateo.kitchenapp.data.Email;
@@ -15,12 +17,15 @@ import com.mercateo.kitchenapp.data.Password;
 import com.mercateo.kitchenapp.data.User;
 import com.mercateo.kitchenapp.db.EmailAlreadyExistsExcpetion;
 import com.mercateo.kitchenapp.db.UserAccess;
+import com.mercateo.kitchenapp.pages.error.ErrorPage;
 import com.mercateo.kitchenapp.pages.profile.ProfilePage;
 import com.mercateo.kitchenapp.pages.signin.SignInPage;
 import com.mercateo.kitchenapp.sso.authorization.AuthenticatedWebSession;
 import com.mercateo.kitchenapp.util.WicketConstants;
 
 public class SignUpForm extends Form<Object> {
+
+    private static final Logger logger = LoggerFactory.getLogger(SignUpForm.class);
 
     private final TextField<String> emailField;
 
@@ -43,26 +48,42 @@ public class SignUpForm extends Form<Object> {
     @Override
     public final void onSubmit() {
 
-        PageParameters pageParameters = new PageParameters();
-
         try {
-
-            Email email = Email.of(emailField.getModelObject());
-            Password password = Password.of(passwordField.getModelObject());
-
-            User user = User.of(email, password);
-
-            WicketGuiceHelper.get().getInstance(UserAccess.class).addUser(user);
-
-            AuthenticatedWebSession.get().signIn(email.asString(), password.asString());
-
-            setResponsePage(ProfilePage.class, pageParameters);
-
+            signUp();
         } catch (EmailAlreadyExistsExcpetion e) {
-            pageParameters.add(WicketConstants.STATUS, "email already exists, try another one");
-            setResponsePage(SignInPage.class, pageParameters);
+            emailAlreadyExists();
+        } catch (Exception e) {
+            handleException(e);
         }
 
+    }
+
+    private void signUp() throws EmailAlreadyExistsExcpetion {
+
+        Email email = Email.of(emailField.getModelObject());
+        Password password = Password.of(passwordField.getModelObject());
+
+        User user = User.of(email, password);
+
+        WicketGuiceHelper.get().getInstance(UserAccess.class).addUser(user);
+
+        AuthenticatedWebSession.get().signIn(user);
+
+        setResponsePage(ProfilePage.class);
+
+    }
+
+    private void emailAlreadyExists() {
+        PageParameters pageParameters = new PageParameters();
+        pageParameters.add(WicketConstants.STATUS, "email already exists, try another one");
+        setResponsePage(SignInPage.class, pageParameters);
+    }
+
+    private void handleException(Exception e) {
+        logger.error("could not sign up", e);
+        PageParameters pageParameters = new PageParameters();
+        pageParameters.add(WicketConstants.STATUS, "error while sign up");
+        setResponsePage(ErrorPage.class, pageParameters);
     }
 
 }
