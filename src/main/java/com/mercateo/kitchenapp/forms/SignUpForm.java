@@ -1,7 +1,5 @@
 package com.mercateo.kitchenapp.forms;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import javax.inject.Inject;
 
 import org.apache.wicket.markup.html.form.Form;
@@ -11,6 +9,7 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
+import com.mercateo.kitchenapp.WicketGuiceHelper;
 import com.mercateo.kitchenapp.data.Email;
 import com.mercateo.kitchenapp.data.Password;
 import com.mercateo.kitchenapp.data.User;
@@ -27,12 +26,9 @@ public class SignUpForm extends Form<Object> {
 
     private final PasswordTextField passwordField;
 
-    private final UserAccess userAccess;
-
     @Inject
-    SignUpForm(UserAccess userAccess) {
+    SignUpForm() {
         super("signUpForm");
-        this.userAccess = checkNotNull(userAccess);
 
         this.emailField = new TextField<>(WicketConstants.EMAIL, Model.of(""));
         this.passwordField = new PasswordTextField(WicketConstants.PASSWORD, Model.of(""));
@@ -56,7 +52,7 @@ public class SignUpForm extends Form<Object> {
 
             User user = User.of(email, password);
 
-            userAccess.addUser(user);
+            WicketGuiceHelper.get().getInstance(UserAccess.class).addUser(user);
 
             AuthenticatedWebSession.get().signIn(email.asString(), password.asString());
 
