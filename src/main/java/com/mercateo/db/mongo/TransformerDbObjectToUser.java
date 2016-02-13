@@ -4,9 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Function;
 
-import com.mercateo.profile.Email;
-import com.mercateo.profile.Password;
-import com.mercateo.profile.User;
+import com.mercateo.data.Email;
+import com.mercateo.data.Password;
+import com.mercateo.data.User;
 import com.mercateo.sso.roles.UserRole;
 import com.mongodb.BasicDBList;
 import com.mongodb.DBObject;

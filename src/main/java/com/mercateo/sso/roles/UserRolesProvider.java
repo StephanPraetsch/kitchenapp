@@ -7,11 +7,11 @@ import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
 
+import com.mercateo.data.User;
 import com.mercateo.db.UserAccess;
 import com.mercateo.db.UserAccessCreationException;
 import com.mercateo.db.UserAccessFactory;
 import com.mercateo.db.UserDoesNotExistException;
-import com.mercateo.profile.User;
 
 public class UserRolesProvider {
 

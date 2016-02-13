@@ -1,6 +1,6 @@
 package com.mercateo.db;
 
-import com.mercateo.profile.User;
+import com.mercateo.data.User;
 
 public class EmailAlreadyExistsExcpetion extends Exception {
 

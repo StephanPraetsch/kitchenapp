@@ -1,4 +1,4 @@
-package com.mercateo.profile;
+package com.mercateo.data;
 
 import com.mercateo.util.StringBasedValue;
 

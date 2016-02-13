@@ -9,10 +9,10 @@ import org.apache.wicket.markup.html.list.AbstractItem;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 
+import com.mercateo.data.User;
 import com.mercateo.db.UserAccess;
 import com.mercateo.db.UserAccessCreationException;
 import com.mercateo.db.UserAccessFactory;
-import com.mercateo.profile.User;
 import com.mercateo.util.WicketConstants;
 
 class UsersListView extends RepeatingView {

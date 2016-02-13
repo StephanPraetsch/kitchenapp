@@ -2,11 +2,11 @@ package com.mercateo.sso.authorization;
 
 import javax.inject.Inject;
 
+import com.mercateo.data.Email;
+import com.mercateo.data.Password;
+import com.mercateo.data.User;
 import com.mercateo.db.UserAccessCreationException;
 import com.mercateo.db.UserAccessFactory;
-import com.mercateo.profile.Email;
-import com.mercateo.profile.Password;
-import com.mercateo.profile.User;
 
 public class Authenticator {
 

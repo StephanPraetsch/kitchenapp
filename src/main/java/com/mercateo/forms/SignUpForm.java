@@ -9,6 +9,9 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
+import com.mercateo.data.Email;
+import com.mercateo.data.Password;
+import com.mercateo.data.User;
 import com.mercateo.db.EmailAlreadyExistsExcpetion;
 import com.mercateo.db.UserAccess;
 import com.mercateo.db.UserAccessCreationException;
@@ -16,9 +19,6 @@ import com.mercateo.db.UserAccessFactory;
 import com.mercateo.pages.home.HomePage;
 import com.mercateo.pages.profile.ProfilePage;
 import com.mercateo.pages.signin.SignInPage;
-import com.mercateo.profile.Email;
-import com.mercateo.profile.Password;
-import com.mercateo.profile.User;
 import com.mercateo.sso.authorization.AuthenticatedWebSession;
 import com.mercateo.util.WicketConstants;
 

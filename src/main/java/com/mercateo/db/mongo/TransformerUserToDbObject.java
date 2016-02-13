@@ -3,7 +3,7 @@ package com.mercateo.db.mongo;
 import java.util.HashMap;
 import java.util.function.Function;
 
-import com.mercateo.profile.User;
+import com.mercateo.data.User;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;

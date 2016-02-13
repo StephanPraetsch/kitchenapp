@@ -3,7 +3,7 @@ package com.mercateo.db;
 import java.util.List;
 import java.util.Set;
 
-import com.mercateo.profile.User;
+import com.mercateo.data.User;
 import com.mercateo.sso.roles.UserRole;
 
 public interface UserAccess {
