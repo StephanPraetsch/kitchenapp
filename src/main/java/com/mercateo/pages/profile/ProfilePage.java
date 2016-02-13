@@ -4,10 +4,10 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.string.StringValue;
 
-import com.mercateo.layout.SignInNeededTemplate;
+import com.mercateo.pages.general.GenealPageSignInNeeded;
 import com.mercateo.util.WicketConstants;
 
-public class ProfilePage extends SignInNeededTemplate {
+public class ProfilePage extends GenealPageSignInNeeded {
 
     private static final long serialVersionUID = 1L;
 

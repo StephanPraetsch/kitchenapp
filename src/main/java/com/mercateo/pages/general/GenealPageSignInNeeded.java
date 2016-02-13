@@ -1,13 +1,12 @@
-package com.mercateo.layout;
+package com.mercateo.pages.general;
 
 import org.apache.wicket.RestartResponseAtInterceptPageException;
 
 import com.mercateo.WicketGuiceHelper;
-import com.mercateo.layout.webpage.HeaderMiddleFooterTemplate;
 import com.mercateo.pages.PagesRegistry;
 import com.mercateo.sso.authorization.AuthenticatedWebSession;
 
-public abstract class SignInNeededTemplate extends HeaderMiddleFooterTemplate {
+public abstract class GenealPageSignInNeeded extends GeneralPage {
 
     @Override
     protected void onConfigure() {

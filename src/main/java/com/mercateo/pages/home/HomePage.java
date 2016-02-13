@@ -4,9 +4,9 @@ import org.apache.wicket.markup.html.basic.Label;
 
 import com.mercateo.WicketGuiceHelper;
 import com.mercateo.db.UserAccessFactory;
-import com.mercateo.layout.webpage.HeaderMiddleFooterTemplate;
+import com.mercateo.pages.general.GeneralPage;
 
-public class HomePage extends HeaderMiddleFooterTemplate {
+public class HomePage extends GeneralPage {
 
     private static final long serialVersionUID = 1L;
 

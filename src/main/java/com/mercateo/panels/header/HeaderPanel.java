@@ -1,4 +1,4 @@
-package com.mercateo.layout.header;
+package com.mercateo.panels.header;
 
 import org.apache.wicket.markup.html.panel.Panel;
 
