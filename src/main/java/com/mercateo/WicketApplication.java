@@ -7,8 +7,6 @@ import org.apache.wicket.request.Response;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.mercateo.db.UserAccessFactory;
-import com.mercateo.db.mongo.UserAccessFactoryForMongoDb;
 import com.mercateo.pages.PagesRegistry;
 import com.mercateo.sso.authorization.AuthenticatedWebApplication;
 import com.mercateo.sso.session.SessionProvider;
@@ -27,12 +25,6 @@ public class WicketApplication extends AuthenticatedWebApplication {
         this.inj = Guice.createInjector(new KitchenAppModule(getSecuritySettings(),
                 getApplicationSettings()));
         WicketGuiceHelper.set(inj);
-        configureUserAccess();
-    }
-
-    private void configureUserAccess() {
-        System.setProperty(UserAccessFactory.USER_ACCESS_FACTORY, UserAccessFactoryForMongoDb.class
-                .getCanonicalName());
     }
 
     @Override
