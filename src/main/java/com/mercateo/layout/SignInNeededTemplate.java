@@ -1,8 +1,9 @@
 package com.mercateo.layout;
 
-import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.RestartResponseAtInterceptPageException;
 
-import com.mercateo.KitchenApp;
+import com.mercateo.WicketGuiceHelper;
+import com.mercateo.pages.PagesRegistry;
 import com.mercateo.sso.authorization.AuthenticatedWebSession;
 
 public abstract class SignInNeededTemplate extends HeaderMiddleFooterTemplate {
@@ -10,10 +11,9 @@ public abstract class SignInNeededTemplate extends HeaderMiddleFooterTemplate {
     @Override
     protected void onConfigure() {
 
-        KitchenApp app = (KitchenApp) WebApplication.get();
-
         if (!AuthenticatedWebSession.get().isSignedIn()) {
-            app.restartResponseAtSignInPage();
+            throw new RestartResponseAtInterceptPageException(WicketGuiceHelper.get().getInstance(
+                    PagesRegistry.class).getSignInPageClass());
         }
 
     }

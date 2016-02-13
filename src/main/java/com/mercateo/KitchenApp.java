@@ -1,6 +1,5 @@
 package com.mercateo;
 
-import org.apache.wicket.RestartResponseAtInterceptPageException;
 import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -31,11 +30,6 @@ public class KitchenApp extends WebApplication {
     @Override
     public Session newSession(Request request, Response response) {
         return inj.getInstance(SessionProvider.class).newSession(request, response);
-    }
-
-    public void restartResponseAtSignInPage() {
-        throw new RestartResponseAtInterceptPageException(inj.getInstance(PagesRegistry.class)
-                .getSignInPageClass());
     }
 
 }
