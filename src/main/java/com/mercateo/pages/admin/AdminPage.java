@@ -1,4 +1,4 @@
-package com.mercateo.sso.roles.admin;
+package com.mercateo.pages.admin;
 
 import com.mercateo.layout.SignInNeededTemplate;
 import com.mercateo.sso.authorization.AuthorizeInstantiation;

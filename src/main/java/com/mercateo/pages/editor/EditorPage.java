@@ -1,4 +1,4 @@
-package com.mercateo.sso.roles.editor;
+package com.mercateo.pages.editor;
 
 import com.mercateo.layout.SignInNeededTemplate;
 import com.mercateo.sso.authorization.AuthorizeInstantiation;

@@ -1,4 +1,4 @@
-package com.mercateo.profile;
+package com.mercateo.pages.profile;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.request.mapper.parameter.PageParameters;

@@ -2,12 +2,12 @@ package com.mercateo.pages;
 
 import org.apache.wicket.markup.html.WebPage;
 
+import com.mercateo.pages.admin.AdminPage;
 import com.mercateo.pages.denied.AccessDeniedPage;
+import com.mercateo.pages.editor.EditorPage;
 import com.mercateo.pages.home.HomePage;
+import com.mercateo.pages.profile.ProfilePage;
 import com.mercateo.pages.signin.SignInPage;
-import com.mercateo.profile.ProfilePage;
-import com.mercateo.sso.roles.admin.AdminPage;
-import com.mercateo.sso.roles.editor.EditorPage;
 
 public class PagesRegistry {
 
