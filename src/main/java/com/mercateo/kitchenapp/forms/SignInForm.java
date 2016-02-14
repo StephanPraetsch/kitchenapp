@@ -47,7 +47,7 @@ public class SignInForm extends Form<Object> {
         Email email = Email.of(emailField.getModelObject());
         Password password = Password.of(passwordField.getModelObject());
 
-        User user = User.of(email, password);
+        User user = User.builder().email(email).password(password).build();
 
         boolean authResult = AuthenticatedWebSession.get().signIn(user);
 

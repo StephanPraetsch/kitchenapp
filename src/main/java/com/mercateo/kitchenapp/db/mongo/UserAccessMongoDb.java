@@ -64,7 +64,7 @@ public class UserAccessMongoDb implements UserAccess, Serializable {
     private boolean existsEmail(User user) {
         try {
             Optional<DBObject> userByEmail = userCollection.findOne(transformerUserToDbObject.apply(
-                    User.of(user.getEmail(), null)));
+                    User.builder().email(user.getEmail()).build()));
             return userByEmail.isPresent();
         } catch (DuplicateFoundException e) {
             logger.error("error while finding email for " + user, e);

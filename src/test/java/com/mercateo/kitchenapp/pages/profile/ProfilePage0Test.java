@@ -9,9 +9,6 @@ import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Test;
 
 import com.mercateo.kitchenapp.KitchenApp;
-import com.mercateo.kitchenapp.data.Email;
-import com.mercateo.kitchenapp.data.Password;
-import com.mercateo.kitchenapp.data.User;
 import com.mercateo.kitchenapp.pages.WicketTest;
 import com.mercateo.kitchenapp.pages.signin.SignInPage;
 import com.mercateo.kitchenapp.sso.authorization.UserWebSession;
@@ -23,7 +20,6 @@ public class ProfilePage0Test extends WicketTest {
     public void test_no_redirect_because_signed_in() {
 
         // Given
-        User user = User.of(Email.of("email"), Password.of("pw"));
         when(authenticator.authenticate(user)).thenReturn(Boolean.TRUE);
 
         tester = new WicketTester(new KitchenApp() {
@@ -51,7 +47,6 @@ public class ProfilePage0Test extends WicketTest {
     public void test_redirect_because_not_signed_in() {
 
         // Given
-        User user = User.of(Email.of("email"), Password.of("pw"));
         when(authenticator.authenticate(user)).thenReturn(Boolean.FALSE);
 
         tester = new WicketTester(new KitchenApp() {
