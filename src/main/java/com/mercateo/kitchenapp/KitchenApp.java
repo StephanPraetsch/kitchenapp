@@ -1,6 +1,8 @@
 package com.mercateo.kitchenapp;
 
 import org.apache.wicket.Session;
+import org.apache.wicket.authorization.IAuthorizationStrategy;
+import org.apache.wicket.authorization.IUnauthorizedComponentInstantiationListener;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.Request;
@@ -25,6 +27,22 @@ public class KitchenApp extends WebApplication {
         this.inj = Guice.createInjector(new KitchenAppModule(getSecuritySettings(),
                 getApplicationSettings()));
         WicketGuiceHelper.set(inj);
+        config();
+    }
+
+    private void config() {
+
+        getSecuritySettings().setAuthorizationStrategy(inj.getInstance(
+                IAuthorizationStrategy.class));
+
+        // securitySettings.setAuthenticationStrategy(authorizationStrategy);
+
+        getSecuritySettings().setUnauthorizedComponentInstantiationListener(inj.getInstance(
+                IUnauthorizedComponentInstantiationListener.class));
+
+        getApplicationSettings().setAccessDeniedPage(inj.getInstance(PagesRegistry.class)
+                .getAccessDeniedPage());
+
     }
 
     @Override

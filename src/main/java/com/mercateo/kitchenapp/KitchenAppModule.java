@@ -10,7 +10,6 @@ import com.google.inject.Provides;
 import com.google.inject.Scopes;
 import com.google.inject.Singleton;
 import com.mercateo.kitchenapp.db.UserAccess;
-import com.mercateo.kitchenapp.pages.PagesRegistry;
 import com.mercateo.kitchenapp.sso.authorization.AnnotationsRoleAuthorizationStrategy;
 import com.mercateo.kitchenapp.sso.authorization.UnauthorizedListenerImpl;
 import com.mercateo.kitchenapp.sso.roles.RoleCheckingStrategy;
@@ -49,8 +48,7 @@ public class KitchenAppModule extends AbstractModule {
 
     @Provides
     @Singleton
-    public IAuthorizationStrategy provideIAuthorizationStrategy(RoleCheckingStrategy roleChecking,
-            IUnauthorizedComponentInstantiationListener listener, PagesRegistry pages) {
+    public IAuthorizationStrategy provideAuthorizationStrategy(RoleCheckingStrategy roleChecking) {
 
         IAuthorizationStrategy authorizationStrategy = null;
         // IAuthorizationStrategy authorizationStrategy = new
@@ -60,12 +58,6 @@ public class KitchenAppModule extends AbstractModule {
 
         // authorizationStrategy = new RoleAuthorizationStrategy(roleChecking);
         authorizationStrategy = new AnnotationsRoleAuthorizationStrategy(roleChecking);
-
-        securitySettings.setAuthorizationStrategy(authorizationStrategy);
-        // securitySettings.setAuthenticationStrategy(authorizationStrategy);
-        securitySettings.setUnauthorizedComponentInstantiationListener(listener);
-
-        applicationSettings.setAccessDeniedPage(pages.getAccessDeniedPage());
 
         return authorizationStrategy;
 
