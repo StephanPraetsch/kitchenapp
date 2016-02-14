@@ -2,8 +2,6 @@ package com.mercateo.kitchenapp;
 
 import org.apache.wicket.authorization.IAuthorizationStrategy;
 import org.apache.wicket.authorization.IUnauthorizedComponentInstantiationListener;
-import org.apache.wicket.settings.IApplicationSettings;
-import org.apache.wicket.settings.ISecuritySettings;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
@@ -12,20 +10,8 @@ import com.google.inject.Singleton;
 import com.mercateo.kitchenapp.db.UserAccess;
 import com.mercateo.kitchenapp.sso.authorization.AnnotationsRoleAuthorizationStrategy;
 import com.mercateo.kitchenapp.sso.authorization.UnauthorizedListenerImpl;
-import com.mercateo.kitchenapp.sso.roles.RoleCheckingStrategy;
-import com.mercateo.kitchenapp.sso.roles.RoleCheckingStrategyImpl;
 
 public class KitchenAppModule extends AbstractModule {
-
-    private final ISecuritySettings securitySettings;
-
-    private final IApplicationSettings applicationSettings;
-
-    public KitchenAppModule(ISecuritySettings securitySettings,
-            IApplicationSettings applicationSettings) {
-        this.securitySettings = securitySettings;
-        this.applicationSettings = applicationSettings;
-    }
 
     @Override
     protected void configure() {
@@ -42,13 +28,7 @@ public class KitchenAppModule extends AbstractModule {
 
     @Provides
     @Singleton
-    public RoleCheckingStrategy provideIRoleCheckingStrategy() {
-        return new RoleCheckingStrategyImpl();
-    }
-
-    @Provides
-    @Singleton
-    public IAuthorizationStrategy provideAuthorizationStrategy(RoleCheckingStrategy roleChecking) {
+    public IAuthorizationStrategy provideAuthorizationStrategy() {
 
         IAuthorizationStrategy authorizationStrategy = null;
         // IAuthorizationStrategy authorizationStrategy = new
@@ -57,7 +37,7 @@ public class KitchenAppModule extends AbstractModule {
         // Roles.ADMIN);
 
         // authorizationStrategy = new RoleAuthorizationStrategy(roleChecking);
-        authorizationStrategy = new AnnotationsRoleAuthorizationStrategy(roleChecking);
+        authorizationStrategy = new AnnotationsRoleAuthorizationStrategy();
 
         return authorizationStrategy;
 

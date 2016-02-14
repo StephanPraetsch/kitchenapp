@@ -24,8 +24,7 @@ public class KitchenApp extends WebApplication {
 
     @Override
     public void init() {
-        this.inj = Guice.createInjector(new KitchenAppModule(getSecuritySettings(),
-                getApplicationSettings()));
+        this.inj = Guice.createInjector(new KitchenAppModule());
         WicketGuiceHelper.set(inj);
         config();
     }
