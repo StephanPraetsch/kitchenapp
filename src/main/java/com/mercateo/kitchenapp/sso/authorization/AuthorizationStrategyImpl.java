@@ -12,7 +12,7 @@ import org.apache.wicket.request.component.IRequestableComponent;
 
 import com.mercateo.kitchenapp.sso.roles.UserRole;
 
-public class AnnotationsRoleAuthorizationStrategy implements IAuthorizationStrategy {
+public class AuthorizationStrategyImpl implements IAuthorizationStrategy {
 
     @Override
     public <T extends IRequestableComponent> boolean isInstantiationAuthorized(

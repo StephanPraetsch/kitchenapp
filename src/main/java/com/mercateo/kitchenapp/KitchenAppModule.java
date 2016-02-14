@@ -8,7 +8,7 @@ import com.google.inject.Provides;
 import com.google.inject.Scopes;
 import com.google.inject.Singleton;
 import com.mercateo.kitchenapp.db.UserAccess;
-import com.mercateo.kitchenapp.sso.authorization.AnnotationsRoleAuthorizationStrategy;
+import com.mercateo.kitchenapp.sso.authorization.AuthorizationStrategyImpl;
 import com.mercateo.kitchenapp.sso.authorization.UnauthorizedListenerImpl;
 
 public class KitchenAppModule extends AbstractModule {
@@ -29,18 +29,7 @@ public class KitchenAppModule extends AbstractModule {
     @Provides
     @Singleton
     public IAuthorizationStrategy provideAuthorizationStrategy() {
-
-        IAuthorizationStrategy authorizationStrategy = null;
-        // IAuthorizationStrategy authorizationStrategy = new
-        // MetaDataRoleAuthorizationStrategy(this);
-        // MetaDataRoleAuthorizationStrategy.authorize(AdminPage.class,
-        // Roles.ADMIN);
-
-        // authorizationStrategy = new RoleAuthorizationStrategy(roleChecking);
-        authorizationStrategy = new AnnotationsRoleAuthorizationStrategy();
-
-        return authorizationStrategy;
-
+        return new AuthorizationStrategyImpl();
     }
 
 }
