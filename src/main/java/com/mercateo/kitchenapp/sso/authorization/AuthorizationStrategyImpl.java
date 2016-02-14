@@ -27,7 +27,7 @@ public class AuthorizationStrategyImpl implements IAuthorizationStrategy {
         EnumSet<UserRole> neededUserRoles = Arrays.stream(annotadedRoles.value()) //
                 .collect(Collectors.toCollection(() -> EnumSet.noneOf(UserRole.class)));
 
-        Set<UserRole> attachedUserRoles = AbstractAuthenticatedWebSession.get().getRoles();
+        Set<UserRole> attachedUserRoles = UserWebSession.get().getRoles();
 
         return attachedUserRoles.containsAll(neededUserRoles);
 

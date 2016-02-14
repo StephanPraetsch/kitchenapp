@@ -24,7 +24,7 @@ public class UnauthorizedListenerImpl implements IUnauthorizedComponentInstantia
     @Override
     public final void onUnauthorizedInstantiation(Component component) {
         if (component instanceof Page) {
-            if (!AbstractAuthenticatedWebSession.get().isSignedIn()) {
+            if (!AuthenticatedWebSession.get().isSignedIn()) {
                 restartResponseAtSignInPage();
             } else {
                 onUnauthorizedPage((Page) component);

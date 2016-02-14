@@ -37,7 +37,6 @@ public class UserWebSession extends AuthenticatedWebSession {
         return authenticator.authenticate(user);
     }
 
-    @Override
     public Set<UserRole> getRoles() {
         if (isSignedIn()) {
             return userRolesProvider.provide(user);
