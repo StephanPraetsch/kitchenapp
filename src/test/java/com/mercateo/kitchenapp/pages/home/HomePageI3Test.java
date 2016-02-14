@@ -1,16 +1,13 @@
-package com.mercateo.kitchenapp;
+package com.mercateo.kitchenapp.pages.home;
 
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.mercateo.kitchenapp.KitchenApp;
-import com.mercateo.kitchenapp.pages.home.HomePage;
 
-/**
- * Simple test using the WicketTester
- */
-public class TestHomePage {
+public class HomePageI3Test {
+
     private WicketTester tester;
 
     @Before
@@ -20,10 +17,13 @@ public class TestHomePage {
 
     @Test
     public void homepageRendersSuccessfully() {
+
         // start and render the test page
         tester.startPage(HomePage.class);
 
         // assert rendered page class
         tester.assertRenderedPage(HomePage.class);
+
     }
+
 }
