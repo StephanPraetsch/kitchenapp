@@ -8,7 +8,7 @@ import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.eclipse.jetty.webapp.WebAppContext;
 
-public class StartEmbeddedJetty {
+public class StartKitchenApp {
     public static void main(String[] args) throws Exception {
         int timeout = (int) Duration.ONE_HOUR.getMilliseconds();
 
