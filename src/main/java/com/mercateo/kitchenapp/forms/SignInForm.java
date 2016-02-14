@@ -8,8 +8,6 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.mercateo.kitchenapp.WicketGuiceHelper;
 import com.mercateo.kitchenapp.data.Email;
@@ -20,8 +18,6 @@ import com.mercateo.kitchenapp.sso.authorization.AuthenticatedWebSession;
 import com.mercateo.kitchenapp.util.WicketConstants;
 
 public class SignInForm extends Form<Object> {
-
-    private static final Logger logger = LoggerFactory.getLogger(SignInForm.class);
 
     private final TextField<String> emailField;
 
