@@ -7,10 +7,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import com.mercateo.kitchenapp.sso.roles.UserRole;
+
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.PACKAGE, ElementType.TYPE })
 @Documented
 @Inherited
-public @interface AuthorizeAction {
-    String[] value() default {};
+public @interface NeededRoles {
+    UserRole[] value() default {};
 }

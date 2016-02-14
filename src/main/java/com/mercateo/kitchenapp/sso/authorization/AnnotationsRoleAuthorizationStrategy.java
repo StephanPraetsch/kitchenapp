@@ -18,19 +18,18 @@ public class AnnotationsRoleAuthorizationStrategy implements IAuthorizationStrat
     public <T extends IRequestableComponent> boolean isInstantiationAuthorized(
             Class<T> componentClass) {
 
-        AuthorizeInstantiation classAnnotation = componentClass.getAnnotation(
-                AuthorizeInstantiation.class);
+        NeededRoles annotadedRoles = componentClass.getAnnotation(NeededRoles.class);
 
-        if (classAnnotation == null) {
+        if (annotadedRoles == null) {
             return true;
         }
 
-        EnumSet<UserRole> neededuserRoles = Arrays.stream(classAnnotation.value()) //
+        EnumSet<UserRole> neededUserRoles = Arrays.stream(annotadedRoles.value()) //
                 .collect(Collectors.toCollection(() -> EnumSet.noneOf(UserRole.class)));
 
         Set<UserRole> attachedUserRoles = AbstractAuthenticatedWebSession.get().getRoles();
 
-        return attachedUserRoles.containsAll(neededuserRoles);
+        return attachedUserRoles.containsAll(neededUserRoles);
 
     }
 
@@ -39,7 +38,7 @@ public class AnnotationsRoleAuthorizationStrategy implements IAuthorizationStrat
 
         Class<?> componentClass = component.getClass();
 
-        AuthorizeAction authorizeAction = componentClass.getAnnotation(AuthorizeAction.class);
+        NeededActions authorizeAction = componentClass.getAnnotation(NeededActions.class);
 
         if (authorizeAction != null) {
             throw new IllegalStateException("not implemented");
