@@ -10,6 +10,7 @@ import org.apache.wicket.authorization.Action;
 import org.apache.wicket.authorization.IAuthorizationStrategy;
 import org.apache.wicket.request.component.IRequestableComponent;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.mercateo.kitchenapp.sso.roles.UserRole;
 
 public class AuthorizationStrategyImpl implements IAuthorizationStrategy {
@@ -17,6 +18,20 @@ public class AuthorizationStrategyImpl implements IAuthorizationStrategy {
     @Override
     public <T extends IRequestableComponent> boolean isInstantiationAuthorized(
             Class<T> componentClass) {
+
+        Set<UserRole> attachedUserRoles = UserWebSession.get().getRoles();
+
+        return isAuthorized(componentClass, attachedUserRoles);
+
+    }
+
+    @VisibleForTesting
+    <T extends IRequestableComponent> boolean isAuthorized(Class<T> componentClass,
+            Set<UserRole> attachedUserRoles) {
+
+        if (attachedUserRoles.contains(UserRole.ADMIN)) {
+            return true;
+        }
 
         NeededRoles annotadedRoles = componentClass.getAnnotation(NeededRoles.class);
 
@@ -26,8 +41,6 @@ public class AuthorizationStrategyImpl implements IAuthorizationStrategy {
 
         EnumSet<UserRole> neededUserRoles = Arrays.stream(annotadedRoles.value()) //
                 .collect(Collectors.toCollection(() -> EnumSet.noneOf(UserRole.class)));
-
-        Set<UserRole> attachedUserRoles = UserWebSession.get().getRoles();
 
         return attachedUserRoles.containsAll(neededUserRoles);
 
