@@ -1,5 +1,7 @@
 package com.mercateo.kitchenapp.pages;
 
+import static org.mockito.MockitoAnnotations.initMocks;
+
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.After;
 import org.junit.Before;
@@ -12,6 +14,7 @@ public class WicketTest {
 
     @Before
     public void setUp() {
+        initMocks(this);
         tester = new WicketTester(new KitchenApp());
     }
 
