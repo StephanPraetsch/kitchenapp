@@ -35,10 +35,6 @@ public abstract class AuthenticatedWebSession extends WebSession {
 
     }
 
-    protected final void signIn(boolean value) {
-        signedIn = value;
-    }
-
     public final boolean isSignedIn() {
         return signedIn;
     }
