@@ -1,7 +1,9 @@
 package com.mercateo.kitchenapp.sso.authorization;
 
+import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.authorization.Action;
@@ -19,11 +21,12 @@ public class AnnotationsRoleAuthorizationStrategy implements IAuthorizationStrat
         AuthorizeInstantiation classAnnotation = componentClass.getAnnotation(
                 AuthorizeInstantiation.class);
 
-        EnumSet<UserRole> neededuserRoles = EnumSet.noneOf(UserRole.class);
-
-        for (UserRole userRoleAtClass : classAnnotation.value()) {
-            neededuserRoles.add(userRoleAtClass);
+        if (classAnnotation == null) {
+            return true;
         }
+
+        EnumSet<UserRole> neededuserRoles = Arrays.stream(classAnnotation.value()) //
+                .collect(Collectors.toCollection(() -> EnumSet.noneOf(UserRole.class)));
 
         Set<UserRole> attachedUserRoles = AbstractAuthenticatedWebSession.get().getRoles();
 
