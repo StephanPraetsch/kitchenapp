@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.mockito.Mock;
 
 import com.mercateo.kitchenapp.KitchenApp;
+import com.mercateo.kitchenapp.data.User;
 import com.mercateo.kitchenapp.sso.authorization.Authenticator;
 import com.mercateo.kitchenapp.sso.roles.UserRolesProvider;
 
@@ -18,6 +19,9 @@ public class WicketTest {
 
     @Mock
     protected UserRolesProvider userRolesProvider;
+
+    @Mock
+    protected User user;
 
     protected WicketTester tester;
 
