@@ -12,10 +12,5 @@ import java.lang.annotation.Target;
 @Documented
 @Inherited
 public @interface AuthorizeAction {
-
-    String action();
-
-    String[] roles() default {};
-
-    String[] deny() default {};
+    String[] value() default {};
 }

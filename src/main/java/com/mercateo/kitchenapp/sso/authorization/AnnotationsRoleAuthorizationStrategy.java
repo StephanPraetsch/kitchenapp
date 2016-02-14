@@ -36,48 +36,13 @@ public class AnnotationsRoleAuthorizationStrategy implements IAuthorizationStrat
 
     @Override
     public boolean isActionAuthorized(Component component, Action action) {
-        return isActionAuthorized(component.getClass(), action);
-    }
 
-    protected boolean isActionAuthorized(Class<?> componentClass, Action action) {
-        if (!check(action, componentClass.getAnnotation(AuthorizeAction.class))) {
-            return false;
-        }
+        Class<?> componentClass = component.getClass();
 
-        final AuthorizeActions authorizeActionsAnnotation = componentClass.getAnnotation(
-                AuthorizeActions.class);
-        if (authorizeActionsAnnotation != null) {
-            for (final AuthorizeAction authorizeActionAnnotation : authorizeActionsAnnotation
-                    .actions()) {
-                if (!check(action, authorizeActionAnnotation)) {
-                    return false;
-                }
-            }
-        }
+        AuthorizeAction authorizeAction = componentClass.getAnnotation(AuthorizeAction.class);
 
-        return true;
-    }
-
-    private boolean check(final Action action, final AuthorizeAction authorizeActionAnnotation) {
-
-        if (authorizeActionAnnotation != null) {
-
-            if (action.getName().equals(authorizeActionAnnotation.action())) {
-
-                // Roles deniedRoles = new
-                // Roles(authorizeActionAnnotation.deny());
-                // if (isEmpty(deniedRoles) == false && hasAny(deniedRoles)) {
-                // return false;
-                // }
-                //
-                // Roles acceptedRoles = new
-                // Roles(authorizeActionAnnotation.roles());
-                // if (!(isEmpty(acceptedRoles) || hasAny(acceptedRoles))) {
-                // return false;
-                // }
-
-            }
-
+        if (authorizeAction != null) {
+            throw new IllegalStateException("not implemented");
         }
 
         return true;
