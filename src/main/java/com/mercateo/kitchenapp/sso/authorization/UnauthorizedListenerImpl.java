@@ -30,7 +30,7 @@ public class UnauthorizedListenerImpl implements IUnauthorizedComponentInstantia
                 onUnauthorizedPage((Page) component);
             }
         } else {
-            throw new UnauthorizedInstantiationException(component.getClass());
+            onUnauthorizedPage((Page) component);
         }
     }
 
@@ -39,6 +39,9 @@ public class UnauthorizedListenerImpl implements IUnauthorizedComponentInstantia
     }
 
     protected void onUnauthorizedPage(Page page) {
+        /*
+         * TODO wieso wird diese exception geloggt?
+         */
         throw new UnauthorizedInstantiationException(page.getClass());
     }
 
