@@ -1,10 +1,5 @@
 package com.mercateo.kitchenapp.pages.signin;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.when;
-
-import java.util.Optional;
-
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;
@@ -44,7 +39,6 @@ public class SignInPage0Test extends WicketTest {
 
         // Given
         User user = User.builder().email(email).password(password).build();
-        when(userAccess.get(any(), any())).thenReturn(Optional.of(user));
         signIn(user);
 
         // When

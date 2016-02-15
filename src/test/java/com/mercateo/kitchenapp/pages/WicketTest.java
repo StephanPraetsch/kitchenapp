@@ -1,6 +1,10 @@
 package com.mercateo.kitchenapp.pages;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
+
+import java.util.Optional;
 
 import org.apache.wicket.authorization.IAuthorizationStrategy;
 import org.apache.wicket.authorization.IUnauthorizedComponentInstantiationListener;
@@ -37,6 +41,7 @@ public class WicketTest {
     @Before
     public void setUp() {
         initMocks(this);
+        when(userAccess.get(any(), any())).thenReturn(Optional.empty());
         tester = new WicketTester(new KitchenApp() {
 
             @Override
@@ -57,6 +62,7 @@ public class WicketTest {
     }
 
     public void signIn(User user) {
+        when(userAccess.get(user.getEmail(), user.getPassword())).thenReturn(Optional.of(user));
         AuthenticatedWebSession.get().signIn(user.getEmail(), user.getPassword());
     }
 

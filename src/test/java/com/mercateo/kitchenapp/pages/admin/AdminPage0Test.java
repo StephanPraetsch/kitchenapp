@@ -1,10 +1,6 @@
 package com.mercateo.kitchenapp.pages.admin;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.when;
-
 import java.util.EnumSet;
-import java.util.Optional;
 
 import org.apache.wicket.authorization.UnauthorizedInstantiationException;
 import org.junit.Test;
@@ -48,7 +44,6 @@ public class AdminPage0Test extends WicketTest {
         // Given
         User user = User.builder().email(email).password(password).userRoles(EnumSet.of(
                 UserRole.EDITOR)).build();
-        when(userAccess.get(any(), any())).thenReturn(Optional.of(user));
         signIn(user);
 
         // When
@@ -66,10 +61,9 @@ public class AdminPage0Test extends WicketTest {
         // Given
         User user = User.builder().email(email).password(password).userRoles(EnumSet.of(
                 UserRole.ADMIN)).build();
-        when(userAccess.get(any(), any())).thenReturn(Optional.of(user));
+        signIn(user);
 
         // When
-        signIn(user);
         tester.startPage(AdminPage.class);
 
         // Then

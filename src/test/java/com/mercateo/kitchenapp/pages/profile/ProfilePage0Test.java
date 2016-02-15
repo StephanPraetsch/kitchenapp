@@ -1,10 +1,6 @@
 package com.mercateo.kitchenapp.pages.profile;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.when;
-
 import java.util.EnumSet;
-import java.util.Optional;
 
 import org.junit.Test;
 
@@ -35,7 +31,6 @@ public class ProfilePage0Test extends WicketTest {
 
         // Given
         User user = User.builder().email(email).password(password).build();
-        when(userAccess.get(any(), any())).thenReturn(Optional.of(user));
         signIn(user);
 
         // When
@@ -52,7 +47,6 @@ public class ProfilePage0Test extends WicketTest {
         // Given
         User user = User.builder().email(email).password(password).userRoles(EnumSet.of(
                 UserRole.ADMIN, UserRole.EDITOR)).build();
-        when(userAccess.get(any(), any())).thenReturn(Optional.of(user));
         signIn(user);
 
         // When
