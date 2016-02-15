@@ -8,4 +8,6 @@ public class WicketConstants {
 
     public static final String PASSWORD = "password";
 
+    public static final String ROLES = "userRoles";
+
 }

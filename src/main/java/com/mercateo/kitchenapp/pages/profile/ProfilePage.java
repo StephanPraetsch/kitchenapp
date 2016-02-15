@@ -27,6 +27,7 @@ public class ProfilePage extends GeneralPageSignInNeeded {
 
         add(new Label(WicketConstants.EMAIL, user.getEmail().asString()));
         add(new Label(WicketConstants.PASSWORD, user.getPassword().asString()));
+        add(new Label(WicketConstants.ROLES, String.valueOf(user.getUserRoles())));
 
     }
 
