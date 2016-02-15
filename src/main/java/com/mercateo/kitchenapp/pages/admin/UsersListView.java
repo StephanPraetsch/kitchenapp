@@ -1,4 +1,4 @@
-package com.mercateo.kitchenapp.pages.home;
+package com.mercateo.kitchenapp.pages.admin;
 
 import java.util.List;
 
