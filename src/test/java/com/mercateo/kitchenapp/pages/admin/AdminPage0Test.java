@@ -1,20 +1,17 @@
 package com.mercateo.kitchenapp.pages.admin;
 
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import java.util.EnumSet;
+import java.util.Optional;
 
-import org.apache.wicket.Session;
 import org.apache.wicket.authorization.UnauthorizedInstantiationException;
-import org.apache.wicket.request.Request;
-import org.apache.wicket.request.Response;
-import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Test;
 
-import com.mercateo.kitchenapp.KitchenApp;
+import com.mercateo.kitchenapp.data.User;
 import com.mercateo.kitchenapp.pages.WicketTest;
 import com.mercateo.kitchenapp.pages.signin.SignInPage;
-import com.mercateo.kitchenapp.sso.authorization.UserWebSession;
 import com.mercateo.kitchenapp.sso.roles.UserRole;
 
 public class AdminPage0Test extends WicketTest {
@@ -35,19 +32,6 @@ public class AdminPage0Test extends WicketTest {
     public void test_redirect() {
 
         // Given
-        when(authenticator.authenticate(user)).thenReturn(Boolean.FALSE);
-
-        tester = new WicketTester(new KitchenApp() {
-
-            @Override
-            public Session newSession(Request request, Response response) {
-                UserWebSession userWebSession = new UserWebSession(request, authenticator,
-                        userRolesProvider);
-                userWebSession.signIn(user);
-                return userWebSession;
-            }
-
-        });
 
         // When
         tester.startPage(AdminPage.class);
@@ -62,19 +46,10 @@ public class AdminPage0Test extends WicketTest {
     public void test_access_denied() {
 
         // Given
-        when(authenticator.authenticate(user)).thenReturn(Boolean.TRUE);
-
-        tester = new WicketTester(new KitchenApp() {
-
-            @Override
-            public Session newSession(Request request, Response response) {
-                UserWebSession userWebSession = new UserWebSession(request, authenticator,
-                        userRolesProvider);
-                userWebSession.signIn(user);
-                return userWebSession;
-            }
-
-        });
+        User user = User.builder().email(email).password(password).userRoles(EnumSet.of(
+                UserRole.EDITOR)).build();
+        when(userAccess.get(any(), any())).thenReturn(Optional.of(user));
+        signIn(user);
 
         // When
         tester.startPage(AdminPage.class);
@@ -89,22 +64,12 @@ public class AdminPage0Test extends WicketTest {
     public void test_access_granted() {
 
         // Given
-        when(authenticator.authenticate(user)).thenReturn(Boolean.TRUE);
-        when(userRolesProvider.provide(user)).thenReturn(EnumSet.of(UserRole.ADMIN));
-
-        tester = new WicketTester(new KitchenApp() {
-
-            @Override
-            public Session newSession(Request request, Response response) {
-                UserWebSession userWebSession = new UserWebSession(request, authenticator,
-                        userRolesProvider);
-                userWebSession.signIn(user);
-                return userWebSession;
-            }
-
-        });
+        User user = User.builder().email(email).password(password).userRoles(EnumSet.of(
+                UserRole.ADMIN)).build();
+        when(userAccess.get(any(), any())).thenReturn(Optional.of(user));
 
         // When
+        signIn(user);
         tester.startPage(AdminPage.class);
 
         // Then

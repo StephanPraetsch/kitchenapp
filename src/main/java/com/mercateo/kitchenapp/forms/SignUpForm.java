@@ -65,7 +65,7 @@ public class SignUpForm extends Form<Object> {
 
         WicketGuiceHelper.get().getInstance(UserAccess.class).addUser(user);
 
-        AuthenticatedWebSession.get().signIn(user);
+        AuthenticatedWebSession.get().signIn(email, password);
 
         setResponsePage(WicketGuiceHelper.get().getInstance(PagesRegistry.class).getProfilePage());
 

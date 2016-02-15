@@ -3,14 +3,17 @@ package com.mercateo.kitchenapp.sso.authorization;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Collections;
+import java.util.Optional;
 import java.util.Set;
 
 import org.apache.wicket.Session;
 import org.apache.wicket.request.Request;
 
+import com.mercateo.kitchenapp.data.Email;
+import com.mercateo.kitchenapp.data.Password;
 import com.mercateo.kitchenapp.data.User;
+import com.mercateo.kitchenapp.db.UserAccess;
 import com.mercateo.kitchenapp.sso.roles.UserRole;
-import com.mercateo.kitchenapp.sso.roles.UserRolesProvider;
 
 public class UserWebSession extends AuthenticatedWebSession {
 
@@ -18,35 +21,28 @@ public class UserWebSession extends AuthenticatedWebSession {
         return (UserWebSession) Session.get();
     }
 
-    private final Authenticator authenticator;
+    private final UserAccess userAccess;
 
-    private final UserRolesProvider userRolesProvider;
+    private Optional<User> user = Optional.empty();
 
-    private User user;
-
-    public UserWebSession(Request request, Authenticator authenticator,
-            UserRolesProvider userRolesProvider) {
+    public UserWebSession(Request request, UserAccess userAccess) {
         super(request);
-        this.authenticator = checkNotNull(authenticator);
-        this.userRolesProvider = checkNotNull(userRolesProvider);
+        this.userAccess = checkNotNull(userAccess);
     }
 
+    @SuppressWarnings("boxing")
     @Override
-    public boolean authenticate(User user) {
-        this.user = checkNotNull(user);
-        return authenticator.authenticate(user);
+    public boolean authenticate(Email email, Password password) {
+        this.user = userAccess.get(email, password);
+        return user.isPresent();
     }
 
     public Set<UserRole> getRoles() {
-        if (isSignedIn()) {
-            return userRolesProvider.provide(user);
-        } else {
-            return Collections.emptySet();
-        }
+        return user.map(User::getUserRoles).orElse(Collections.emptySet());
     }
 
     public User getUser() {
-        return user;
+        return user.orElseThrow(() -> new IllegalStateException("session has no user"));
     }
 
 }

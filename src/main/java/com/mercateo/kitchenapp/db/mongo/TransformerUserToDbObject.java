@@ -40,7 +40,7 @@ public class TransformerUserToDbObject implements Function<User, DBObject> {
 
     private Optional<BasicDBList> getUserRoles(User user) {
         Set<UserRole> roles = user.getUserRoles();
-        if (roles.isEmpty()) {
+        if (roles == null) {
             return Optional.empty();
         }
         BasicDBList list = new BasicDBList();

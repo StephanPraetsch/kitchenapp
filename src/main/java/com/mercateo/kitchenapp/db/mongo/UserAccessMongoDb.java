@@ -1,20 +1,21 @@
 package com.mercateo.kitchenapp.db.mongo;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
 
+import com.mercateo.kitchenapp.data.Email;
+import com.mercateo.kitchenapp.data.Password;
 import com.mercateo.kitchenapp.data.User;
 import com.mercateo.kitchenapp.db.EmailAlreadyExistsExcpetion;
 import com.mercateo.kitchenapp.db.UserAccess;
-import com.mercateo.kitchenapp.db.UserDoesNotExistException;
-import com.mercateo.kitchenapp.sso.roles.UserRole;
 import com.mongodb.DBObject;
 
 public class UserAccessMongoDb implements UserAccess, Serializable {
@@ -85,20 +86,24 @@ public class UserAccessMongoDb implements UserAccess, Serializable {
     }
 
     @Override
-    public Set<UserRole> getUserRoles(User user) throws UserDoesNotExistException {
+    public Optional<User> get(Email email, Password password) {
+
+        checkNotNull(email);
+        checkNotNull(password);
 
         try {
-            Optional<DBObject> userDbObjectOptional = userCollection.findOne(
-                    transformerUserToDbObject.apply(user));
 
-            if (!userDbObjectOptional.isPresent()) {
-                throw new UserDoesNotExistException(user);
-            }
+            User user = User.builder().email(email).password(password).build();
 
-            return transformerDbObjectToUser.apply(userDbObjectOptional.get()).getUserRoles();
+            return userCollection.findOne( //
+                    transformerUserToDbObject.apply(user)) //
+                    .map(transformerDbObjectToUser::apply);
+
         } catch (DuplicateFoundException e) {
-            logger.error("error while finding user " + user, e);
-            throw new UserDoesNotExistException(user);
+
+            logger.error("error while finding use by email and password: " + email, e);
+            return Optional.empty();
+
         }
 
     }

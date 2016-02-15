@@ -1,19 +1,10 @@
 package com.mercateo.kitchenapp.pages.home;
 
-import org.apache.wicket.util.tester.WicketTester;
-import org.junit.Before;
 import org.junit.Test;
 
-import com.mercateo.kitchenapp.KitchenApp;
+import com.mercateo.kitchenapp.pages.WicketTest;
 
-public class HomePageI3Test {
-
-    private WicketTester tester;
-
-    @Before
-    public void setUp() {
-        tester = new WicketTester(new KitchenApp());
-    }
+public class HomePageI0Test extends WicketTest {
 
     @Test
     public void homepageRendersSuccessfully() {

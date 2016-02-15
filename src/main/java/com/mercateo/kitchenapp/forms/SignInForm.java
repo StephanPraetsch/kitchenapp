@@ -12,7 +12,6 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import com.mercateo.kitchenapp.WicketGuiceHelper;
 import com.mercateo.kitchenapp.data.Email;
 import com.mercateo.kitchenapp.data.Password;
-import com.mercateo.kitchenapp.data.User;
 import com.mercateo.kitchenapp.pages.PagesRegistry;
 import com.mercateo.kitchenapp.sso.authorization.AuthenticatedWebSession;
 import com.mercateo.kitchenapp.util.WicketConstants;
@@ -47,9 +46,7 @@ public class SignInForm extends Form<Object> {
         Email email = Email.of(emailField.getModelObject());
         Password password = Password.of(passwordField.getModelObject());
 
-        User user = User.builder().email(email).password(password).build();
-
-        boolean authResult = AuthenticatedWebSession.get().signIn(user);
+        boolean authResult = AuthenticatedWebSession.get().signIn(email, password);
 
         if (authResult) {
             continueToOriginalDestination();

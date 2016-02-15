@@ -8,6 +8,7 @@ import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.mercateo.kitchenapp.pages.PagesRegistry;
@@ -24,9 +25,14 @@ public class KitchenApp extends WebApplication {
 
     @Override
     public void init() {
-        this.inj = Guice.createInjector(new KitchenAppModule());
+        this.inj = createInjector();
         WicketGuiceHelper.set(inj);
         config();
+    }
+
+    @VisibleForTesting
+    public Injector createInjector() {
+        return Guice.createInjector(new KitchenAppModule());
     }
 
     private void config() {

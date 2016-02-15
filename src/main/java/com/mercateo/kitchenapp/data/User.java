@@ -6,15 +6,17 @@ import com.mercateo.kitchenapp.sso.roles.UserRole;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NonNull;
 
 @Data
 @Builder
 public class User {
 
-    private final Email email;
+    @NonNull
+    private Email email;
 
-    private final Password password;
+    private Password password;
 
-    private final Set<UserRole> userRoles;
+    private Set<UserRole> userRoles;
 
 }

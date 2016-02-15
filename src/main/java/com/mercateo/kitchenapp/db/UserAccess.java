@@ -1,10 +1,11 @@
 package com.mercateo.kitchenapp.db;
 
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 
+import com.mercateo.kitchenapp.data.Email;
+import com.mercateo.kitchenapp.data.Password;
 import com.mercateo.kitchenapp.data.User;
-import com.mercateo.kitchenapp.sso.roles.UserRole;
 
 public interface UserAccess {
 
@@ -14,6 +15,6 @@ public interface UserAccess {
 
     public List<User> listAllUsers();
 
-    public Set<UserRole> getUserRoles(User user) throws UserDoesNotExistException;
+    public Optional<User> get(Email email, Password password);
 
 }

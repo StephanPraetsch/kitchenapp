@@ -6,7 +6,8 @@ import org.apache.wicket.Session;
 import org.apache.wicket.protocol.http.WebSession;
 import org.apache.wicket.request.Request;
 
-import com.mercateo.kitchenapp.data.User;
+import com.mercateo.kitchenapp.data.Email;
+import com.mercateo.kitchenapp.data.Password;
 
 public abstract class AuthenticatedWebSession extends WebSession {
 
@@ -22,11 +23,12 @@ public abstract class AuthenticatedWebSession extends WebSession {
         super(checkNotNull(request));
     }
 
-    public final boolean signIn(User user) {
+    public final boolean signIn(Email email, Password password) {
 
-        checkNotNull(user);
+        checkNotNull(email);
+        checkNotNull(password);
 
-        signedIn = authenticate(user);
+        signedIn = authenticate(email, password);
         if (signedIn) {
             bind();
         }
@@ -49,6 +51,6 @@ public abstract class AuthenticatedWebSession extends WebSession {
         super.invalidate();
     }
 
-    public abstract boolean authenticate(User user);
+    public abstract boolean authenticate(Email email, Password password);
 
 }

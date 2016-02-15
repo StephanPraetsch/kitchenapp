@@ -8,26 +8,22 @@ import org.apache.wicket.Session;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
 
-import com.mercateo.kitchenapp.sso.authorization.Authenticator;
+import com.mercateo.kitchenapp.db.UserAccess;
 import com.mercateo.kitchenapp.sso.authorization.UserWebSession;
-import com.mercateo.kitchenapp.sso.roles.UserRolesProvider;
 
 public class SessionProvider {
 
-    private final Authenticator authenticator;
-
-    private final UserRolesProvider userRolesProvider;
+    private final UserAccess userAccess;
 
     @Inject
-    SessionProvider(Authenticator authenticator, UserRolesProvider userRolesProvider) {
-        this.authenticator = checkNotNull(authenticator);
-        this.userRolesProvider = checkNotNull(userRolesProvider);
+    SessionProvider(UserAccess userAccess) {
+        this.userAccess = checkNotNull(userAccess);
     }
 
     public Session newSession(Request request, Response response) {
         checkNotNull(request);
         checkNotNull(response);
-        return new UserWebSession(request, authenticator, userRolesProvider);
+        return new UserWebSession(request, userAccess);
     }
 
 }

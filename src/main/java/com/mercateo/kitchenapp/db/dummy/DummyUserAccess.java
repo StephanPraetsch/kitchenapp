@@ -2,12 +2,12 @@ package com.mercateo.kitchenapp.db.dummy;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 
+import com.mercateo.kitchenapp.data.Email;
+import com.mercateo.kitchenapp.data.Password;
 import com.mercateo.kitchenapp.data.User;
 import com.mercateo.kitchenapp.db.UserAccess;
-import com.mercateo.kitchenapp.db.UserDoesNotExistException;
-import com.mercateo.kitchenapp.sso.roles.UserRole;
 
 public class DummyUserAccess implements UserAccess {
 
@@ -33,8 +33,8 @@ public class DummyUserAccess implements UserAccess {
     }
 
     @Override
-    public Set<UserRole> getUserRoles(User user) throws UserDoesNotExistException {
-        return Collections.emptySet();
+    public Optional<User> get(Email email, Password password) {
+        return Optional.empty();
     }
 
 }
