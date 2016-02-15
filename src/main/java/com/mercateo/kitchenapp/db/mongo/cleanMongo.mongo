@@ -3,5 +3,14 @@ db.users.drop()
 db.users.insert( { "email": "admin", "password": "admin", "userRoles" : [ "ADMIN" ]  } );
 db.users.insert( { "email": "editor", "password": "editor", "userRoles" : [ "EDITOR" ]  } );
 db.users.insert( { "email": "roles", "password": "roles", "userRoles" : [ "EDITOR", "ADMIN" ]  } );
-db.users.insert( { "email": "user", "password": "user"  } );
+db.users.insert( { "email": "sabine", "password": "sabine" } );
+db.users.insert( { "email": "peter", "password": "peter" } );
+db.users.insert( { "email": "gabi", "password": "gabi" } );
+db.users.insert( { "email": "rudi", "password": "rudi" } );
+db.users.insert( { "email": "hans", "password": "hans" } );
+db.users.insert( { "email": "rudolph", "password": "rudolph" } );
+db.users.insert( { "email": "maria", "password": "maria" } );
+db.users.insert( { "email": "steffen", "password": "steffen" } );
+db.users.insert( { "email": "heinz", "password": "heinz" } );
+db.users.insert( { "email": "anna", "password": "anna" } );
 db.users.find()
