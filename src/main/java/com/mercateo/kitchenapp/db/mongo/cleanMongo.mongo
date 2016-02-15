@@ -1,4 +1,7 @@
 use kitchen
 db.users.drop()
-db.users.insert( { "email": "admin", "password": "admin", "userRoles" : [ "ADMIN", "EDITOR" ]  } );
+db.users.insert( { "email": "admin", "password": "admin", "userRoles" : [ "ADMIN" ]  } );
+db.users.insert( { "email": "editor", "password": "editor", "userRoles" : [ "EDITOR" ]  } );
+db.users.insert( { "email": "roles", "password": "roles", "userRoles" : [ "EDITOR", "ADMIN" ]  } );
+db.users.insert( { "email": "user", "password": "user"  } );
 db.users.find()
