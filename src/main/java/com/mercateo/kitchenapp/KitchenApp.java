@@ -3,6 +3,7 @@ package com.mercateo.kitchenapp;
 import org.apache.wicket.Session;
 import org.apache.wicket.authorization.IAuthorizationStrategy;
 import org.apache.wicket.authorization.IUnauthorizedComponentInstantiationListener;
+import org.apache.wicket.guice.GuiceComponentInjector;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.Request;
@@ -26,6 +27,7 @@ public class KitchenApp extends WebApplication {
     @Override
     public void init() {
         this.inj = createInjector();
+        getComponentInstantiationListeners().add(new GuiceComponentInjector(this, inj));
         WicketGuiceHelper.set(inj);
         config();
     }

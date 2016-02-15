@@ -9,6 +9,8 @@ import org.apache.wicket.Component;
 import org.apache.wicket.authorization.Action;
 import org.apache.wicket.authorization.IAuthorizationStrategy;
 import org.apache.wicket.request.component.IRequestableComponent;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.request.resource.IResource;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.mercateo.kitchenapp.sso.roles.UserRole;
@@ -59,6 +61,11 @@ public class AuthorizationStrategyImpl implements IAuthorizationStrategy {
 
         return true;
 
+    }
+
+    @Override
+    public boolean isResourceAuthorized(IResource resource, PageParameters parameters) {
+        return true;
     }
 
 }
