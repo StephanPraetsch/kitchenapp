@@ -1,8 +1,8 @@
 package com.mercateo.kitchenapp.data;
 
-import com.mercateo.kitchenapp.util.StringBasedValue;
+import com.mercateo.kitchenapp.util.StringValue;
 
-public class Email extends StringBasedValue {
+public class Email extends StringValue {
 
     private Email(String email) {
         super(email);

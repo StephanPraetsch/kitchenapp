@@ -1,8 +1,8 @@
 package com.mercateo.kitchenapp.data;
 
-import com.mercateo.kitchenapp.util.StringBasedValue;
+import com.mercateo.kitchenapp.util.StringValue;
 
-public class Password extends StringBasedValue {
+public class Password extends StringValue {
 
     private Password(String password) {
         super(password);

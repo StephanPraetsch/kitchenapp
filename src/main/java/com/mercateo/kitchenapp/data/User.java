@@ -1,5 +1,6 @@
 package com.mercateo.kitchenapp.data;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import com.mercateo.kitchenapp.sso.roles.UserRole;
@@ -10,7 +11,7 @@ import lombok.NonNull;
 
 @Data
 @Builder
-public class User {
+public class User implements Serializable {
 
     @NonNull
     private Email email;
