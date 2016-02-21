@@ -9,15 +9,20 @@ import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
 
-import com.google.common.annotations.VisibleForTesting;
-import com.google.inject.Guice;
+import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.mercateo.kitchenapp.pages.PagesRegistry;
 import com.mercateo.kitchenapp.sso.session.SessionProvider;
 
 public class KitchenApp extends WebApplication {
 
-    private Injector inj;
+    private final Injector inj;
+
+    @Inject
+    public KitchenApp(Injector inj) {
+        this.inj = inj;
+        WicketGuiceHelper.set(inj);
+    }
 
     @Override
     public Class<? extends WebPage> getHomePage() {
@@ -26,15 +31,8 @@ public class KitchenApp extends WebApplication {
 
     @Override
     public void init() {
-        this.inj = createInjector();
         getComponentInstantiationListeners().add(new GuiceComponentInjector(this, inj));
-        WicketGuiceHelper.set(inj);
         config();
-    }
-
-    @VisibleForTesting
-    public Injector createInjector() {
-        return Guice.createInjector(new KitchenAppModule());
     }
 
     private void config() {

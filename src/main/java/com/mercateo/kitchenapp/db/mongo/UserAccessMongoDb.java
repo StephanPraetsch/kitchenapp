@@ -9,7 +9,8 @@ import java.util.Optional;
 
 import javax.inject.Inject;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.mercateo.kitchenapp.data.Email;
 import com.mercateo.kitchenapp.data.Password;
@@ -22,7 +23,7 @@ public class UserAccessMongoDb implements UserAccess, Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private static final Logger logger = Logger.getLogger(UserAccessMongoDb.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserAccessMongoDb.class);
 
     private final UserCollection userCollection;
 

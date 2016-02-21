@@ -28,29 +28,56 @@
 		</license>
 	</licenses>
 	<properties>
-		<wicket.version>6.18.0</wicket.version>
-		<jetty.version>7.6.13.v20130916</jetty.version>
+		<wicket.version>7.2.0</wicket.version>
+		<jetty9.version>9.2.13.v20150730</jetty9.version>
+		<log4j.version>2.5</log4j.version>
+		<junit.version>4.12</junit.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- allowed values: R7, 1.0, 1.5, 2.0 or none -->
 		<wtp.version>none</wtp.version>
 	</properties>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.4</version>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-core</artifactId>
+			<version>${wicket.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.16</version>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.11</version>
+			<version>${junit.version}</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty.aggregate</groupId>
+			<artifactId>jetty-all</artifactId>
+			<version>${jetty9.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<version>4.0</version>
+			<classifier>classes</classifier>
+		</dependency>
+		<dependency>
+			<groupId>com.google.inject.extensions</groupId>
+			<artifactId>guice-servlet</artifactId>
+			<version>4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-guice</artifactId>
+			<version>7.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mongodb</groupId>
@@ -66,21 +93,6 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.16.6</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.wicket</groupId>
-			<artifactId>wicket-guice</artifactId>
-			<version>7.1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jetty.aggregate</groupId>
-			<artifactId>jetty-all-server</artifactId>
-			<version>8.1.18.v20150929</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -132,23 +144,17 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
+				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>${jetty.version}</version>
+				<version>${jetty9.version}</version>
 				<configuration>
-					<connectors>
-						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-							<port>8080</port>
-							<maxIdleTime>3600000</maxIdleTime>
-						</connector>
-						<connector implementation="org.eclipse.jetty.server.ssl.SslSocketConnector">
-							<port>8443</port>
-							<maxIdleTime>3600000</maxIdleTime>
-							<keystore>${project.build.directory}/test-classes/keystore</keystore>
-							<password>wicket</password>
-							<keyPassword>wicket</keyPassword>
-						</connector>
-					</connectors>
+					<systemProperties>
+						<systemProperty>
+							<name>maven.project.build.directory.test-classes</name>
+							<value>${project.build.directory}/test-classes</value>
+						</systemProperty>
+					</systemProperties>
+					<jettyXml>${project.basedir}/src/test/jetty/jetty.xml,${project.basedir}/src/test/jetty/jetty-ssl.xml,${project.basedir}/src/test/jetty/jetty-http.xml,${project.basedir}/src/test/jetty/jetty-https.xml</jettyXml>
 				</configuration>
 			</plugin>
 			<plugin>

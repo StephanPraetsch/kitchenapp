@@ -42,23 +42,17 @@ public class WicketTest {
     public void setUp() {
         initMocks(this);
         when(userAccess.get(any(), any())).thenReturn(Optional.empty());
-        tester = new WicketTester(new KitchenApp() {
-
+        Injector injector = Guice.createInjector(new AbstractModule() {
             @Override
-            public Injector createInjector() {
-                return Guice.createInjector(new AbstractModule() {
-                    @Override
-                    protected void configure() {
-                        bind(UserAccess.class).toInstance(userAccess);
-                        bind(PagesRegistry.class).toInstance(pages);
-                        bind(IUnauthorizedComponentInstantiationListener.class).to(
-                                UnauthorizedListenerImpl.class);
-                        bind(IAuthorizationStrategy.class).to(AuthorizationStrategyImpl.class);
-                    }
-                });
+            protected void configure() {
+                bind(UserAccess.class).toInstance(userAccess);
+                bind(PagesRegistry.class).toInstance(pages);
+                bind(IUnauthorizedComponentInstantiationListener.class).to(
+                        UnauthorizedListenerImpl.class);
+                bind(IAuthorizationStrategy.class).to(AuthorizationStrategyImpl.class);
             }
-
         });
+        tester = new WicketTester(new KitchenApp(injector));
     }
 
     public void signIn(User user) {
