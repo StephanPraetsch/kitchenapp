@@ -40,8 +40,6 @@ public class KitchenApp extends WebApplication {
         getSecuritySettings().setAuthorizationStrategy(inj.getInstance(
                 IAuthorizationStrategy.class));
 
-        // securitySettings.setAuthenticationStrategy(authorizationStrategy);
-
         getSecuritySettings().setUnauthorizedComponentInstantiationListener(inj.getInstance(
                 IUnauthorizedComponentInstantiationListener.class));
 
