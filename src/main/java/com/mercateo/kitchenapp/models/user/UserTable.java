@@ -22,14 +22,17 @@ public class UserTable extends DefaultDataTable<User, UserField> {
         List<IColumn<User, UserField>> columns = new ArrayList<>();
 
         Model<String> title = new Model<>(UserField.EMAIL.name());
-        String displayedValue = UserField.EMAIL.name();
+        String displayedValue = UserField.EMAIL.displayedValue();
         UserField sortThisField = UserField.EMAIL;
 
         columns.add(new PropertyColumn<User, UserField>( //
                 title, sortThisField, displayedValue));
 
         columns.add(new PropertyColumn<User, UserField>( //
-                new Model<String>("password"), UserField.PASSWORD, "password"));
+                new Model<String>("password"), "password"));
+
+        columns.add(new PropertyColumn<User, UserField>( //
+                new Model<String>("roles"), "userRoles"));
 
         return columns;
 
