@@ -1,4 +1,4 @@
-package com.mercateo.kitchenapp.models.user;
+package com.mercateo.kitchenapp.pages.admin;
 
 public enum UserField {
 
