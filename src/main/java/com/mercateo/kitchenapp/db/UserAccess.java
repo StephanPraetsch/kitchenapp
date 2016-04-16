@@ -17,4 +17,6 @@ public interface UserAccess {
 
     public Optional<User> get(Email email, Password password);
 
+    public Optional<User> get(Email email);
+
 }

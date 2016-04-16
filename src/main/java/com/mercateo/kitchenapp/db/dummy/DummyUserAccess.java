@@ -37,4 +37,9 @@ public class DummyUserAccess implements UserAccess {
         return Optional.empty();
     }
 
+    @Override
+    public Optional<User> get(Email email) {
+        return Optional.empty();
+    }
+
 }

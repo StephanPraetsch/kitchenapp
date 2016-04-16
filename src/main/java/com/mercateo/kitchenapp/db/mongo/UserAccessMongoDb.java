@@ -109,4 +109,26 @@ public class UserAccessMongoDb implements UserAccess, Serializable {
 
     }
 
+    @Override
+    public Optional<User> get(Email email) {
+
+        checkNotNull(email);
+
+        try {
+
+            User user = User.builder().email(email).build();
+
+            return userCollection.findOne( //
+                    transformerUserToDbObject.apply(user)) //
+                    .map(transformerDbObjectToUser::apply);
+
+        } catch (DuplicateFoundException e) {
+
+            logger.error("error while finding use by email: " + email, e);
+            return Optional.empty();
+
+        }
+
+    }
+
 }
