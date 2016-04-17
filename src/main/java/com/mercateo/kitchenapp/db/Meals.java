@@ -1,10 +1,13 @@
 package com.mercateo.kitchenapp.db;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import com.mercateo.kitchenapp.data.Meal;
 
 public interface Meals {
+
+    public Optional<Meal> get(String title);
 
     public void addMeal(Meal meal) throws AlreadyExistsExcpetion;
 

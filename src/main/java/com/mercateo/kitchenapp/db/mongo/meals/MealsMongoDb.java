@@ -2,15 +2,22 @@ package com.mercateo.kitchenapp.db.mongo.meals;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.mercateo.kitchenapp.data.Meal;
 import com.mercateo.kitchenapp.db.AlreadyExistsExcpetion;
 import com.mercateo.kitchenapp.db.Meals;
+import com.mercateo.kitchenapp.db.mongo.DuplicateFoundException;
 
 public class MealsMongoDb implements Meals {
+
+    private static final Logger logger = LoggerFactory.getLogger(MealsMongoDb.class);
 
     private final MealsCollection collection;
 
@@ -24,6 +31,26 @@ public class MealsMongoDb implements Meals {
         this.collection = checkNotNull(collection);
         this.toMealTransformer = checkNotNull(toMealTransformer);
         this.toDbObjectTransformer = checkNotNull(toDbObjectTransformer);
+    }
+
+    @Override
+    public Optional<Meal> get(String title) {
+
+        try {
+
+            Meal meal = Meal.builder().title(title).build();
+
+            return collection.findOne( //
+                    toDbObjectTransformer.apply(meal)) //
+                    .map(toMealTransformer::apply);
+
+        } catch (DuplicateFoundException e) {
+
+            logger.error("error while finding one meal: " + title, e);
+            return Optional.empty();
+
+        }
+
     }
 
     @Override
