@@ -1,4 +1,4 @@
-package com.mercateo.kitchenapp.db.mongo;
+package com.mercateo.kitchenapp.db.mongo.users;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import javax.inject.Inject;
 
+import com.mercateo.kitchenapp.db.mongo.DuplicateFoundException;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;

@@ -11,7 +11,7 @@ public interface UserAccess {
 
     public boolean existsUser(User user);
 
-    public void addUser(User user) throws EmailAlreadyExistsExcpetion;
+    public void addUser(User user) throws AlreadyExistsExcpetion;
 
     public List<User> listAllUsers();
 

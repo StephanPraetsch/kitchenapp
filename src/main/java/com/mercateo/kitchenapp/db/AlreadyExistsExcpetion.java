@@ -2,9 +2,9 @@ package com.mercateo.kitchenapp.db;
 
 import com.mercateo.kitchenapp.data.User;
 
-public class EmailAlreadyExistsExcpetion extends Exception {
+public class AlreadyExistsExcpetion extends Exception {
 
-    public EmailAlreadyExistsExcpetion(User user) {
+    public AlreadyExistsExcpetion(User user) {
         super("user already exists: " + user);
     }
 

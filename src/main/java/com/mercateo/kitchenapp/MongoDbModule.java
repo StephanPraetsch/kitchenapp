@@ -7,7 +7,7 @@ import com.google.inject.Singleton;
 import com.mercateo.kitchenapp.db.UserAccess;
 import com.mercateo.kitchenapp.db.mongo.MongoDbConfiguration;
 import com.mercateo.kitchenapp.db.mongo.MongoDbObjectCreator;
-import com.mercateo.kitchenapp.db.mongo.UserAccessMongoDb;
+import com.mercateo.kitchenapp.db.mongo.users.UserAccessMongoDb;
 import com.mongodb.DBCollection;
 
 public class MongoDbModule extends AbstractModule {

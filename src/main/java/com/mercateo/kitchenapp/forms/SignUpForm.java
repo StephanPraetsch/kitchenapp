@@ -15,7 +15,7 @@ import com.mercateo.kitchenapp.WicketGuiceHelper;
 import com.mercateo.kitchenapp.data.Email;
 import com.mercateo.kitchenapp.data.Password;
 import com.mercateo.kitchenapp.data.User;
-import com.mercateo.kitchenapp.db.EmailAlreadyExistsExcpetion;
+import com.mercateo.kitchenapp.db.AlreadyExistsExcpetion;
 import com.mercateo.kitchenapp.db.UserAccess;
 import com.mercateo.kitchenapp.pages.PagesRegistry;
 import com.mercateo.kitchenapp.sso.authorization.AuthenticatedWebSession;
@@ -48,7 +48,7 @@ public class SignUpForm extends Form<Object> {
 
         try {
             signUp();
-        } catch (EmailAlreadyExistsExcpetion e) {
+        } catch (AlreadyExistsExcpetion e) {
             emailAlreadyExists();
         } catch (Exception e) {
             handleException(e);
@@ -56,7 +56,7 @@ public class SignUpForm extends Form<Object> {
 
     }
 
-    private void signUp() throws EmailAlreadyExistsExcpetion {
+    private void signUp() throws AlreadyExistsExcpetion {
 
         Email email = Email.of(emailField.getModelObject());
         Password password = Password.of(passwordField.getModelObject());

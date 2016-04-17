@@ -1,4 +1,4 @@
-package com.mercateo.kitchenapp.db.mongo;
+package com.mercateo.kitchenapp.db.mongo.users;
 
 import java.util.HashMap;
 import java.util.Optional;
@@ -19,9 +19,9 @@ public class TransformerUserToDbObject implements Function<User, DBObject> {
 
         BasicDBObject dbUserObject = new BasicDBObject(new HashMap<String, Object>() {
             {
-                put(MongoDbConstants.EMAIL, getEmail(user));
-                getPassword(user).ifPresent(pw -> put(MongoDbConstants.PASSWORD, pw));
-                getUserRoles(user).ifPresent(roles -> put(MongoDbConstants.USER_ROLES, roles));
+                put(MongoDbUserConstants.EMAIL, getEmail(user));
+                getPassword(user).ifPresent(pw -> put(MongoDbUserConstants.PASSWORD, pw));
+                getUserRoles(user).ifPresent(roles -> put(MongoDbUserConstants.USER_ROLES, roles));
             }
 
         });

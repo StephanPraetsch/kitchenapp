@@ -1,4 +1,4 @@
-package com.mercateo.kitchenapp.db.mongo;
+package com.mercateo.kitchenapp.db.mongo.users;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -29,18 +29,18 @@ public class TransformerDbObjectToUser implements Function<DBObject, User> {
     }
 
     private Email getEmail(DBObject userDbObject) {
-        return Email.of((String) userDbObject.get(MongoDbConstants.EMAIL));
+        return Email.of((String) userDbObject.get(MongoDbUserConstants.EMAIL));
     }
 
     private Password getPassword(DBObject userDbObject) {
-        return Password.of((String) userDbObject.get(MongoDbConstants.PASSWORD));
+        return Password.of((String) userDbObject.get(MongoDbUserConstants.PASSWORD));
     }
 
     private Set<UserRole> getUserRoles(DBObject userDbObject) {
 
         Set<UserRole> userRoles = new HashSet<UserRole>();
 
-        Object object = userDbObject.get(MongoDbConstants.USER_ROLES);
+        Object object = userDbObject.get(MongoDbUserConstants.USER_ROLES);
         if (object instanceof BasicDBList) {
             BasicDBList list = (BasicDBList) object;
             list.forEach((o) -> userRoles.add(UserRole.valueOf(String.valueOf(o))));

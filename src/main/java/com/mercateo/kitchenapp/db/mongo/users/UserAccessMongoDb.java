@@ -1,4 +1,4 @@
-package com.mercateo.kitchenapp.db.mongo;
+package com.mercateo.kitchenapp.db.mongo.users;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -15,8 +15,9 @@ import org.slf4j.LoggerFactory;
 import com.mercateo.kitchenapp.data.Email;
 import com.mercateo.kitchenapp.data.Password;
 import com.mercateo.kitchenapp.data.User;
-import com.mercateo.kitchenapp.db.EmailAlreadyExistsExcpetion;
+import com.mercateo.kitchenapp.db.AlreadyExistsExcpetion;
 import com.mercateo.kitchenapp.db.UserAccess;
+import com.mercateo.kitchenapp.db.mongo.DuplicateFoundException;
 import com.mongodb.DBObject;
 
 public class UserAccessMongoDb implements UserAccess, Serializable {
@@ -53,10 +54,10 @@ public class UserAccessMongoDb implements UserAccess, Serializable {
     }
 
     @Override
-    public void addUser(User user) throws EmailAlreadyExistsExcpetion {
+    public void addUser(User user) throws AlreadyExistsExcpetion {
 
         if (existsEmail(user)) {
-            throw new EmailAlreadyExistsExcpetion(user);
+            throw new AlreadyExistsExcpetion(user);
         }
 
         userCollection.insert(transformerUserToDbObject.apply(user));

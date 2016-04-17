@@ -1,6 +1,6 @@
-package com.mercateo.kitchenapp.db.mongo;
+package com.mercateo.kitchenapp.db.mongo.users;
 
-class MongoDbConstants {
+class MongoDbUserConstants {
 
     static final String PASSWORD = "password";
 
