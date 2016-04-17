@@ -1,12 +1,14 @@
 package com.mercateo.kitchenapp.db.mongo.meals;
 
-import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
+import com.mercateo.kitchenapp.data.Chip;
 import com.mercateo.kitchenapp.data.Meal;
 import com.mercateo.kitchenapp.data.Price;
 import com.mongodb.BasicDBList;
+import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
 public class MongoToMealsTransformer implements Function<DBObject, Meal> {
@@ -34,14 +36,20 @@ public class MongoToMealsTransformer implements Function<DBObject, Meal> {
 
     private Set<Price> getPrices(DBObject dbObject) {
 
-        Set<Price> prices = new HashSet<>();
-
         BasicDBList list = (BasicDBList) dbObject.get(MongoDbMealsConstants.PRICES);
-        list.forEach(o -> {
-            System.out.println(o);
-        });
 
-        return prices;
+        return list.stream().map(o -> {
+            BasicDBObject l = (BasicDBObject) o;
+            String chipTitle = (String) l.get(MongoDbMealsConstants.CHIP);
+            Chip chip = Chip.builder().title(chipTitle).price(666f).build();
+            Object numberObject = l.get(MongoDbMealsConstants.NUMBER);
+            if (numberObject != null) {
+                Integer number = Integer.valueOf((String) numberObject);
+                return new Price(number, chip);
+            } else {
+                return new Price(chip);
+            }
+        }).collect(Collectors.toSet());
 
     }
 

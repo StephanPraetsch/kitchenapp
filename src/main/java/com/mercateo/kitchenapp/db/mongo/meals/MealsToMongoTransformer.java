@@ -30,16 +30,12 @@ public class MealsToMongoTransformer implements Function<Meal, DBObject> {
     private BasicDBList getPrices(Meal meal) {
         BasicDBList list = new BasicDBList();
         for (Price price : meal.getPrices()) {
-            if (price.getNumber().equals(Integer.valueOf(1))) {
-                list.add(new BasicDBObject(MongoDbMealsConstants.CHIP, price.getChip().getTitle()));
-            } else {
-                BasicDBList innerList = new BasicDBList();
-                innerList.add(new BasicDBObject(MongoDbMealsConstants.CHIP, price.getChip()
-                        .getTitle()));
-                innerList.add(new BasicDBObject(MongoDbMealsConstants.NUMBER, String.valueOf(price
-                        .getNumber())));
-                list.add(innerList);
-            }
+            BasicDBList innerList = new BasicDBList();
+            innerList.add(new BasicDBObject(MongoDbMealsConstants.CHIP, price.getChip()
+                    .getTitle()));
+            innerList.add(new BasicDBObject(MongoDbMealsConstants.NUMBER, String.valueOf(price
+                    .getNumber())));
+            list.add(innerList);
         }
         return list;
     }

@@ -38,7 +38,7 @@ public class MongoDbObjectCreator {
 
     public MealsCollection getMealsCollection() {
         return new MealsCollection(mongoDatabase.getCollection(mongoDbConfiguration
-                .getCollectionNameUsers()));
+                .getCollectionNameMeals()));
     }
 
     public ChipsCollection getChipsCollection() {

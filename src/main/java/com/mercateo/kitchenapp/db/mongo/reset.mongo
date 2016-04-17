@@ -17,6 +17,7 @@ db.users.insert( { "email": "anna", "password": "anna" } );
 db.users.find()
 
 db.chips.drop()
+db.chips.createIndex( { "title" : 1 } , { unique: true } )
 db.chips.insert( { "title" : "red" , "price" : "3.75" } )
 db.chips.insert( { "title" : "yellow" , "price" : "3.00" } )
 db.chips.insert( { "title" : "green" , "price" : "2.00" } )

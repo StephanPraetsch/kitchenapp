@@ -17,7 +17,7 @@ public class Price {
 
         checkNotNull(number);
         checkNotNull(chip);
-        checkArgument(number.intValue() > 1, number);
+        checkArgument(number.intValue() > 0, number);
 
         this.number = number;
         this.chip = chip;
