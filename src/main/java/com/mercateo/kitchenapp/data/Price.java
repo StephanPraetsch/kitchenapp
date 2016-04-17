@@ -32,4 +32,9 @@ public class Price {
         return chip;
     }
 
+    @Override
+    public String toString() {
+        return "Price [number=" + number + ", chip=" + chip + "]";
+    }
+
 }
