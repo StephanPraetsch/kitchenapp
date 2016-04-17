@@ -1,14 +1,12 @@
-package com.mercateo.kitchenapp;
+package com.mercateo.kitchenapp.db.mongo;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Scopes;
 import com.google.inject.Singleton;
 import com.mercateo.kitchenapp.db.UserAccess;
-import com.mercateo.kitchenapp.db.mongo.MongoDbConfiguration;
-import com.mercateo.kitchenapp.db.mongo.MongoDbObjectCreator;
 import com.mercateo.kitchenapp.db.mongo.users.UserAccessMongoDb;
-import com.mongodb.DBCollection;
+import com.mercateo.kitchenapp.db.mongo.users.UserCollection;
 
 public class MongoDbModule extends AbstractModule {
 
@@ -25,7 +23,7 @@ public class MongoDbModule extends AbstractModule {
 
     @Provides
     @Singleton
-    public DBCollection provideDbCollection(MongoDbObjectCreator creator) {
+    public UserCollection provideDbCollection(MongoDbObjectCreator creator) {
         return creator.getUserCollection();
     }
 

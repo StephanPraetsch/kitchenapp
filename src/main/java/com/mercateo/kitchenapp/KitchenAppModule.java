@@ -8,6 +8,7 @@ import com.google.inject.Provides;
 import com.google.inject.Scopes;
 import com.google.inject.Singleton;
 import com.mercateo.kitchenapp.db.UserAccess;
+import com.mercateo.kitchenapp.db.mongo.MongoDbModule;
 import com.mercateo.kitchenapp.sso.authorization.AuthorizationStrategyImpl;
 import com.mercateo.kitchenapp.sso.authorization.UnauthorizedListenerImpl;
 

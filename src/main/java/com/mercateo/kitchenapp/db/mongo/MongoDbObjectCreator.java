@@ -4,8 +4,8 @@ import java.net.UnknownHostException;
 
 import javax.inject.Inject;
 
+import com.mercateo.kitchenapp.db.mongo.users.UserCollection;
 import com.mongodb.DB;
-import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 
@@ -29,12 +29,9 @@ public class MongoDbObjectCreator {
         return mongoClient;
     }
 
-    public DBCollection getUserCollection() {
-        return mongoDatabase.getCollection(mongoDbConfiguration.getCollectionNameUsers());
-    }
-
-    DB getMongoDatabase() {
-        return mongoDatabase;
+    public UserCollection getUserCollection() {
+        return new UserCollection(mongoDatabase.getCollection(mongoDbConfiguration
+                .getCollectionNameUsers()));
     }
 
 }

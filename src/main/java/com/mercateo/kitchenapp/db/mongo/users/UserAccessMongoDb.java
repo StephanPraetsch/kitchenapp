@@ -80,7 +80,7 @@ public class UserAccessMongoDb implements UserAccess, Serializable {
 
         List<User> allUsers = new LinkedList<>();
 
-        userCollection.findAllUsers().forEach((DBObject d) -> allUsers.add(transformerDbObjectToUser
+        userCollection.findAll().forEach((DBObject d) -> allUsers.add(transformerDbObjectToUser
                 .apply(d)));
 
         return allUsers;
