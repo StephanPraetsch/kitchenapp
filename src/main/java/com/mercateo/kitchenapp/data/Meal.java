@@ -1,5 +1,7 @@
 package com.mercateo.kitchenapp.data;
 
+import java.util.Set;
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
@@ -14,6 +16,6 @@ public class Meal {
     private final String description;
 
     @NonNull
-    private final Price price;
+    private final Set<Price> prices;
 
 }

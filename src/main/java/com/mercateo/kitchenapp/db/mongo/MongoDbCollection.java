@@ -38,6 +38,10 @@ public class MongoDbCollection {
         collection.insert(newDbObject);
     }
 
+    public void update(DBObject updateDbObject) {
+        collection.update(updateDbObject, updateDbObject);
+    }
+
     public List<DBObject> findAll() {
 
         List<DBObject> allUsers = new LinkedList<>();
