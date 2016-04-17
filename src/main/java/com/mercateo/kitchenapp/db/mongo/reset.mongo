@@ -1,4 +1,5 @@
 use kitchen
+
 db.users.drop()
 db.users.insert( { "email": "admin", "password": "admin", "userRoles" : [ "ADMIN" ]  } );
 db.users.insert( { "email": "editor", "password": "editor", "userRoles" : [ "EDITOR" ]  } );
@@ -14,3 +15,17 @@ db.users.insert( { "email": "steffen", "password": "steffen" } );
 db.users.insert( { "email": "heinz", "password": "heinz" } );
 db.users.insert( { "email": "anna", "password": "anna" } );
 db.users.find()
+
+db.chips.drop()
+db.chips.insert( { "title" : "red" , "price" : "3.75" } )
+db.chips.insert( { "title" : "yellow" , "price" : "3.00" } )
+db.chips.insert( { "title" : "green" , "price" : "2.00" } )
+db.chips.insert( { "title" : "blue" , "price" : "1.00" } )
+db.chips.find()
+
+db.meals.drop()
+db.meals.insert( { "title": "22 Pizza Boston", "description" : "Sauce Hollandaise, Brokkoli, Schinken", "prices" : [ { "chip":"red" } ] } )
+db.meals.insert( { "title": "Lachs, Bandnudeln und Spinat", "description" : "Lachs mit Bandnudeln und Spinat", "prices" : [ { "chip":"red" } ] } )
+db.meals.insert( { "title": "Penne Lachs und Kaviar", "description" : "Penne mit Lachs und Kaviar", "prices" : [ { "chip":"red" } , { "chip" : "green" } ] } )
+db.meals.insert( { "title": "9 Baguette", "description" : "Baguette mit Thunfischund Oliven", "prices" : [ { "chip" : "green", "number" : "2" } ] } )
+db.meals.find()

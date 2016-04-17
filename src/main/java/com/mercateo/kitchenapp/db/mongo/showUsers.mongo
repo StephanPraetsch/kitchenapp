@@ -1,2 +1,0 @@
-use kitchen
-db.users.find()
