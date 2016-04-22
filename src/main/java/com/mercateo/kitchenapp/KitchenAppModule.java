@@ -28,7 +28,7 @@ public class KitchenAppModule extends AbstractModule {
         requireBinding(Meals.class);
 
     }
-//test commit rights
+
     @Provides
     @Singleton
     public IAuthorizationStrategy provideAuthorizationStrategy() {
