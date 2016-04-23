@@ -13,12 +13,9 @@ import com.mercateo.kitchenapp.sso.roles.UserRole;
 @NeededRoles(UserRole.ADMIN)
 public class AdminPage extends GeneralPageSignInNeeded {
 
-    @Inject
-    private Provider<UserAccess> userAccess;
-
     public AdminPage(PageParameters params) {
         super(params);
-        add(new UserTable("userTable", new UserSortableDataProvider(userAccess.get())));
+        add(new UserTable("userTable", new UserSortableDataProvider()));
     }
 
 }
