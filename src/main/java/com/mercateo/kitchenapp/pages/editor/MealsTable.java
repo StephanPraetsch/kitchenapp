@@ -2,14 +2,19 @@ package com.mercateo.kitchenapp.pages.editor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+import com.mercateo.kitchenapp.data.Chip;
 import com.mercateo.kitchenapp.data.Meal;
+import com.mercateo.kitchenapp.data.Price;
 
 public class MealsTable extends DefaultDataTable<Meal, MealField> {
 
@@ -32,7 +37,17 @@ public class MealsTable extends DefaultDataTable<Meal, MealField> {
                 new Model<String>("description"), "description"));
 
         columns.add(new PropertyColumn<Meal, MealField>( //
-                new Model<String>("prices"), "prices"));
+                new Model<String>("prices"), "prices") {
+
+            @Override
+            public IModel<String> getDataModel(IModel<Meal> rowModel) {
+                Set<Price> prices = rowModel.getObject().getPrices();
+                String collect = prices.stream().map(Price::getChip).map(Chip::getTitle).collect(
+                        Collectors.joining(", "));
+                return new Model<>(collect);
+            }
+
+        });
 
         return columns;
 
