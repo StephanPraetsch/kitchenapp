@@ -1,16 +1,17 @@
 package com.mercateo.kitchenapp.data;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NonNull;
+public enum Chip {
 
-@Data
-@Builder
-public class Chip {
-
-    @NonNull
-    private final String title;
+    RED(3.75f), YELLOW(3.00f), GREEN(2.00f), BLUE(1.00f);
 
     private final float price;
+
+    private Chip(float price) {
+        this.price = price;
+    }
+
+    public float getPrice() {
+        return price;
+    }
 
 }

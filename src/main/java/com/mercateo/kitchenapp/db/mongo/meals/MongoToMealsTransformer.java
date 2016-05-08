@@ -41,7 +41,7 @@ public class MongoToMealsTransformer implements Function<DBObject, Meal> {
         return list.stream().map(o -> {
             BasicDBObject l = (BasicDBObject) o;
             String chipTitle = (String) l.get(MongoDbMealsConstants.CHIP);
-            Chip chip = Chip.builder().title(chipTitle).price(666f).build();
+            Chip chip = Chip.valueOf(chipTitle);
             Object numberObject = l.get(MongoDbMealsConstants.NUMBER);
             if (numberObject != null) {
                 Integer number = Integer.valueOf((String) numberObject);

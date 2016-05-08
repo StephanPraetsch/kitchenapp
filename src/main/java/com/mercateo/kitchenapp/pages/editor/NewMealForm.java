@@ -43,13 +43,10 @@ public class NewMealForm extends Form<Meal> {
     @Override
     public void onSubmit() {
 
-        String c = prices.getModelObject();
-
         Meal meal = Meal.builder() //
                 .title(title.getModelObject()) //
                 .description(description.getModelObject()) //
-                .prices(Collections.singleton(new Price(Chip.builder().title(c).price(1.0f)
-                        .build()))) //
+                .prices(Collections.singleton(new Price(Chip.valueOf(prices.getModelObject())))) //
                 .build();
 
         logger.info("adding new meal " + meal);

@@ -42,7 +42,7 @@ public class MealsTable extends DefaultDataTable<Meal, MealField> {
             @Override
             public IModel<String> getDataModel(IModel<Meal> rowModel) {
                 Set<Price> prices = rowModel.getObject().getPrices();
-                String collect = prices.stream().map(Price::getChip).map(Chip::getTitle).collect(
+                String collect = prices.stream().map(Price::getChip).map(Chip::name).collect(
                         Collectors.joining(", "));
                 return new Model<>(collect);
             }
