@@ -1,19 +1,19 @@
 use kitchen
 
 db.users.drop()
-db.users.insert( { "email": "admin", "password": "admin", "userRoles" : [ "ADMIN" ]  } );
-db.users.insert( { "email": "editor", "password": "editor", "userRoles" : [ "EDITOR" ]  } );
-db.users.insert( { "email": "roles", "password": "roles", "userRoles" : [ "EDITOR", "ADMIN" ]  } );
-db.users.insert( { "email": "sabine", "password": "sabine" } );
-db.users.insert( { "email": "peter", "password": "peter" } );
-db.users.insert( { "email": "gabi", "password": "gabi" } );
-db.users.insert( { "email": "rudi", "password": "rudi" } );
-db.users.insert( { "email": "hans", "password": "hans" } );
-db.users.insert( { "email": "rudolph", "password": "rudolph" } );
-db.users.insert( { "email": "maria", "password": "maria" } );
-db.users.insert( { "email": "steffen", "password": "steffen" } );
-db.users.insert( { "email": "heinz", "password": "heinz" } );
-db.users.insert( { "email": "anna", "password": "anna" } );
+db.users.insert( { "email": "admin", "password": "21232f297a57a5a743894a0e4a801fc3", "userRoles" : [ "ADMIN" ]  } );
+db.users.insert( { "email": "editor", "password": "5aee9dbd2a188839105073571bee1b1f", "userRoles" : [ "EDITOR" ]  } );
+db.users.insert( { "email": "roles", "password": "4295e8065f2f640103f566df3329e17f", "userRoles" : [ "EDITOR", "ADMIN" ]  } );
+db.users.insert( { "email": "sabine", "password": "e668ab336799b9f36c47f8ce3c738d79" } );
+db.users.insert( { "email": "peter", "password": "51dc30ddc473d43a6011e9ebba6ca770" } );
+db.users.insert( { "email": "gabi", "password": "a0d499c751053663c611a32779a57104" } );
+db.users.insert( { "email": "rudi", "password": "1755e8df56655122206c7c1d16b1c7e3" } );
+db.users.insert( { "email": "hans", "password": "f2a0ffe83ec8d44f2be4b624b0f47dde" } );
+db.users.insert( { "email": "rudolph", "password": "3c7f9136fb168ffb766316ea4ca1a58b" } );
+db.users.insert( { "email": "maria", "password": "263bce650e68ab4e23f28263760b9fa5" } );
+db.users.insert( { "email": "steffen", "password": "cf9e7ac87e8a11e68b98b093d21625d0" } );
+db.users.insert( { "email": "heinz", "password": "0dfb5e07a60754c7d9c294abc91d5395" } );
+db.users.insert( { "email": "anna", "password": "a70f9e38ff015afaa9ab0aacabee2e13" } );
 db.users.find()
 
 db.meals.drop()

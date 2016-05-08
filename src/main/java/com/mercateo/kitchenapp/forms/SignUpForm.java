@@ -30,6 +30,9 @@ public class SignUpForm extends Form<Object> {
     private final PasswordTextField passwordField;
 
     @Inject
+    private Md5Hasher md5Hasher;
+
+    @Inject
     SignUpForm() {
         super("signUpForm");
 
@@ -59,7 +62,7 @@ public class SignUpForm extends Form<Object> {
     private void signUp() throws AlreadyExistsExcpetion {
 
         Email email = Email.of(emailField.getModelObject());
-        Password password = Password.of(passwordField.getModelObject());
+        Password password = Password.of(md5Hasher.hash(passwordField.getModelObject()));
 
         User user = User.builder().email(email).password(password).build();
 

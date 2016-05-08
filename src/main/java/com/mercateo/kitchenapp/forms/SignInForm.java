@@ -23,6 +23,9 @@ public class SignInForm extends Form<Object> {
     private final PasswordTextField passwordField;
 
     @Inject
+    private Md5Hasher md5Hasher;
+
+    @Inject
     SignInForm() {
         super("signInForm");
 
@@ -44,7 +47,7 @@ public class SignInForm extends Form<Object> {
     private void login() {
 
         Email email = Email.of(emailField.getModelObject());
-        Password password = Password.of(passwordField.getModelObject());
+        Password password = Password.of(md5Hasher.hash(passwordField.getModelObject()));
 
         boolean authResult = AuthenticatedWebSession.get().signIn(email, password);
 
