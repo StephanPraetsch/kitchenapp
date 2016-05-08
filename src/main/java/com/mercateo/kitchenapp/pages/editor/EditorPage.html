@@ -3,15 +3,23 @@
 <head>
 <meta charset="utf-8" />
 <title>Editor</title>
-<link
-    href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold'
-    rel='stylesheet' type='text/css' />
-<link rel="stylesheet" href="style.css" type="text/css" media="screen"
-    title="Stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold' rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="Stylesheet" />
 </head>
 <body>
     <wicket:extend>
         <div>Hello Editor</div>
+		<form id="newMeal" method="get" wicket:id="newMeal">
+			<fieldset>
+				<legend style="color: #F90">New Meal</legend>
+				<span>Titel: </span><input wicket:id="title" type="text" id="title" /><br/>
+				<span>Beschreibung: </span><input wicket:id="description" type="text" id="description" />
+				<span>Preis: </span><input wicket:id="prices" type="text" id="prices" />
+				<p>
+					<input type="submit" name="create" value="Erstellen"/>
+				</p>
+			</fieldset>
+		</form>
 		<div>
 			all registered meals
 			<table wicket:id="mealTable"></table>

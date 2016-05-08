@@ -18,6 +18,7 @@ public class EditorPage extends GeneralPageSignInNeeded {
 
     public EditorPage(PageParameters params) {
         super(params);
+        add(new NewMealForm("newMeal", meals.get()));
         add(new MealsTable("mealTable", new MealsSortableDataProvider(meals.get())));
     }
 
