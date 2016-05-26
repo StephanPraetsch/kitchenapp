@@ -1,5 +1,7 @@
 package com.mercateo.kitchenapp.pages.general;
 
+import javax.inject.Inject;
+
 import org.apache.wicket.RestartResponseAtInterceptPageException;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
@@ -10,6 +12,9 @@ public abstract class GeneralPageSignInNeeded extends GeneralPage {
 
     private static final long serialVersionUID = 1L;
 
+    @Inject
+    private PagesRegistry pagesRegistry;
+
     public GeneralPageSignInNeeded(PageParameters params) {
         super(params);
     }
@@ -18,7 +23,7 @@ public abstract class GeneralPageSignInNeeded extends GeneralPage {
     protected void onConfigure() {
 
         if (!AuthenticatedWebSession.get().isSignedIn()) {
-            throw new RestartResponseAtInterceptPageException(new PagesRegistry().getSignInPage());
+            throw new RestartResponseAtInterceptPageException(pagesRegistry.getSignInPage());
         }
 
     }

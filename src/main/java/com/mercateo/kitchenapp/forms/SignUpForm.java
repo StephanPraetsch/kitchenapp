@@ -38,6 +38,8 @@ public class SignUpForm extends Form<Object> {
     private UserAccess userAccess;
 
     @Inject
+    private PagesRegistry pagesRegistry;
+
     public SignUpForm() {
         super("signUpForm");
 
@@ -75,21 +77,21 @@ public class SignUpForm extends Form<Object> {
 
         AuthenticatedWebSession.get().signIn(email, password);
 
-        setResponsePage(new PagesRegistry().getProfilePage());
+        setResponsePage(pagesRegistry.getProfilePage());
 
     }
 
     private void emailAlreadyExists() {
         PageParameters pageParameters = new PageParameters();
         pageParameters.add(WicketConstants.STATUS, "email already exists, try another one");
-        setResponsePage(new PagesRegistry().getSignInPage(), pageParameters);
+        setResponsePage(pagesRegistry.getSignInPage(), pageParameters);
     }
 
     private void handleException(Exception e) {
         logger.error("could not sign up", e);
         PageParameters pageParameters = new PageParameters();
         pageParameters.add(WicketConstants.STATUS, "error while sign up");
-        setResponsePage(new PagesRegistry().getErrorPage(), pageParameters);
+        setResponsePage(pagesRegistry.getErrorPage(), pageParameters);
     }
 
 }

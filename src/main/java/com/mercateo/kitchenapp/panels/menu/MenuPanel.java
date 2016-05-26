@@ -16,6 +16,8 @@
  */
 package com.mercateo.kitchenapp.panels.menu;
 
+import javax.inject.Inject;
+
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
@@ -28,10 +30,11 @@ public class MenuPanel extends Panel {
 
     private static final long serialVersionUID = 1L;
 
+    @Inject
+    private PagesRegistry pages;
+
     public MenuPanel(String id) {
         super(id);
-
-        PagesRegistry pages = new PagesRegistry();
 
         add(link("profile", pages.getProfilePage()));
         add(link("admin", pages.getAdminPage()));

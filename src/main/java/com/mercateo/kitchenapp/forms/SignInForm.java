@@ -26,6 +26,9 @@ public class SignInForm extends Form<Object> {
     @Inject
     private Md5Hasher md5Hasher;
 
+    @Inject
+    private PagesRegistry pagesRegistry;
+
     public SignInForm() {
         super("signInForm");
 
@@ -62,7 +65,7 @@ public class SignInForm extends Form<Object> {
     private void wrongCredentials() {
         PageParameters pageParameters = new PageParameters();
         pageParameters.add(WicketConstants.STATUS, "wrong email or password");
-        setResponsePage(new PagesRegistry().getSignInPage(), pageParameters);
+        setResponsePage(pagesRegistry.getSignInPage(), pageParameters);
     }
 
 }
