@@ -8,20 +8,20 @@ import com.mercateo.kitchenapp.db.UserDao;
 
 public class UserModel extends LoadableDetachableModel<User> {
 
-    private final UserDao userAccess;
+    private final UserDao users;
 
-    private final Email email;
+    private final Email id;
 
-    public UserModel(UserDao repo, User user) {
+    public UserModel(UserDao users, User user) {
         super(user);
-        this.userAccess = repo;
-        this.email = user.getEmail();
+        this.users = users;
+        this.id = user.getEmail();
     }
 
     @Override
     protected User load() {
-        return userAccess.get(email) //
-                .orElseThrow(() -> new RuntimeException("missing user: " + email));
+        return users.get(id) //
+                .orElseThrow(() -> new RuntimeException("missing user: " + id));
     }
 
 }

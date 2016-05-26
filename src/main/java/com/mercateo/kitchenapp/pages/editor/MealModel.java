@@ -9,18 +9,18 @@ public class MealModel extends LoadableDetachableModel<Meal> {
 
     private final MealsDao meals;
 
-    private final String title;
+    private final String id;
 
     public MealModel(MealsDao meals, Meal m) {
         super(m);
         this.meals = meals;
-        this.title = m.getTitle();
+        this.id = m.getTitle();
     }
 
     @Override
     protected Meal load() {
-        return meals.get(title) //
-                .orElseThrow(() -> new RuntimeException("missing user: " + title));
+        return meals.get(id) //
+                .orElseThrow(() -> new RuntimeException("missing meal: " + id));
     }
 
 }
