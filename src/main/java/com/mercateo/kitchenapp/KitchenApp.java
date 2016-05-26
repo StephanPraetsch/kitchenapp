@@ -18,8 +18,6 @@ public class KitchenApp extends WebApplication {
 
     private final Injector inj;
 
-    private GuiceComponentInjector injector;
-
     @Inject
     public KitchenApp(Injector inj) {
         this.inj = inj;
@@ -32,8 +30,7 @@ public class KitchenApp extends WebApplication {
 
     @Override
     public void init() {
-        injector = new GuiceComponentInjector(this, inj);
-        getComponentInstantiationListeners().add(injector);
+        getComponentInstantiationListeners().add(new GuiceComponentInjector(this, inj));
         config();
     }
 
