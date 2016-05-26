@@ -7,13 +7,13 @@ import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvid
 import org.apache.wicket.model.IModel;
 
 import com.mercateo.kitchenapp.data.Meal;
-import com.mercateo.kitchenapp.db.Meals;
+import com.mercateo.kitchenapp.db.MealsDao;
 
 public class MealsSortableDataProvider extends SortableDataProvider<Meal, MealField> {
 
-    private final Meals meals;
+    private final MealsDao meals;
 
-    public MealsSortableDataProvider(Meals meals) {
+    public MealsSortableDataProvider(MealsDao meals) {
         this.meals = meals;
         setSort(MealField.TITLE, SortOrder.ASCENDING);
     }

@@ -12,10 +12,10 @@ import org.slf4j.LoggerFactory;
 
 import com.mercateo.kitchenapp.data.Meal;
 import com.mercateo.kitchenapp.db.AlreadyExistsExcpetion;
-import com.mercateo.kitchenapp.db.Meals;
+import com.mercateo.kitchenapp.db.MealsDao;
 import com.mercateo.kitchenapp.db.mongo.DuplicateFoundException;
 
-public class MealsMongoDb implements Meals {
+public class MealsMongoDb implements MealsDao {
 
     private static final Logger logger = LoggerFactory.getLogger(MealsMongoDb.class);
 

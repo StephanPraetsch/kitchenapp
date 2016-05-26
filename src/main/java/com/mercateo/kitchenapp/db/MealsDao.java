@@ -5,7 +5,7 @@ import java.util.stream.Stream;
 
 import com.mercateo.kitchenapp.data.Meal;
 
-public interface Meals {
+public interface MealsDao {
 
     public Optional<Meal> get(String title);
 

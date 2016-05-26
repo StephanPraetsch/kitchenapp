@@ -4,7 +4,7 @@ import javax.inject.Inject;
 
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-import com.mercateo.kitchenapp.db.Meals;
+import com.mercateo.kitchenapp.db.MealsDao;
 import com.mercateo.kitchenapp.pages.general.GeneralPageSignInNeeded;
 import com.mercateo.kitchenapp.sso.authorization.NeededRoles;
 import com.mercateo.kitchenapp.sso.roles.UserRole;
@@ -15,7 +15,7 @@ public class EditorPage extends GeneralPageSignInNeeded {
     private static final long serialVersionUID = 1L;
 
     @Inject
-    private Meals meals;
+    private MealsDao meals;
 
     public EditorPage(PageParameters params) {
         super(params);

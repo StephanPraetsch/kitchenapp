@@ -15,7 +15,7 @@ import com.mercateo.kitchenapp.data.Chip;
 import com.mercateo.kitchenapp.data.Meal;
 import com.mercateo.kitchenapp.data.Price;
 import com.mercateo.kitchenapp.db.AlreadyExistsExcpetion;
-import com.mercateo.kitchenapp.db.Meals;
+import com.mercateo.kitchenapp.db.MealsDao;
 
 public class NewMealForm extends Form<Meal> {
 
@@ -30,7 +30,7 @@ public class NewMealForm extends Form<Meal> {
     private final TextField<String> prices;
 
     @Inject
-    private Provider<Meals> meals;
+    private Provider<MealsDao> meals;
 
     public NewMealForm(String id) {
         super(id);
