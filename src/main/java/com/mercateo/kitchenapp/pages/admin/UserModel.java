@@ -4,15 +4,15 @@ import org.apache.wicket.model.LoadableDetachableModel;
 
 import com.mercateo.kitchenapp.data.Email;
 import com.mercateo.kitchenapp.data.User;
-import com.mercateo.kitchenapp.db.UserAccess;
+import com.mercateo.kitchenapp.db.UserDao;
 
 public class UserModel extends LoadableDetachableModel<User> {
 
-    private final UserAccess userAccess;
+    private final UserDao userAccess;
 
     private final Email email;
 
-    public UserModel(UserAccess repo, User user) {
+    public UserModel(UserDao repo, User user) {
         super(user);
         this.userAccess = repo;
         this.email = user.getEmail();

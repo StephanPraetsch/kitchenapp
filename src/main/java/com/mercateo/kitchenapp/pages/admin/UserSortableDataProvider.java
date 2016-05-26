@@ -7,13 +7,13 @@ import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvid
 import org.apache.wicket.model.IModel;
 
 import com.mercateo.kitchenapp.data.User;
-import com.mercateo.kitchenapp.db.UserAccess;
+import com.mercateo.kitchenapp.db.UserDao;
 
 public class UserSortableDataProvider extends SortableDataProvider<User, UserField> {
 
-    private final UserAccess userAccess;
+    private final UserDao userAccess;
 
-    public UserSortableDataProvider(UserAccess userAccess) {
+    public UserSortableDataProvider(UserDao userAccess) {
         this.userAccess = userAccess;
         setSort(UserField.EMAIL, SortOrder.ASCENDING);
     }

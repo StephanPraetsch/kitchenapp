@@ -5,7 +5,7 @@ import com.google.inject.Provides;
 import com.google.inject.Scopes;
 import com.google.inject.Singleton;
 import com.mercateo.kitchenapp.db.Meals;
-import com.mercateo.kitchenapp.db.UserAccess;
+import com.mercateo.kitchenapp.db.UserDao;
 import com.mercateo.kitchenapp.db.mongo.meals.MealsCollection;
 import com.mercateo.kitchenapp.db.mongo.meals.MealsMongoDb;
 import com.mercateo.kitchenapp.db.mongo.users.UserAccessMongoDb;
@@ -15,7 +15,7 @@ public class MongoDbModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        bind(UserAccess.class).to(UserAccessMongoDb.class).in(Scopes.SINGLETON);
+        bind(UserDao.class).to(UserAccessMongoDb.class).in(Scopes.SINGLETON);
         bind(Meals.class).to(MealsMongoDb.class).in(Scopes.SINGLETON);
     }
 

@@ -16,7 +16,7 @@ import com.mercateo.kitchenapp.data.Email;
 import com.mercateo.kitchenapp.data.Password;
 import com.mercateo.kitchenapp.data.User;
 import com.mercateo.kitchenapp.db.AlreadyExistsExcpetion;
-import com.mercateo.kitchenapp.db.UserAccess;
+import com.mercateo.kitchenapp.db.UserDao;
 import com.mercateo.kitchenapp.pages.PagesRegistry;
 import com.mercateo.kitchenapp.sso.authorization.AuthenticatedWebSession;
 import com.mercateo.kitchenapp.util.WicketConstants;
@@ -35,7 +35,7 @@ public class SignUpForm extends Form<User> {
     private Provider<Md5Hasher> md5Hasher;
 
     @Inject
-    private UserAccess userAccess;
+    private UserDao userAccess;
 
     @Inject
     private PagesRegistry pagesRegistry;

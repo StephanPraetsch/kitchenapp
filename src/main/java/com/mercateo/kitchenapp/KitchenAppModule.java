@@ -8,7 +8,7 @@ import com.google.inject.Provides;
 import com.google.inject.Scopes;
 import com.google.inject.Singleton;
 import com.mercateo.kitchenapp.db.Meals;
-import com.mercateo.kitchenapp.db.UserAccess;
+import com.mercateo.kitchenapp.db.UserDao;
 import com.mercateo.kitchenapp.db.mongo.MongoDbModule;
 import com.mercateo.kitchenapp.sso.authorization.AuthorizationStrategyImpl;
 import com.mercateo.kitchenapp.sso.authorization.UnauthorizedListenerImpl;
@@ -24,7 +24,7 @@ public class KitchenAppModule extends AbstractModule {
 
         install(new MongoDbModule());
 
-        requireBinding(UserAccess.class);
+        requireBinding(UserDao.class);
         requireBinding(Meals.class);
 
     }

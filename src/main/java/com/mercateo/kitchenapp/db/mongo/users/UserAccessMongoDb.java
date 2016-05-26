@@ -16,11 +16,11 @@ import com.mercateo.kitchenapp.data.Email;
 import com.mercateo.kitchenapp.data.Password;
 import com.mercateo.kitchenapp.data.User;
 import com.mercateo.kitchenapp.db.AlreadyExistsExcpetion;
-import com.mercateo.kitchenapp.db.UserAccess;
+import com.mercateo.kitchenapp.db.UserDao;
 import com.mercateo.kitchenapp.db.mongo.DuplicateFoundException;
 import com.mongodb.DBObject;
 
-public class UserAccessMongoDb implements UserAccess, Serializable {
+public class UserAccessMongoDb implements UserDao, Serializable {
 
     private static final long serialVersionUID = 1L;
 

@@ -7,9 +7,9 @@ import java.util.Optional;
 import com.mercateo.kitchenapp.data.Email;
 import com.mercateo.kitchenapp.data.Password;
 import com.mercateo.kitchenapp.data.User;
-import com.mercateo.kitchenapp.db.UserAccess;
+import com.mercateo.kitchenapp.db.UserDao;
 
-public class DummyUserAccess implements UserAccess {
+public class DummyUserAccess implements UserDao {
 
     static final DummyUserAccess INSTANCE = new DummyUserAccess();
 

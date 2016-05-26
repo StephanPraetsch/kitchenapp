@@ -8,15 +8,15 @@ import org.apache.wicket.Session;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
 
-import com.mercateo.kitchenapp.db.UserAccess;
+import com.mercateo.kitchenapp.db.UserDao;
 import com.mercateo.kitchenapp.sso.authorization.UserWebSession;
 
 public class SessionProvider {
 
-    private final UserAccess userAccess;
+    private final UserDao userAccess;
 
     @Inject
-    SessionProvider(UserAccess userAccess) {
+    SessionProvider(UserDao userAccess) {
         this.userAccess = checkNotNull(userAccess);
     }
 

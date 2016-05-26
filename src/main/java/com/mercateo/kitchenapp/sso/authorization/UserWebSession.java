@@ -12,7 +12,7 @@ import org.apache.wicket.request.Request;
 import com.mercateo.kitchenapp.data.Email;
 import com.mercateo.kitchenapp.data.Password;
 import com.mercateo.kitchenapp.data.User;
-import com.mercateo.kitchenapp.db.UserAccess;
+import com.mercateo.kitchenapp.db.UserDao;
 import com.mercateo.kitchenapp.sso.roles.UserRole;
 
 public class UserWebSession extends AuthenticatedWebSession {
@@ -21,11 +21,11 @@ public class UserWebSession extends AuthenticatedWebSession {
         return (UserWebSession) Session.get();
     }
 
-    private final UserAccess userAccess;
+    private final UserDao userAccess;
 
     private Optional<User> user = Optional.empty();
 
-    public UserWebSession(Request request, UserAccess userAccess) {
+    public UserWebSession(Request request, UserDao userAccess) {
         super(request);
         this.userAccess = checkNotNull(userAccess);
     }

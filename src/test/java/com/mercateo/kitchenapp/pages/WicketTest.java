@@ -20,7 +20,7 @@ import com.mercateo.kitchenapp.KitchenApp;
 import com.mercateo.kitchenapp.data.Email;
 import com.mercateo.kitchenapp.data.Password;
 import com.mercateo.kitchenapp.data.User;
-import com.mercateo.kitchenapp.db.UserAccess;
+import com.mercateo.kitchenapp.db.UserDao;
 import com.mercateo.kitchenapp.sso.authorization.AuthenticatedWebSession;
 import com.mercateo.kitchenapp.sso.authorization.AuthorizationStrategyImpl;
 import com.mercateo.kitchenapp.sso.authorization.UnauthorizedListenerImpl;
@@ -30,7 +30,7 @@ public class WicketTest {
     private final PagesRegistry pages = new PagesRegistry();
 
     @Mock
-    protected UserAccess userAccess;
+    protected UserDao userAccess;
 
     protected Email email = Email.of("test-email");
 
@@ -45,7 +45,7 @@ public class WicketTest {
         Injector injector = Guice.createInjector(new AbstractModule() {
             @Override
             protected void configure() {
-                bind(UserAccess.class).toInstance(userAccess);
+                bind(UserDao.class).toInstance(userAccess);
                 bind(PagesRegistry.class).toInstance(pages);
                 bind(IUnauthorizedComponentInstantiationListener.class).to(
                         UnauthorizedListenerImpl.class);

@@ -7,7 +7,7 @@ import com.mercateo.kitchenapp.data.Email;
 import com.mercateo.kitchenapp.data.Password;
 import com.mercateo.kitchenapp.data.User;
 
-public interface UserAccess {
+public interface UserDao {
 
     public boolean existsUser(User user);
 
