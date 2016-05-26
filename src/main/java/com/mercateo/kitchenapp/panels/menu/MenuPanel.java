@@ -23,6 +23,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 
+import com.mercateo.kitchenapp.data.User;
 import com.mercateo.kitchenapp.pages.PagesRegistry;
 import com.mercateo.kitchenapp.sso.authorization.AuthenticatedWebSession;
 
@@ -40,12 +41,11 @@ public class MenuPanel extends Panel {
         add(link("admin", pages.getAdminPage()));
         add(link("editor", pages.getEditorPage()));
         if (AuthenticatedWebSession.get().isSignedIn()) {
-            Class<? extends WebPage> page = pages.getHomePage();
-            add(new Link("logOut") {
+            add(new Link<User>("logOut") {
                 @Override
                 public void onClick() {
                     AuthenticatedWebSession.get().invalidate();
-                    setResponsePage(page);
+                    setResponsePage(pages.getHomePage());
                 }
             });
         } else {
@@ -54,8 +54,8 @@ public class MenuPanel extends Panel {
 
     }
 
-    private Link link(String id, Class<? extends WebPage> page) {
-        return new Link(id) {
+    private <T extends WebPage> Link<T> link(String id, Class<T> page) {
+        return new Link<T>(id) {
             @Override
             public void onClick() {
                 setResponsePage(page);

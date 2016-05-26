@@ -11,11 +11,12 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.mercateo.kitchenapp.data.Email;
 import com.mercateo.kitchenapp.data.Password;
+import com.mercateo.kitchenapp.data.User;
 import com.mercateo.kitchenapp.pages.PagesRegistry;
 import com.mercateo.kitchenapp.sso.authorization.AuthenticatedWebSession;
 import com.mercateo.kitchenapp.util.WicketConstants;
 
-public class SignInForm extends Form<Object> {
+public class SignInForm extends Form<User> {
 
     private static final long serialVersionUID = 1L;
 
@@ -38,7 +39,7 @@ public class SignInForm extends Form<Object> {
         add(emailField);
         add(passwordField);
 
-        setDefaultModel(new CompoundPropertyModel(this));
+        setDefaultModel(new CompoundPropertyModel<>(this));
 
     }
 

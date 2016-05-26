@@ -21,7 +21,7 @@ import com.mercateo.kitchenapp.pages.PagesRegistry;
 import com.mercateo.kitchenapp.sso.authorization.AuthenticatedWebSession;
 import com.mercateo.kitchenapp.util.WicketConstants;
 
-public class SignUpForm extends Form<Object> {
+public class SignUpForm extends Form<User> {
 
     private static final long serialVersionUID = 1L;
 
@@ -49,7 +49,7 @@ public class SignUpForm extends Form<Object> {
         add(emailField);
         add(passwordField);
 
-        setDefaultModel(new CompoundPropertyModel(this));
+        setDefaultModel(new CompoundPropertyModel<>(this));
 
     }
 
