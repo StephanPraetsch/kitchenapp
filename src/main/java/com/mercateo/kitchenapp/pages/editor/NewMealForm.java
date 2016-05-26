@@ -1,9 +1,11 @@
 package com.mercateo.kitchenapp.pages.editor;
 
+import java.util.Arrays;
 import java.util.Collections;
 
 import javax.inject.Inject;
 
+import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.Model;
@@ -27,7 +29,7 @@ public class NewMealForm extends Form<Meal> {
 
     private final TextField<String> description;
 
-    private final TextField<String> prices;
+    private final DropDownChoice<Chip> price;
 
     @Inject
     private Provider<MealsDao> meals;
@@ -37,11 +39,15 @@ public class NewMealForm extends Form<Meal> {
 
         title = new TextField<>("title", Model.of(""));
         description = new TextField<>("description", Model.of(""));
-        prices = new TextField<>("prices", Model.of(""));
+        price = new DropDownChoice<>("price", Model.of(Chip.RED), Arrays.asList(Chip.values()));
+
+        title.setRequired(true);
+        description.setRequired(true);
+        price.setRequired(true);
 
         add(title);
         add(description);
-        add(prices);
+        add(price);
 
     }
 
@@ -51,7 +57,7 @@ public class NewMealForm extends Form<Meal> {
         Meal meal = Meal.builder() //
                 .title(title.getModelObject()) //
                 .description(description.getModelObject()) //
-                .prices(Collections.singleton(new Price(Chip.valueOf(prices.getModelObject())))) //
+                .prices(Collections.singleton(new Price(price.getModelObject()))) //
                 .build();
 
         logger.info("adding new meal " + meal);

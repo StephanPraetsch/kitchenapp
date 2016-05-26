@@ -14,7 +14,12 @@
 				<legend style="color: #F90">New Meal</legend>
 				<span>Titel: </span><input wicket:id="title" type="text" id="title" /><br/>
 				<span>Beschreibung: </span><input wicket:id="description" type="text" id="description" />
-				<span>Preis: </span><input wicket:id="prices" type="text" id="prices" />
+				<span>Preis: <select wicket:id="price">
+					<option value="RED">rot</option>
+					<option value="YELLOW">gelb</option>
+					<option value="GREEN">grün</option>
+					<option value="BLUE">blau</option>
+				</select></span>
 				<p>
 					<input type="submit" name="create" value="Erstellen"/>
 				</p>
