@@ -4,7 +4,6 @@ import javax.inject.Inject;
 
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-import com.google.inject.Provider;
 import com.mercateo.kitchenapp.db.Meals;
 import com.mercateo.kitchenapp.pages.general.GeneralPageSignInNeeded;
 import com.mercateo.kitchenapp.sso.authorization.NeededRoles;
@@ -13,13 +12,15 @@ import com.mercateo.kitchenapp.sso.roles.UserRole;
 @NeededRoles(UserRole.EDITOR)
 public class EditorPage extends GeneralPageSignInNeeded {
 
+    private static final long serialVersionUID = 1L;
+
     @Inject
-    private Provider<Meals> meals;
+    private Meals meals;
 
     public EditorPage(PageParameters params) {
         super(params);
-        add(new NewMealForm("newMeal", meals.get()));
-        add(new MealsTable("mealTable", new MealsSortableDataProvider(meals.get())));
+        add(new NewMealForm("newMeal"));
+        add(new MealsTable("mealTable", meals));
     }
 
 }

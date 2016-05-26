@@ -9,7 +9,6 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-import com.mercateo.kitchenapp.WicketGuiceHelper;
 import com.mercateo.kitchenapp.data.Email;
 import com.mercateo.kitchenapp.data.Password;
 import com.mercateo.kitchenapp.pages.PagesRegistry;
@@ -18,6 +17,8 @@ import com.mercateo.kitchenapp.util.WicketConstants;
 
 public class SignInForm extends Form<Object> {
 
+    private static final long serialVersionUID = 1L;
+
     private final TextField<String> emailField;
 
     private final PasswordTextField passwordField;
@@ -25,8 +26,7 @@ public class SignInForm extends Form<Object> {
     @Inject
     private Md5Hasher md5Hasher;
 
-    @Inject
-    SignInForm() {
+    public SignInForm() {
         super("signInForm");
 
         this.emailField = new TextField<>(WicketConstants.EMAIL, Model.of(""));
@@ -62,8 +62,7 @@ public class SignInForm extends Form<Object> {
     private void wrongCredentials() {
         PageParameters pageParameters = new PageParameters();
         pageParameters.add(WicketConstants.STATUS, "wrong email or password");
-        setResponsePage(WicketGuiceHelper.get().getInstance(PagesRegistry.class).getSignInPage(),
-                pageParameters);
+        setResponsePage(new PagesRegistry().getSignInPage(), pageParameters);
     }
 
 }

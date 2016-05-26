@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -15,11 +14,14 @@ import org.apache.wicket.model.Model;
 import com.mercateo.kitchenapp.data.Chip;
 import com.mercateo.kitchenapp.data.Meal;
 import com.mercateo.kitchenapp.data.Price;
+import com.mercateo.kitchenapp.db.Meals;
 
 public class MealsTable extends DefaultDataTable<Meal, MealField> {
 
-    public MealsTable(String id, ISortableDataProvider<Meal, MealField> dataProvider) {
-        super(id, columns(), dataProvider, 10);
+    private static final long serialVersionUID = 1L;
+
+    public MealsTable(String id, Meals meals) {
+        super(id, columns(), new MealsSortableDataProvider(meals), 10);
     }
 
     private static List<IColumn<Meal, MealField>> columns() {

@@ -21,16 +21,17 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 
-import com.mercateo.kitchenapp.WicketGuiceHelper;
 import com.mercateo.kitchenapp.pages.PagesRegistry;
 import com.mercateo.kitchenapp.sso.authorization.AuthenticatedWebSession;
 
 public class MenuPanel extends Panel {
 
+    private static final long serialVersionUID = 1L;
+
     public MenuPanel(String id) {
         super(id);
 
-        PagesRegistry pages = WicketGuiceHelper.get().getInstance(PagesRegistry.class);
+        PagesRegistry pages = new PagesRegistry();
 
         add(link("profile", pages.getProfilePage()));
         add(link("admin", pages.getAdminPage()));
