@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.function.Function;
 
 import com.mercateo.kitchenapp.data.Meal;
-import com.mercateo.kitchenapp.data.Price;
-import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
@@ -18,24 +16,13 @@ public class MealsToMongoTransformer implements Function<Meal, DBObject> {
             {
                 put(MongoDbMealsConstants.TITLE, meal.getTitle());
                 put(MongoDbMealsConstants.DESCRIPTION, meal.getDescription());
-                put(MongoDbMealsConstants.PRICES, getPrices(meal));
+                put(MongoDbMealsConstants.PRICE, meal.getPrice().getChip().name());
             }
 
         });
 
         return dbUserObject;
 
-    }
-
-    private BasicDBList getPrices(Meal meal) {
-        BasicDBList list = new BasicDBList();
-        for (Price price : meal.getPrices()) {
-            BasicDBObject o = new BasicDBObject();
-            o.put(MongoDbMealsConstants.CHIP, price.getChip().name());
-            o.put(MongoDbMealsConstants.NUMBER, String.valueOf(price.getNumber()));
-            list.add(o);
-        }
-        return list;
     }
 
 }

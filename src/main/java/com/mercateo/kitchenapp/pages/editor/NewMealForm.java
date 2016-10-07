@@ -1,7 +1,6 @@
 package com.mercateo.kitchenapp.pages.editor;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import javax.inject.Inject;
 
@@ -57,7 +56,7 @@ public class NewMealForm extends Form<Meal> {
         Meal meal = Meal.builder() //
                 .title(title.getModelObject()) //
                 .description(description.getModelObject()) //
-                .prices(Collections.singleton(new Price(price.getModelObject()))) //
+                .price(new Price(price.getModelObject())) //
                 .build();
 
         logger.info("adding new meal " + meal);

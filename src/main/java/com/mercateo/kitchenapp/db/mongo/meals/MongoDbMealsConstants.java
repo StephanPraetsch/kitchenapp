@@ -6,10 +6,8 @@ class MongoDbMealsConstants {
 
     static final String DESCRIPTION = "description";
 
-    static final String PRICES = "prices";
+    static final String PRICE = "price";
 
     static final String CHIP = "chip";
-
-    static final String NUMBER = "number";
 
 }
