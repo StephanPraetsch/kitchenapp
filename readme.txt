@@ -115,7 +115,10 @@ system.indexes
 { "v" : 1, "key" : { "_id" : 1 }, "name" : "_id_", "ns" : "local.startup_log" }
 
 
+# test data
+mongo < src/main/java/com/mercateo/kitchenapp/db/mongo/reset.mongo 
 
+# java
     <dependency>
         <groupId>org.mongodb</groupId>
         <artifactId>mongo-java-driver</artifactId>
