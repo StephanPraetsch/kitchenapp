@@ -1,6 +1,7 @@
 use kitchen
 
 db.users.drop()
+db.users.createIndex( { "email" : 1 } , { unique : true } )
 db.users.insert( { "email": "admin", "password": "21232f297a57a5a743894a0e4a801fc3", "userRoles" : [ "ADMIN" ]  } );
 db.users.insert( { "email": "editor", "password": "5aee9dbd2a188839105073571bee1b1f", "userRoles" : [ "EDITOR" ]  } );
 db.users.insert( { "email": "roles", "password": "4295e8065f2f640103f566df3329e17f", "userRoles" : [ "EDITOR", "ADMIN" ]  } );
