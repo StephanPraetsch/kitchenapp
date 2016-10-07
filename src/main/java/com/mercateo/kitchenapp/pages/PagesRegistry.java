@@ -7,6 +7,7 @@ import com.mercateo.kitchenapp.pages.denied.AccessDeniedPage;
 import com.mercateo.kitchenapp.pages.error.ErrorPage;
 import com.mercateo.kitchenapp.pages.home.HomePage;
 import com.mercateo.kitchenapp.pages.meals.MealsPage;
+import com.mercateo.kitchenapp.pages.offers.OffersPage;
 import com.mercateo.kitchenapp.pages.profile.ProfilePage;
 import com.mercateo.kitchenapp.pages.signin.SignInPage;
 import com.mercateo.kitchenapp.pages.subscription.SubscriptionPage;
@@ -43,6 +44,10 @@ public class PagesRegistry {
 
     public Class<? extends WebPage> getSubscriptionPage() {
         return SubscriptionPage.class;
+    }
+
+    public Class<? extends WebPage> getOffersPage() {
+        return OffersPage.class;
     }
 
 }

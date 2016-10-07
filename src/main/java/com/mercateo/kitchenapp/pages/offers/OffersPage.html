@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="utf-8" />
+<title>Editor</title>
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold' rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="Stylesheet" />
+</head>
+<body>
+    <wicket:extend>
+        <div>Hello Offers</div>
+		<div>Angebot von <span wicket:id="from" type="date" id="from">from</span> bis <span wicket:id="to" type="date" id="to">to</span> </div>
+        <div>
+            <table wicket:id="offersTable"></table>
+        </div>
+    </wicket:extend>
+</body>
+</html>

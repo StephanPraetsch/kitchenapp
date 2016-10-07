@@ -1,9 +1,11 @@
 package com.mercateo.kitchenapp.db.mongo;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+import com.google.common.collect.Lists;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
@@ -40,6 +42,11 @@ public class MongoDbCollection {
 
     public void update(DBObject updateDbObject) {
         collection.update(updateDbObject, updateDbObject);
+    }
+
+    public List<DBObject> find(DBObject dbObject) {
+        DBCursor find = collection.find(dbObject);
+        return Lists.newArrayList((Iterator<DBObject>) find);
     }
 
     public List<DBObject> findAll() {
