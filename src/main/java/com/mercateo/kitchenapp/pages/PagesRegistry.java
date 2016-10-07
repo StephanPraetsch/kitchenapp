@@ -9,6 +9,7 @@ import com.mercateo.kitchenapp.pages.error.ErrorPage;
 import com.mercateo.kitchenapp.pages.home.HomePage;
 import com.mercateo.kitchenapp.pages.profile.ProfilePage;
 import com.mercateo.kitchenapp.pages.signin.SignInPage;
+import com.mercateo.kitchenapp.pages.subscription.SubscriptionPage;
 
 public class PagesRegistry {
 
@@ -38,6 +39,10 @@ public class PagesRegistry {
 
     public Class<? extends WebPage> getErrorPage() {
         return ErrorPage.class;
+    }
+
+    public Class<? extends WebPage> getSubscriptionPage() {
+        return SubscriptionPage.class;
     }
 
 }
