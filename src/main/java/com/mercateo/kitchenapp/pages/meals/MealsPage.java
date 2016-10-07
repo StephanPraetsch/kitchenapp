@@ -10,14 +10,14 @@ import com.mercateo.kitchenapp.sso.authorization.NeededRoles;
 import com.mercateo.kitchenapp.sso.roles.UserRole;
 
 @NeededRoles(UserRole.EDITOR)
-public class EditorPage extends GeneralPageSignInNeeded {
+public class MealsPage extends GeneralPageSignInNeeded {
 
     private static final long serialVersionUID = 1L;
 
     @Inject
     private MealsDao meals;
 
-    public EditorPage(PageParameters params) {
+    public MealsPage(PageParameters params) {
         super(params);
         add(new NewMealForm("newMeal"));
         add(new MealsTable("mealTable", meals));

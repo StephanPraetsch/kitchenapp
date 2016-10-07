@@ -40,7 +40,7 @@ public class MenuPanel extends Panel {
         add(link("subscription", pages.getSubscriptionPage()));
         add(link("profile", pages.getProfilePage()));
         add(link("admin", pages.getAdminPage()));
-        add(link("editor", pages.getEditorPage()));
+        add(link("meals", pages.getMealsPage()));
         if (AuthenticatedWebSession.get().isSignedIn()) {
             add(new Link<User>("logOut") {
                 @Override
