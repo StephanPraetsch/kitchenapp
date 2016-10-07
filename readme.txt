@@ -80,20 +80,15 @@ in .classpath
 | MongoDB |
 -----------
 # repo
-echo "name=MongoDB Repository
-baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/
-gpgcheck=0
-enabled=1" > /etc/yum.repos.d/mongodb.repo
-
-# install
 # WICHTIG: mongodb-org verwenden, weil andere Repos wie mongo-10pen veraltet sind
-yum -y install mongodb-org
+sudo dnf config-manager --add-repo http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/
+sudo dnf install mongodb-org --nogpgcheck
 
 # configuration
 mkdir -p /opt/mercateo/3rdparty/mongodb/conf
 mkdir -p /opt/mercateo/3rdparty/mongodb/data
 mkdir -p /opt/mercateo/3rdparty/mongodb/log
-cp mongod.conf /opt/mercateo/3rdparty/mongodb/conf/mongodb.conf
+cp mongodb.conf /opt/mercateo/3rdparty/mongodb/conf/mongodb.conf
 
 # start forked
 /usr/bin/mongod -f /opt/mercateo/3rdparty/mongodb/conf/mongodb.conf
