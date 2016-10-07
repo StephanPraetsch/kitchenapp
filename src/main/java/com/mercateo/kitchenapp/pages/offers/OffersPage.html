@@ -9,6 +9,18 @@
 <body>
     <wicket:extend>
         <div>Hello Offers</div>
+
+        <div>
+            <form id="offersForm" method="get" wicket:id="offersForm">
+                <fieldset>
+                    <legend style="color: #F90">Date Range</legend>
+                    <span>Von: <div wicket:id="filterFrom" type="date" id="filterFrom" /></span>
+                    <span>Bis: <div wicket:id="filterTo" type="date" id="filterTo" /></span>
+                    <span><input type="submit" name="filter" value="Filtern"/></span>
+                </fieldset>
+            </form>
+        </div>
+    
 		<div>Angebot von <span wicket:id="from" type="date" id="from">from</span> bis <span wicket:id="to" type="date" id="to">to</span> </div>
         <div>
             <table wicket:id="offersTable"></table>

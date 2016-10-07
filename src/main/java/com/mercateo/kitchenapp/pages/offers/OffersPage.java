@@ -1,12 +1,14 @@
 package com.mercateo.kitchenapp.pages.offers;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.inject.Inject;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.util.string.StringValue;
 
 import com.mercateo.kitchenapp.db.OffersDao;
 import com.mercateo.kitchenapp.pages.general.GeneralPageSignInNeeded;
@@ -15,19 +17,42 @@ public class OffersPage extends GeneralPageSignInNeeded {
 
     private static final long serialVersionUID = 1L;
 
+    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_DATE;
+
     @Inject
     private OffersDao offers;
 
-    // TODO von parametern auslesen
-    LocalDate from = LocalDate.now();
+    private final LocalDate from;
 
-    LocalDate to = from.plusDays(5);
+    private final LocalDate to;
 
     public OffersPage(PageParameters params) {
         super(params);
+
+        this.from = from(params);
+        this.to = to(params);
+
+        add(new OffersForm("offersForm", from, to));
         add(new Label("from", new Model<>(from)));
         add(new Label("to", new Model<>(to)));
         add(new OffersTable("offersTable", new OffersSortableDataProvider(offers, from, to)));
+
+    }
+
+    private LocalDate from(PageParameters params) {
+        return readParams(params, "from", LocalDate.now());
+    }
+
+    private LocalDate to(PageParameters params) {
+        return readParams(params, "to", LocalDate.now().plusDays(5));
+    }
+
+    private LocalDate readParams(PageParameters params, String name, LocalDate defaultValue) {
+        StringValue stringValue = params.get(name);
+        if (stringValue.isEmpty()) {
+            return defaultValue;
+        }
+        return LocalDate.parse(stringValue.toString(), FORMATTER);
     }
 
 }
