@@ -8,6 +8,7 @@ import com.google.inject.Provides;
 import com.google.inject.Scopes;
 import com.google.inject.Singleton;
 import com.mercateo.kitchenapp.db.MealsDao;
+import com.mercateo.kitchenapp.db.OffersDao;
 import com.mercateo.kitchenapp.db.UserDao;
 import com.mercateo.kitchenapp.db.mongo.MongoDbModule;
 import com.mercateo.kitchenapp.sso.authorization.AuthorizationStrategyImpl;
@@ -26,6 +27,7 @@ public class KitchenAppModule extends AbstractModule {
 
         requireBinding(UserDao.class);
         requireBinding(MealsDao.class);
+        requireBinding(OffersDao.class);
 
     }
 

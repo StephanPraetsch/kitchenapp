@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import com.mercateo.kitchenapp.db.mongo.chips.ChipsCollection;
 import com.mercateo.kitchenapp.db.mongo.meals.MealsCollection;
+import com.mercateo.kitchenapp.db.mongo.offers.OffersCollection;
 import com.mercateo.kitchenapp.db.mongo.users.UserCollection;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
@@ -44,6 +45,11 @@ public class MongoDbObjectCreator {
     public ChipsCollection getChipsCollection() {
         return new ChipsCollection(mongoDatabase.getCollection(mongoDbConfiguration
                 .getCollectionNameChips()));
+    }
+
+    public OffersCollection getOffersCollection() {
+        return new OffersCollection(mongoDatabase.getCollection(mongoDbConfiguration
+                .getCollectionNameOffers()));
     }
 
 }
