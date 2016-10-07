@@ -1,4 +1,4 @@
-package com.mercateo.kitchenapp.pages.editor;
+package com.mercateo.kitchenapp.pages.meals;
 
 import java.util.Comparator;
 
