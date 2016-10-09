@@ -6,11 +6,11 @@ import org.apache.wicket.extensions.markup.html.repeater.util.SortParam;
 
 import com.mercateo.kitchenapp.data.Subscription;
 
-public class SubscriptionComparator implements Comparator<Subscription> {
+class SubscriptionComparator implements Comparator<Subscription> {
 
     private final SortParam<SubscriptionField> sort;
 
-    public SubscriptionComparator(SortParam<SubscriptionField> sort) {
+    SubscriptionComparator(SortParam<SubscriptionField> sort) {
         this.sort = sort;
     }
 

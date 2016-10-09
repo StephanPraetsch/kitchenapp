@@ -13,7 +13,7 @@ import com.mercateo.kitchenapp.data.Email;
 import com.mercateo.kitchenapp.data.Subscription;
 import com.mercateo.kitchenapp.db.SubscriptionsDao;
 
-public class SubscriptionsSortableDataProvider extends
+class SubscriptionsSortableDataProvider extends
         SortableDataProvider<Subscription, SubscriptionField> {
 
     private final SubscriptionsDao subscriptions;

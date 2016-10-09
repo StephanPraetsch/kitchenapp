@@ -1,6 +1,6 @@
 package com.mercateo.kitchenapp.pages.subscription;
 
-public enum SubscriptionField {
+enum SubscriptionField {
 
     DAY("day");
 
@@ -10,7 +10,7 @@ public enum SubscriptionField {
         this.displayedValue = displayedValue;
     }
 
-    public String displayedValue() {
+    String displayedValue() {
         return displayedValue;
     }
 

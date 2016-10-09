@@ -10,7 +10,7 @@ import com.mercateo.kitchenapp.data.Email;
 import com.mercateo.kitchenapp.data.Subscription;
 import com.mercateo.kitchenapp.db.SubscriptionsDao;
 
-public class SubscriptionModel extends LoadableDetachableModel<Subscription> {
+class SubscriptionModel extends LoadableDetachableModel<Subscription> {
 
     private final SubscriptionsDao dao;
 
@@ -18,7 +18,7 @@ public class SubscriptionModel extends LoadableDetachableModel<Subscription> {
 
     private final LocalDate id;
 
-    public SubscriptionModel(@NonNull SubscriptionsDao dao, @NonNull Email email,
+    SubscriptionModel(@NonNull SubscriptionsDao dao, @NonNull Email email,
             @NonNull Subscription s) {
         super(s);
         this.dao = dao;

@@ -11,9 +11,9 @@ import org.apache.wicket.model.Model;
 
 import com.mercateo.kitchenapp.data.Subscription;
 
-public class SubscriptionsTable extends DefaultDataTable<Subscription, SubscriptionField> {
+class SubscriptionsTable extends DefaultDataTable<Subscription, SubscriptionField> {
 
-    public SubscriptionsTable(String id,
+    SubscriptionsTable(String id,
             ISortableDataProvider<Subscription, SubscriptionField> dataProvider) {
         super(id, columns(), dataProvider, 10);
     }
