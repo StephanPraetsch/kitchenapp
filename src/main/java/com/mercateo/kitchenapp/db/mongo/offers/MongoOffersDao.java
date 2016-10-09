@@ -24,6 +24,8 @@ public class MongoOffersDao implements OffersDao {
 
     private final OffersToMongoTransformer toMongo;
 
+    private final OfferSelectToMongoTransformer selectToMongo;
+
     private final MongoToOfferTransformer toOffer;
 
     @Override
@@ -31,10 +33,9 @@ public class MongoOffersDao implements OffersDao {
 
         try {
 
-            // TODO kein null als parameter => neues select-offer-objekt
-            Offer offer = new Offer(day, null);
+            OfferSelect select = new OfferSelect(day);
 
-            return collection.findOne(toMongo.apply(offer)).map(toOffer::apply);
+            return collection.findOne(selectToMongo.apply(select)).map(toOffer::apply);
 
         } catch (Exception e) {
 
