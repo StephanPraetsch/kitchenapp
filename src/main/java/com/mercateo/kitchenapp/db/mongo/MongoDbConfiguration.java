@@ -6,34 +6,24 @@ public class MongoDbConfiguration implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private final String mongoURIString = "mongodb://localhost";
-
-    private final String dbName = "kitchen";
-
-    private final String collectionNameUsers = "users";
-
-    private final String collectionNameMeals = "meals";
-
-    private final String collectionNameOffers = "offers";
-
     public String getMongoURIString() {
-        return mongoURIString;
+        return "mongodb://localhost";
     }
 
     public String getDbName() {
-        return dbName;
+        return "kitchen";
     }
 
     public String getCollectionNameUsers() {
-        return collectionNameUsers;
+        return "users";
     }
 
     public String getCollectionNameMeals() {
-        return collectionNameMeals;
+        return "meals";
     }
 
     public String getCollectionNameOffers() {
-        return collectionNameOffers;
+        return "offers";
     }
 
     public String getCollectionNameSubscriptions() {
