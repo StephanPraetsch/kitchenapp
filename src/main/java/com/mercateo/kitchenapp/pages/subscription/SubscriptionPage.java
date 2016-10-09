@@ -14,6 +14,7 @@ import org.apache.wicket.util.string.StringValue;
 import com.mercateo.kitchenapp.data.Email;
 import com.mercateo.kitchenapp.db.SubscriptionsDao;
 import com.mercateo.kitchenapp.pages.general.GeneralPageSignInNeeded;
+import com.mercateo.kitchenapp.sso.authorization.UserWebSession;
 
 public class SubscriptionPage extends GeneralPageSignInNeeded {
 
@@ -24,18 +25,26 @@ public class SubscriptionPage extends GeneralPageSignInNeeded {
     @Inject
     private SubscriptionsDao subscriptions;
 
-    private final LocalDate from;
+    private LocalDate from;
 
-    private final LocalDate to;
+    private LocalDate to;
 
-    // TODO
-    private final Email email = Email.of("admin");
+    private Email email;
 
     public SubscriptionPage(PageParameters params) {
         super(params);
+    }
+
+    @Override
+    protected void onBeforeRender() {
+
+        super.onBeforeRender();
+
+        PageParameters params = getPageParameters();
 
         this.from = from(params);
         this.to = to(params);
+        this.email = UserWebSession.get().getUser().getEmail();
 
         add(new Label("date", new Model<>(LocalDateTime.now())));
         add(new SubscriptionForm("subscriptionsForm", from, to));
@@ -43,6 +52,7 @@ public class SubscriptionPage extends GeneralPageSignInNeeded {
         add(new Label("to", new Model<>(to)));
         add(new SubscriptionsTable("subscriptionsTable", new SubscriptionsSortableDataProvider(
                 subscriptions, email, from, to)));
+
     }
 
     private LocalDate from(PageParameters params) {
