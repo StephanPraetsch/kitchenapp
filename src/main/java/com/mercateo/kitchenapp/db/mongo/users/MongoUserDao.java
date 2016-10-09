@@ -20,11 +20,11 @@ import com.mercateo.kitchenapp.db.UserDao;
 import com.mercateo.kitchenapp.db.mongo.DuplicateFoundException;
 import com.mongodb.DBObject;
 
-public class UserAccessMongoDb implements UserDao, Serializable {
+public class MongoUserDao implements UserDao, Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private static final Logger logger = LoggerFactory.getLogger(UserAccessMongoDb.class);
+    private static final Logger logger = LoggerFactory.getLogger(MongoUserDao.class);
 
     private final UserCollection userCollection;
 
@@ -33,7 +33,7 @@ public class UserAccessMongoDb implements UserDao, Serializable {
     private final TransformerUserToDbObject transformerUserToDbObject;
 
     @Inject
-    UserAccessMongoDb(UserCollection userCollection,
+    MongoUserDao(UserCollection userCollection,
             TransformerDbObjectToUser transformerDbObjectToUser,
             TransformerUserToDbObject transformerUserToDbObject) {
         this.userCollection = userCollection;

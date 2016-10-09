@@ -15,9 +15,9 @@ import com.mercateo.kitchenapp.db.AlreadyExistsExcpetion;
 import com.mercateo.kitchenapp.db.MealsDao;
 import com.mercateo.kitchenapp.db.mongo.DuplicateFoundException;
 
-public class MealsMongoDb implements MealsDao {
+public class MongoMealsDao implements MealsDao {
 
-    private static final Logger logger = LoggerFactory.getLogger(MealsMongoDb.class);
+    private static final Logger logger = LoggerFactory.getLogger(MongoMealsDao.class);
 
     private final MealsCollection collection;
 
@@ -26,7 +26,7 @@ public class MealsMongoDb implements MealsDao {
     private final MealsToMongoTransformer toDbObjectTransformer;
 
     @Inject
-    MealsMongoDb(MealsCollection collection, MongoToMealsTransformer toMealTransformer,
+    MongoMealsDao(MealsCollection collection, MongoToMealsTransformer toMealTransformer,
             MealsToMongoTransformer toDbObjectTransformer) {
         this.collection = checkNotNull(collection);
         this.toMealTransformer = checkNotNull(toMealTransformer);
