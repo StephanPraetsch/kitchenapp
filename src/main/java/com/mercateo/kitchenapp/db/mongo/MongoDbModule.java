@@ -1,5 +1,7 @@
 package com.mercateo.kitchenapp.db.mongo;
 
+import java.net.UnknownHostException;
+
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Scopes;
@@ -16,6 +18,9 @@ import com.mercateo.kitchenapp.db.mongo.subscriptions.MongoSubscriptionsDao;
 import com.mercateo.kitchenapp.db.mongo.subscriptions.SubscriptionsCollection;
 import com.mercateo.kitchenapp.db.mongo.users.MongoUserDao;
 import com.mercateo.kitchenapp.db.mongo.users.UserCollection;
+import com.mongodb.DB;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 
 public class MongoDbModule extends AbstractModule {
 
@@ -28,6 +33,16 @@ public class MongoDbModule extends AbstractModule {
     }
 
     @Provides
+    MongoClient provideMongoClient(MongoDbConfiguration config) throws UnknownHostException {
+        return new MongoClient(new MongoClientURI(config.getMongoURIString()));
+    }
+
+    @Provides
+    DB provideDb(MongoClient client, MongoDbConfiguration config) {
+        return client.getDB(config.getDbName());
+    }
+
+    @Provides
     @Singleton
     public MongoDbConfiguration provideMongoDbConfig() {
         return new MongoDbConfiguration();
@@ -35,26 +50,28 @@ public class MongoDbModule extends AbstractModule {
 
     @Provides
     @Singleton
-    public UserCollection provideUserCollection(MongoDbObjectCreator creator) {
-        return creator.getUserCollection();
+    public UserCollection provideUserCollection(DB db, MongoDbConfiguration config) {
+        return new UserCollection(db.getCollection(config.getCollectionNameUsers()));
     }
 
     @Provides
     @Singleton
-    public MealsCollection provideMealsCollection(MongoDbObjectCreator creator) {
-        return creator.getMealsCollection();
+    public MealsCollection provideMealsCollection(DB db, MongoDbConfiguration config) {
+        return new MealsCollection(db.getCollection(config.getCollectionNameMeals()));
     }
 
     @Provides
     @Singleton
-    public OffersCollection provideOffersCollection(MongoDbObjectCreator creator) {
-        return creator.getOffersCollection();
+    public OffersCollection provideOffersCollection(DB db, MongoDbConfiguration config) {
+        return new OffersCollection(db.getCollection(config.getCollectionNameOffers()));
     }
 
     @Provides
     @Singleton
-    public SubscriptionsCollection provideSubscriptionsCollection(MongoDbObjectCreator creator) {
-        return creator.getSubscriptionsCollection();
+    public SubscriptionsCollection provideSubscriptionsCollection(DB db,
+            MongoDbConfiguration config) {
+        return new SubscriptionsCollection(db.getCollection(config
+                .getCollectionNameSubscriptions()));
     }
 
 }
