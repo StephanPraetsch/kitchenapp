@@ -19,7 +19,15 @@ public class AdminPage extends GeneralPageSignInNeeded {
 
     public AdminPage(PageParameters params) {
         super(params);
+    }
+
+    @Override
+    protected void onBeforeRender() {
+
+        super.onBeforeRender();
+
         add(new UserTable("userTable", new UserSortableDataProvider(userAccess)));
+
     }
 
 }

@@ -9,7 +9,15 @@ public class AccessDeniedPage extends GeneralPage {
 
     public AccessDeniedPage(PageParameters params) {
         super(params);
+    }
+
+    @Override
+    protected void onBeforeRender() {
+
+        super.onBeforeRender();
+
         replace(new Label(MESSAGE_ID, "access denied"));
+
     }
 
 }

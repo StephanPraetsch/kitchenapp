@@ -11,7 +11,15 @@ public class HomePage extends GeneralPage {
 
     public HomePage(PageParameters params) {
         super(params);
+    }
+
+    @Override
+    protected void onBeforeRender() {
+
+        super.onBeforeRender();
+
         add(new Label("welcome", "welcome"));
+
     }
 
 }

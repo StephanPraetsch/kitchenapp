@@ -22,13 +22,20 @@ public class OffersPage extends GeneralPageSignInNeeded {
     @Inject
     private OffersDao offers;
 
-    private final LocalDate from;
+    private LocalDate from;
 
-    private final LocalDate to;
+    private LocalDate to;
 
     public OffersPage(PageParameters params) {
         super(params);
+    }
 
+    @Override
+    protected void onBeforeRender() {
+
+        super.onBeforeRender();
+
+        PageParameters params = getPageParameters();
         this.from = from(params);
         this.to = to(params);
 

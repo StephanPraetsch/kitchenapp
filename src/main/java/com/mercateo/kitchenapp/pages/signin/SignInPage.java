@@ -10,8 +10,16 @@ public class SignInPage extends GeneralPage {
 
     public SignInPage(PageParameters params) {
         super(params);
+    }
+
+    @Override
+    protected void onBeforeRender() {
+
+        super.onBeforeRender();
+
         add(new SignInForm());
         add(new SignUpForm());
+
     }
 
 }

@@ -10,8 +10,17 @@ public class ErrorPage extends GeneralPage {
 
     public ErrorPage(PageParameters params) {
         super(params);
+    }
+
+    @Override
+    protected void onBeforeRender() {
+
+        super.onBeforeRender();
+
+        PageParameters params = getPageParameters();
         replace(new Label(MESSAGE_ID, "Ein Fehler ist aufgetreten: " + params.get(
                 WicketConstants.STATUS)));
+
     }
 
 }
