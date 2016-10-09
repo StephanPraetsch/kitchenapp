@@ -5,13 +5,13 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import com.mercateo.kitchenapp.data.Meal;
 import com.mercateo.kitchenapp.db.MealsDao;
 
-public class MealModel extends LoadableDetachableModel<Meal> {
+class MealModel extends LoadableDetachableModel<Meal> {
 
     private final MealsDao meals;
 
     private final String id;
 
-    public MealModel(MealsDao meals, Meal m) {
+    MealModel(MealsDao meals, Meal m) {
         super(m);
         this.meals = meals;
         this.id = m.getTitle();

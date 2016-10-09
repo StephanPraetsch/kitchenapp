@@ -1,6 +1,6 @@
 package com.mercateo.kitchenapp.pages.meals;
 
-public enum MealField {
+enum MealField {
 
     TITLE("title"), DESCRIPTION("description"), PRICES("prices");
 
@@ -10,7 +10,7 @@ public enum MealField {
         this.displayedValue = displayedValue;
     }
 
-    public String displayedValue() {
+    String displayedValue() {
         return displayedValue;
     }
 

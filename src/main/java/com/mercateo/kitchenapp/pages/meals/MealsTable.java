@@ -13,11 +13,11 @@ import com.mercateo.kitchenapp.data.Meal;
 import com.mercateo.kitchenapp.data.Price;
 import com.mercateo.kitchenapp.db.MealsDao;
 
-public class MealsTable extends DefaultDataTable<Meal, MealField> {
+class MealsTable extends DefaultDataTable<Meal, MealField> {
 
     private static final long serialVersionUID = 1L;
 
-    public MealsTable(String id, MealsDao meals) {
+    MealsTable(String id, MealsDao meals) {
         super(id, columns(), new MealsSortableDataProvider(meals), 10);
     }
 

@@ -1,6 +1,6 @@
 package com.mercateo.kitchenapp.pages.offers;
 
-public enum OfferField {
+enum OfferField {
 
     DAY("day");
 
@@ -10,7 +10,7 @@ public enum OfferField {
         this.displayedValue = displayedValue;
     }
 
-    public String displayedValue() {
+    String displayedValue() {
         return displayedValue;
     }
 

@@ -12,7 +12,7 @@ import lombok.NonNull;
 import com.mercateo.kitchenapp.data.Offer;
 import com.mercateo.kitchenapp.db.OffersDao;
 
-public class OffersSortableDataProvider extends SortableDataProvider<Offer, OfferField> {
+class OffersSortableDataProvider extends SortableDataProvider<Offer, OfferField> {
 
     private final OffersDao offers;
 
@@ -20,7 +20,7 @@ public class OffersSortableDataProvider extends SortableDataProvider<Offer, Offe
 
     private final LocalDate to;
 
-    public OffersSortableDataProvider(@NonNull OffersDao offers, @NonNull LocalDate from,
+    OffersSortableDataProvider(@NonNull OffersDao offers, @NonNull LocalDate from,
             @NonNull LocalDate to) {
         this.offers = offers;
         this.from = from;

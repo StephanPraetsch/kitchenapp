@@ -7,13 +7,13 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import com.mercateo.kitchenapp.data.Offer;
 import com.mercateo.kitchenapp.db.OffersDao;
 
-public class OfferModel extends LoadableDetachableModel<Offer> {
+class OfferModel extends LoadableDetachableModel<Offer> {
 
     private final OffersDao offers;
 
     private final LocalDate id;
 
-    public OfferModel(OffersDao offers, Offer offer) {
+    OfferModel(OffersDao offers, Offer offer) {
         super(offer);
         this.offers = offers;
         this.id = offer.getDay();

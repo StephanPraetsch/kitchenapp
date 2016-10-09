@@ -6,11 +6,11 @@ import org.apache.wicket.extensions.markup.html.repeater.util.SortParam;
 
 import com.mercateo.kitchenapp.data.User;
 
-public class UserComparator implements Comparator<User> {
+class UserComparator implements Comparator<User> {
 
     private final SortParam<UserField> sort;
 
-    public UserComparator(SortParam<UserField> sort) {
+    UserComparator(SortParam<UserField> sort) {
         this.sort = sort;
     }
 

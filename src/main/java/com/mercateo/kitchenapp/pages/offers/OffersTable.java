@@ -11,9 +11,9 @@ import org.apache.wicket.model.Model;
 
 import com.mercateo.kitchenapp.data.Offer;
 
-public class OffersTable extends DefaultDataTable<Offer, OfferField> {
+class OffersTable extends DefaultDataTable<Offer, OfferField> {
 
-    public OffersTable(String id, ISortableDataProvider<Offer, OfferField> dataProvider) {
+    OffersTable(String id, ISortableDataProvider<Offer, OfferField> dataProvider) {
         super(id, columns(), dataProvider, 10);
     }
 

@@ -9,11 +9,11 @@ import org.apache.wicket.model.IModel;
 import com.mercateo.kitchenapp.data.User;
 import com.mercateo.kitchenapp.db.UserDao;
 
-public class UserSortableDataProvider extends SortableDataProvider<User, UserField> {
+class UserSortableDataProvider extends SortableDataProvider<User, UserField> {
 
     private final UserDao userAccess;
 
-    public UserSortableDataProvider(UserDao userAccess) {
+    UserSortableDataProvider(UserDao userAccess) {
         this.userAccess = userAccess;
         setSort(UserField.EMAIL, SortOrder.ASCENDING);
     }

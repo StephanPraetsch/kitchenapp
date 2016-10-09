@@ -1,6 +1,6 @@
 package com.mercateo.kitchenapp.pages.admin;
 
-public enum UserField {
+enum UserField {
 
     EMAIL("email"), PASSWORD("password");
 
@@ -10,7 +10,7 @@ public enum UserField {
         this.displayedValue = displayedValue;
     }
 
-    public String displayedValue() {
+    String displayedValue() {
         return displayedValue;
     }
 

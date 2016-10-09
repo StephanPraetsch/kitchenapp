@@ -11,9 +11,9 @@ import org.apache.wicket.model.Model;
 
 import com.mercateo.kitchenapp.data.User;
 
-public class UserTable extends DefaultDataTable<User, UserField> {
+class UserTable extends DefaultDataTable<User, UserField> {
 
-    public UserTable(String id, ISortableDataProvider<User, UserField> dataProvider) {
+    UserTable(String id, ISortableDataProvider<User, UserField> dataProvider) {
         super(id, columns(), dataProvider, 10);
     }
 
@@ -29,10 +29,10 @@ public class UserTable extends DefaultDataTable<User, UserField> {
                 title, sortThisField, displayedValue));
 
         columns.add(new PropertyColumn<User, UserField>( //
-                new Model<String>("password"), "password"));
+                new Model<>("password"), "password"));
 
         columns.add(new PropertyColumn<User, UserField>( //
-                new Model<String>("roles"), "userRoles"));
+                new Model<>("roles"), "userRoles"));
 
         return columns;
 
