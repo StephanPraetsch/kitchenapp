@@ -1,11 +1,11 @@
 package com.mercateo.kitchenapp.pages.general;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.string.StringValue;
+
+import lombok.NonNull;
 
 import com.mercateo.kitchenapp.panels.footer.FooterPanel;
 import com.mercateo.kitchenapp.panels.header.HeaderPanel;
@@ -16,9 +16,8 @@ public abstract class GeneralPage extends WebPage {
 
     public static final String MESSAGE_ID = "message";
 
-    public GeneralPage(PageParameters params) {
-
-        checkNotNull(params);
+    public GeneralPage(@NonNull PageParameters params) {
+        super(params);
 
         add(new HeaderPanel("headerPanel"));
         add(new MenuPanel("menuPanel"));
