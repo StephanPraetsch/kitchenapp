@@ -2,8 +2,6 @@ package com.mercateo.kitchenapp.pages.signin;
 
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-import com.mercateo.kitchenapp.forms.SignInForm;
-import com.mercateo.kitchenapp.forms.SignUpForm;
 import com.mercateo.kitchenapp.pages.general.GeneralPage;
 
 public class SignInPage extends GeneralPage {

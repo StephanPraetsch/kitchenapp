@@ -1,4 +1,4 @@
-package com.mercateo.kitchenapp.forms;
+package com.mercateo.kitchenapp.pages.signin;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
