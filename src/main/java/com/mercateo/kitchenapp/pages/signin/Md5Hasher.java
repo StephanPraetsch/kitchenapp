@@ -19,7 +19,7 @@ public class Md5Hasher {
         }
     }
 
-    public String hash(String s) {
+     String hash(String s) {
         byte[] digest = md.digest(s.getBytes());
         BigInteger bigInt = new BigInteger(1, digest);
         return bigInt.toString(16);
