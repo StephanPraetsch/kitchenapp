@@ -10,6 +10,23 @@
     <wicket:extend>
         <div>Hello Subscriber</div>
 		<div>Es ist jetzt <div wicket:id="date" type="text" id="title">date</div></div>
+
+        <div>
+            <form id="subscriptionsForm" method="get" wicket:id="subscriptionsForm">
+                <fieldset>
+                    <legend style="color: #F90">Date Range</legend>
+                    <span>Von: <div wicket:id="filterFrom" type="date" id="filterFrom" /></span>
+                    <span>Bis: <div wicket:id="filterTo" type="date" id="filterTo" /></span>
+                    <span><input type="submit" name="filter" value="Filtern"/></span>
+                </fieldset>
+            </form>
+        </div>
+    
+        <div>Du bist eingetragen von <span wicket:id="from" type="date" id="from">from</span> bis <span wicket:id="to" type="date" id="to">to</span> für </div>
+        <div>
+            <table wicket:id="subscriptionsTable"></table>
+        </div>
+
     </wicket:extend>
 </body>
 </html>

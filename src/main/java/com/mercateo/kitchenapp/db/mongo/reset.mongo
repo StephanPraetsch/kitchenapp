@@ -32,16 +32,21 @@ db.offers.insert( { "day" : "2016-10-04" , "meals" : [ { "title" : "Penne Lachs 
 db.offers.insert( { "day" : "2016-10-05" , "meals" : [ { "title" : "Penne Lachs und Kaviar" } , { "title" : "Lachs, Bandnudeln und Spinat" } ] } )
 db.offers.insert( { "day" : "2016-10-06" , "meals" : [ { "title" : "Penne Lachs und Kaviar" } , { "title" : "Lachs, Bandnudeln und Spinat" } ] } )
 db.offers.insert( { "day" : "2016-10-07" , "meals" : [ { "title" : "22 Pizza Boston" } ] } )
-
 db.offers.insert( { "day" : "2016-10-10" , "meals" : [ { "title" : "Penne Lachs und Kaviar" } ] } )
 db.offers.insert( { "day" : "2016-10-11" , "meals" : [ { "title" : "Penne Lachs und Kaviar" } ] } )
 db.offers.insert( { "day" : "2016-10-12" , "meals" : [ { "title" : "Penne Lachs und Kaviar" } ] } )
 db.offers.insert( { "day" : "2016-10-13" , "meals" : [ { "title" : "Penne Lachs und Kaviar" } ] } )
 db.offers.insert( { "day" : "2016-10-14" , "meals" : [ { "title" : "Lachs, Bandnudeln und Spinat" } , { "title" : "22 Pizza Boston" } ] } )
-
 db.offers.insert( { "day" : "2016-10-17" , "meals" : [ { "title" : "Lachs, Bandnudeln und Spinat" } ] } )
 db.offers.insert( { "day" : "2016-10-18" , "meals" : [ { "title" : "Lachs, Bandnudeln und Spinat" } ] } )
 db.offers.insert( { "day" : "2016-10-19" , "meals" : [ { "title" : "Lachs, Bandnudeln und Spinat" } ] } )
 db.offers.insert( { "day" : "2016-10-20" , "meals" : [ { "title" : "Lachs, Bandnudeln und Spinat" } ] } )
 db.offers.insert( { "day" : "2016-10-21" , "meals" : [ { "title" : "Lachs, Bandnudeln und Spinat" } , { "title" : "22 Pizza Boston" } ] } )
 db.offers.find()
+
+db.subscriptions.drop()
+db.subscriptions.createIndex( { "email" : 1 , "day" : 1 } )
+db.subscriptions.insert( { "email" : "admin" , "day" : "2016-10-10" , "meal" : "22 Pizza Boston" } )
+db.subscriptions.insert( { "email" : "admin" , "day" : "2016-10-11" , "meal" : "Lachs, Bandnudeln und Spinat" } )
+db.subscriptions.insert( { "email" : "admin" , "day" : "2016-10-12" , "meal" : "Penne Lachs und Kaviar" } )
+db.subscriptions.find()

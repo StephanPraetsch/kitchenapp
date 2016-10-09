@@ -42,4 +42,8 @@ public class MongoDbConfiguration implements Serializable {
         return collectionNameOffers;
     }
 
+    public String getCollectionNameSubscriptions() {
+        return "subscriptions";
+    }
+
 }
