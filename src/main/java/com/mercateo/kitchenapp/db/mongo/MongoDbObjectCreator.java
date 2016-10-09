@@ -4,7 +4,6 @@ import java.net.UnknownHostException;
 
 import javax.inject.Inject;
 
-import com.mercateo.kitchenapp.db.mongo.chips.ChipsCollection;
 import com.mercateo.kitchenapp.db.mongo.meals.MealsCollection;
 import com.mercateo.kitchenapp.db.mongo.offers.OffersCollection;
 import com.mercateo.kitchenapp.db.mongo.subscriptions.SubscriptionsCollection;
@@ -41,11 +40,6 @@ public class MongoDbObjectCreator {
     public MealsCollection getMealsCollection() {
         return new MealsCollection(mongoDatabase.getCollection(mongoDbConfiguration
                 .getCollectionNameMeals()));
-    }
-
-    public ChipsCollection getChipsCollection() {
-        return new ChipsCollection(mongoDatabase.getCollection(mongoDbConfiguration
-                .getCollectionNameChips()));
     }
 
     public OffersCollection getOffersCollection() {

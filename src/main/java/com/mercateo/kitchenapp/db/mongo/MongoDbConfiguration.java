@@ -14,8 +14,6 @@ public class MongoDbConfiguration implements Serializable {
 
     private final String collectionNameMeals = "meals";
 
-    private final String collectionNameChips = "chips";
-
     private final String collectionNameOffers = "offers";
 
     public String getMongoURIString() {
@@ -32,10 +30,6 @@ public class MongoDbConfiguration implements Serializable {
 
     public String getCollectionNameMeals() {
         return collectionNameMeals;
-    }
-
-    public String getCollectionNameChips() {
-        return collectionNameChips;
     }
 
     public String getCollectionNameOffers() {
