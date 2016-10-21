@@ -45,7 +45,7 @@ class SubscriptionForm extends Form<LocalDate> {
         PageParameters pageParameters = new PageParameters();
         pageParameters.add("from", convert(fromField));
         pageParameters.add("to", convert(toField));
-        setResponsePage(pagesRegistry.getOffersPage(), pageParameters);
+        setResponsePage(pagesRegistry.getSubscriptionPage(), pageParameters);
     }
 
     private String convert(DateField field) {
