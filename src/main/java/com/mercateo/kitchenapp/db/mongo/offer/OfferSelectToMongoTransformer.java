@@ -1,4 +1,4 @@
-package com.mercateo.kitchenapp.db.mongo.offers;
+package com.mercateo.kitchenapp.db.mongo.offer;
 
 import java.util.HashMap;
 import java.util.function.Function;
@@ -13,7 +13,7 @@ public class OfferSelectToMongoTransformer implements Function<OfferSelect, DBOb
 
         BasicDBObject dbUserObject = new BasicDBObject(new HashMap<String, Object>() {
             {
-                put(MongoDbOffersConstants.DAY, day(select));
+                put(MongoDbOfferConstants.DAY, day(select));
             }
 
         });
@@ -23,7 +23,7 @@ public class OfferSelectToMongoTransformer implements Function<OfferSelect, DBOb
     }
 
     private String day(OfferSelect select) {
-        return MongoDbOffersConstants.FORMATTER.format(select.getDay());
+        return MongoDbOfferConstants.FORMATTER.format(select.getDay());
     }
 
 }

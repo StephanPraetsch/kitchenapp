@@ -1,4 +1,4 @@
-package com.mercateo.kitchenapp.db.mongo.offers;
+package com.mercateo.kitchenapp.db.mongo.offer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -14,19 +14,20 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.google.common.collect.Sets;
+import com.mercateo.kitchenapp.data.Email;
 import com.mercateo.kitchenapp.data.Offer;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
-public class OffersToMongoTransformer0Test {
+public class OfferToMongoTransformer0Test {
 
-    private OffersToMongoTransformer uut;
+    private OfferToMongoTransformer uut;
 
     @Before
     public void init() {
         initMocks(this);
-        uut = new OffersToMongoTransformer();
+        uut = new OfferToMongoTransformer();
     }
 
     @Test
@@ -35,14 +36,15 @@ public class OffersToMongoTransformer0Test {
         // given
         Set<String> meals = Sets.newHashSet("a", "b");
         LocalDate day = LocalDate.of(2016, Month.OCTOBER, 7);
-        Offer offer = new Offer(day, meals);
+        Set<Email> subscribed = Collections.emptySet();
+        Offer offer = new Offer(day, meals, subscribed);
 
         // when
         DBObject dbo = uut.apply(offer);
 
         // then
-        assertThat(dbo.get(MongoDbOffersConstants.DAY)).isEqualTo("2016-10-07");
-        assertThat((BasicDBList) dbo.get(MongoDbOffersConstants.MEALS)) //
+        assertThat(dbo.get(MongoDbOfferConstants.DAY)).isEqualTo("2016-10-07");
+        assertThat((BasicDBList) dbo.get(MongoDbOfferConstants.MEALS)) //
                 .flatExtracting(new TitleExtractor()) //
                 .containsOnly("a", "b");
 
@@ -51,7 +53,7 @@ public class OffersToMongoTransformer0Test {
     public class TitleExtractor implements Extractor<Object, List<String>> {
         @Override
         public List<String> extract(Object input) {
-            String title = (String) ((BasicDBObject) input).get(MongoDbOffersConstants.TITLE);
+            String title = (String) ((BasicDBObject) input).get(MongoDbOfferConstants.TITLE);
             return Collections.singletonList(title);
         }
     }

@@ -5,10 +5,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.Model;
 
 import com.mercateo.kitchenapp.data.Offer;
 
@@ -26,7 +28,8 @@ public class OfferPanel extends Panel {
 
             @Override
             protected void populateItem(ListItem<String> item) {
-                item.add(new Label("offerTitle", item.getModel()));
+                item.add(new Label("offerTitle", item.getModel()).add(new AttributeAppender("class",
+                        new Model<>("checked"), " ")));
             }
 
         };

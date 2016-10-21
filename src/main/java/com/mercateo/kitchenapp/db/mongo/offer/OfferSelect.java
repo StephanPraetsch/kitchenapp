@@ -1,4 +1,4 @@
-package com.mercateo.kitchenapp.db.mongo.offers;
+package com.mercateo.kitchenapp.db.mongo.offer;
 
 import java.time.LocalDate;
 

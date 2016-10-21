@@ -1,4 +1,4 @@
-package com.mercateo.kitchenapp.db.mongo.offers;
+package com.mercateo.kitchenapp.db.mongo.offer;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -12,17 +12,17 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import com.mercateo.kitchenapp.data.Offer;
-import com.mercateo.kitchenapp.db.OffersDao;
+import com.mercateo.kitchenapp.db.TimetableDao;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
 @AllArgsConstructor(onConstructor = @__({ @Inject }))
 @Slf4j
-public class MongoOffersDao implements OffersDao {
+public class MongoTimetableDao implements TimetableDao {
 
-    private final OffersCollection collection;
+    private final OfferCollection collection;
 
-    private final OffersToMongoTransformer toMongo;
+    private final OfferToMongoTransformer toMongo;
 
     private final OfferSelectToMongoTransformer selectToMongo;
 
@@ -54,7 +54,7 @@ public class MongoOffersDao implements OffersDao {
         range.put("$lte", DateTimeFormatter.ISO_DATE.format(to));
 
         DBObject dayWithRange = new BasicDBObject();
-        dayWithRange.put(MongoDbOffersConstants.DAY, range);
+        dayWithRange.put(MongoDbOfferConstants.DAY, range);
 
         return collection.find(dayWithRange) //
                 .stream() //

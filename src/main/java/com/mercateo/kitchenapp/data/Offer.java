@@ -12,4 +12,6 @@ public class Offer {
 
     private final Set<String> meals;
 
+    private final Set<Email> subscribed;
+
 }

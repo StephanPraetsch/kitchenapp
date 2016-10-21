@@ -1,22 +1,24 @@
-package com.mercateo.kitchenapp.db.mongo.offers;
+package com.mercateo.kitchenapp.db.mongo.offer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Collections;
 import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.google.common.collect.Sets;
+import com.mercateo.kitchenapp.data.Email;
 import com.mercateo.kitchenapp.data.Offer;
 import com.mongodb.DBObject;
 
 public class MongoToOfferTransformer0Test {
 
-    private final OffersToMongoTransformer transformer = new OffersToMongoTransformer();
+    private final OfferToMongoTransformer transformer = new OfferToMongoTransformer();
 
     private MongoToOfferTransformer uut;
 
@@ -32,7 +34,8 @@ public class MongoToOfferTransformer0Test {
         // given
         Set<String> meals = Sets.newHashSet("a", "b");
         LocalDate day = LocalDate.of(2016, Month.OCTOBER, 7);
-        Offer offer = new Offer(day, meals);
+        Set<Email> subscribed = Collections.emptySet();
+        Offer offer = new Offer(day, meals, subscribed);
 
         DBObject dbObject = transformer.apply(offer);
 
