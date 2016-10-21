@@ -27,14 +27,14 @@ import com.mercateo.kitchenapp.data.User;
 import com.mercateo.kitchenapp.pages.PagesRegistry;
 import com.mercateo.kitchenapp.sso.authorization.AuthenticatedWebSession;
 
-public class MenuPanel extends Panel {
+class MenuPanel extends Panel {
 
     private static final long serialVersionUID = 1L;
 
     @Inject
     private PagesRegistry pages;
 
-    public MenuPanel(String id) {
+    MenuPanel(String id) {
         super(id);
 
         add(link("subscription", pages.getSubscriptionPage()));

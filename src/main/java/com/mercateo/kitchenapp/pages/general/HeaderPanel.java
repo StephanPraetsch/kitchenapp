@@ -2,9 +2,9 @@ package com.mercateo.kitchenapp.pages.general;
 
 import org.apache.wicket.markup.html.panel.Panel;
 
-public class HeaderPanel extends Panel {
+class HeaderPanel extends Panel {
 
-    public HeaderPanel(String id) {
+    HeaderPanel(String id) {
         super(id);
     }
 
