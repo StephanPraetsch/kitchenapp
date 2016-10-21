@@ -6,12 +6,11 @@ import java.util.List;
 
 import com.mercateo.kitchenapp.data.Offer;
 
-// TODO name
-class OfferPanel2 extends OfferPanel {
+class OfferPanelWithData extends OfferPanel {
 
     private final Offer offer;
 
-    OfferPanel2(String id, Offer offer) {
+    OfferPanelWithData(String id, Offer offer) {
         super(id, offer.getDay());
         this.offer = offer;
     }

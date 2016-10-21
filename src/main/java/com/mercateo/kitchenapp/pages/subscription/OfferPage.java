@@ -55,7 +55,7 @@ public class OfferPage extends GeneralPageSignInNeeded {
 
         Optional<Offer> optional = offers.get(from);
         if (optional.isPresent()) {
-            add(new OfferPanel2("offerPanel", optional.get()));
+            add(new OfferPanelWithData("offerPanel", optional.get()));
         } else {
             add(new EmptyOfferPanel("offerPanel", from));
         }
