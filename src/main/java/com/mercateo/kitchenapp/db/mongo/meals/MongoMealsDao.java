@@ -1,7 +1,5 @@
 package com.mercateo.kitchenapp.db.mongo.meals;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -9,6 +7,8 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import lombok.NonNull;
 
 import com.mercateo.kitchenapp.data.Meal;
 import com.mercateo.kitchenapp.db.AlreadyExistsExcpetion;
@@ -25,12 +25,17 @@ public class MongoMealsDao implements MealsDao {
 
     private final MealsToMongoTransformer toDbObjectTransformer;
 
+    private final MealsSelectionToMongoTransformer selectionToDb;
+
     @Inject
-    MongoMealsDao(MealsCollection collection, MongoToMealsTransformer toMealTransformer,
-            MealsToMongoTransformer toDbObjectTransformer) {
-        this.collection = checkNotNull(collection);
-        this.toMealTransformer = checkNotNull(toMealTransformer);
-        this.toDbObjectTransformer = checkNotNull(toDbObjectTransformer);
+    MongoMealsDao(@NonNull MealsCollection collection,
+            @NonNull MongoToMealsTransformer toMealTransformer,
+            @NonNull MealsToMongoTransformer toDbObjectTransformer,
+            @NonNull MealsSelectionToMongoTransformer selectionToDb) {
+        this.collection = collection;
+        this.toMealTransformer = toMealTransformer;
+        this.toDbObjectTransformer = toDbObjectTransformer;
+        this.selectionToDb = selectionToDb;
     }
 
     @Override
@@ -38,10 +43,10 @@ public class MongoMealsDao implements MealsDao {
 
         try {
 
-            Meal meal = Meal.builder().title(title).build();
+            MealsSelection select = MealsSelection.builder().title(title).build();
 
             return collection.findOne( //
-                    toDbObjectTransformer.apply(meal)) //
+                    selectionToDb.apply(select)) //
                     .map(toMealTransformer::apply);
 
         } catch (DuplicateFoundException e) {
