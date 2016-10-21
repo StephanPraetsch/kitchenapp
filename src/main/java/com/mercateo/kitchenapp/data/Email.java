@@ -1,24 +1,19 @@
 package com.mercateo.kitchenapp.data;
 
-import com.mercateo.kitchenapp.util.StringValue;
+import lombok.Data;
 
-public class Email extends StringValue {
+@Data(staticConstructor = "of")
+public class Email implements Comparable<Email> {
 
-    private Email(String email) {
-        super(email);
+    private final String value;
+
+    public String asString() {
+        return value;
     }
 
     @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Email [email=");
-        builder.append(asString());
-        builder.append("]");
-        return builder.toString();
-    }
-
-    public static Email of(String email) {
-        return new Email(email);
+    public int compareTo(Email o) {
+        return value.compareTo(o.value);
     }
 
 }

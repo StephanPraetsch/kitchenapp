@@ -12,13 +12,13 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import com.mercateo.kitchenapp.data.Offer;
-import com.mercateo.kitchenapp.db.TimetableDao;
+import com.mercateo.kitchenapp.db.OffersDao;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
 @AllArgsConstructor(onConstructor = @__({ @Inject }))
 @Slf4j
-public class MongoTimetableDao implements TimetableDao {
+public class MongoTimetableDao implements OffersDao {
 
     private final OfferCollection collection;
 

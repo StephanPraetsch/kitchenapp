@@ -5,7 +5,6 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.Collections;
 import java.util.Set;
 
 import org.junit.Before;
@@ -34,7 +33,7 @@ public class MongoToOfferTransformer0Test {
         // given
         Set<String> meals = Sets.newHashSet("a", "b");
         LocalDate day = LocalDate.of(2016, Month.OCTOBER, 7);
-        Set<Email> subscribed = Collections.emptySet();
+        Set<Email> subscribed = Sets.newHashSet(Email.of("a"), Email.of("b"), Email.of("c"));
         Offer offer = new Offer(day, meals, subscribed);
 
         DBObject dbObject = transformer.apply(offer);

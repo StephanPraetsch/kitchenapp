@@ -12,8 +12,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.string.StringValue;
 
 import com.mercateo.kitchenapp.data.Email;
-import com.mercateo.kitchenapp.db.TimetableDao;
-import com.mercateo.kitchenapp.db.SubscriptionsDao;
+import com.mercateo.kitchenapp.db.OffersDao;
 import com.mercateo.kitchenapp.pages.general.GeneralPageSignInNeeded;
 import com.mercateo.kitchenapp.sso.authorization.UserWebSession;
 
@@ -24,10 +23,7 @@ public class SubscriptionPage extends GeneralPageSignInNeeded {
     static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_DATE;
 
     @Inject
-    private SubscriptionsDao subscriptions;
-
-    @Inject
-    private TimetableDao offers;
+    private OffersDao offers;
 
     private LocalDate from;
 
@@ -51,13 +47,12 @@ public class SubscriptionPage extends GeneralPageSignInNeeded {
         this.email = UserWebSession.get().getUser().getEmail();
 
         add(new Label("date", new Model<>(LocalDateTime.now())));
-        add(new SubscriptionForm("subscriptionsForm", from, to));
+        add(new OfferForm("subscriptionsForm", from, to));
         add(new Label("from", new Model<>(from)));
         add(new Label("to", new Model<>(to)));
-        add(new SubscriptionsTable("subscriptionsTable", new SubscriptionsSortableDataProvider(
-                subscriptions, email, from, to)));
 
-        add(new OfferPanel("offerPanel", offers.get(from)));
+        // TODO was wenn empty?
+        add(new OfferPanel("offerPanel", offers.get(from).get()));
 
     }
 

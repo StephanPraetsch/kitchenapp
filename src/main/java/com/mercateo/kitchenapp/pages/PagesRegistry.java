@@ -41,7 +41,7 @@ public class PagesRegistry {
         return ErrorPage.class;
     }
 
-    public Class<? extends WebPage> getSubscriptionPage() {
+    public Class<? extends WebPage> getOffersPage() {
         return SubscriptionPage.class;
     }
 

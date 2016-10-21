@@ -7,15 +7,12 @@ import com.google.inject.Provides;
 import com.google.inject.Scopes;
 import com.google.inject.Singleton;
 import com.mercateo.kitchenapp.db.MealsDao;
-import com.mercateo.kitchenapp.db.TimetableDao;
-import com.mercateo.kitchenapp.db.SubscriptionsDao;
+import com.mercateo.kitchenapp.db.OffersDao;
 import com.mercateo.kitchenapp.db.UserDao;
 import com.mercateo.kitchenapp.db.mongo.meals.MealsCollection;
 import com.mercateo.kitchenapp.db.mongo.meals.MongoMealsDao;
 import com.mercateo.kitchenapp.db.mongo.offer.MongoTimetableDao;
 import com.mercateo.kitchenapp.db.mongo.offer.OfferCollection;
-import com.mercateo.kitchenapp.db.mongo.subscriptions.MongoSubscriptionsDao;
-import com.mercateo.kitchenapp.db.mongo.subscriptions.SubscriptionsCollection;
 import com.mercateo.kitchenapp.db.mongo.users.MongoUserDao;
 import com.mercateo.kitchenapp.db.mongo.users.UserCollection;
 import com.mongodb.DB;
@@ -28,8 +25,7 @@ public class MongoDbModule extends AbstractModule {
     protected void configure() {
         bind(UserDao.class).to(MongoUserDao.class).in(Scopes.SINGLETON);
         bind(MealsDao.class).to(MongoMealsDao.class).in(Scopes.SINGLETON);
-        bind(TimetableDao.class).to(MongoTimetableDao.class).in(Scopes.SINGLETON);
-        bind(SubscriptionsDao.class).to(MongoSubscriptionsDao.class).in(Scopes.SINGLETON);
+        bind(OffersDao.class).to(MongoTimetableDao.class).in(Scopes.SINGLETON);
     }
 
     @Provides
@@ -64,14 +60,6 @@ public class MongoDbModule extends AbstractModule {
     @Singleton
     public OfferCollection provideOffersCollection(DB db, MongoDbConfiguration config) {
         return new OfferCollection(db.getCollection(config.getCollectionNameOffers()));
-    }
-
-    @Provides
-    @Singleton
-    public SubscriptionsCollection provideSubscriptionsCollection(DB db,
-            MongoDbConfiguration config) {
-        return new SubscriptionsCollection(db.getCollection(config
-                .getCollectionNameSubscriptions()));
     }
 
 }

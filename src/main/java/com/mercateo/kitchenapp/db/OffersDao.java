@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import com.mercateo.kitchenapp.data.Offer;
 
-public interface TimetableDao {
+public interface OffersDao {
 
     public Optional<Offer> get(LocalDate day);
 

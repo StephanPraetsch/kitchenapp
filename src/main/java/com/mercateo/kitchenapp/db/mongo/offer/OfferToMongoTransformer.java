@@ -32,19 +32,17 @@ public class OfferToMongoTransformer implements Function<Offer, DBObject> {
 
     private BasicDBList meals(Offer offer) {
         BasicDBList list = new BasicDBList();
-        // TODO optional
-        offer.getMeals().stream() //
+        offer.getMeals().ifPresent(set -> set.stream() //
                 .map(title -> new BasicDBObject(MongoDbOfferConstants.TITLE, title)) //
-                .forEach(list::add);
+                .forEach(list::add));
         return list;
     }
 
     private BasicDBList subscribed(Offer offer) {
         BasicDBList list = new BasicDBList();
-        // TODO optional
-        offer.getSubscribed().stream() //
-                .map(sub -> new BasicDBObject(MongoDbOfferConstants.SUBSCRIBED, sub)) //
-                .forEach(list::add);
+        offer.getSubscribed().ifPresent(set -> set.stream() //
+                .map(mail -> new BasicDBObject(MongoDbOfferConstants.SUBSCRIBED, mail.asString())) //
+                .forEach(list::add));
         return list;
     }
 

@@ -28,7 +28,6 @@ public class MongoToOfferTransformer implements Function<DBObject, Offer> {
         BasicDBList subscribedList = (BasicDBList) dbObject.get(MongoDbOfferConstants.SUBSCRIBED);
         Set<Email> subscribed = subscribedList.stream() //
                 .map(o -> ((BasicDBObject) o).get(MongoDbOfferConstants.SUBSCRIBED)) //
-                // TODO flat map
                 .map(String::valueOf) //
                 .map(Email::of) //
                 .collect(Collectors.toSet());

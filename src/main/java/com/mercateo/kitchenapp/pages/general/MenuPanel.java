@@ -37,7 +37,7 @@ class MenuPanel extends Panel {
     MenuPanel(String id) {
         super(id);
 
-        add(link("subscription", pages.getSubscriptionPage()));
+        add(link("subscription", pages.getOffersPage()));
         add(link("profile", pages.getProfilePage()));
         add(link("admin", pages.getAdminPage()));
         add(link("meals", pages.getMealsPage()));

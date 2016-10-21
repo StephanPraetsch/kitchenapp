@@ -15,7 +15,7 @@ import lombok.NonNull;
 
 import com.mercateo.kitchenapp.pages.PagesRegistry;
 
-class SubscriptionForm extends Form<LocalDate> {
+class OfferForm extends Form<LocalDate> {
 
     @Inject
     private PagesRegistry pagesRegistry;
@@ -24,7 +24,7 @@ class SubscriptionForm extends Form<LocalDate> {
 
     private final DateField toField;
 
-    SubscriptionForm(@NonNull String id, @NonNull LocalDate from, @NonNull LocalDate to) {
+    OfferForm(@NonNull String id, @NonNull LocalDate from, @NonNull LocalDate to) {
         super(id);
 
         this.fromField = new DateField("filterFrom", Model.of(convert(from)));
@@ -45,7 +45,7 @@ class SubscriptionForm extends Form<LocalDate> {
         PageParameters pageParameters = new PageParameters();
         pageParameters.add("from", convert(fromField));
         pageParameters.add("to", convert(toField));
-        setResponsePage(pagesRegistry.getSubscriptionPage(), pageParameters);
+        setResponsePage(pagesRegistry.getOffersPage(), pageParameters);
     }
 
     private String convert(DateField field) {

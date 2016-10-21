@@ -36,7 +36,7 @@ public class OfferToMongoTransformer0Test {
         // given
         Set<String> meals = Sets.newHashSet("a", "b");
         LocalDate day = LocalDate.of(2016, Month.OCTOBER, 7);
-        Set<Email> subscribed = Collections.emptySet();
+        Set<Email> subscribed = Sets.newHashSet(Email.of("e1"), Email.of("e2"));
         Offer offer = new Offer(day, meals, subscribed);
 
         // when
@@ -47,6 +47,9 @@ public class OfferToMongoTransformer0Test {
         assertThat((BasicDBList) dbo.get(MongoDbOfferConstants.MEALS)) //
                 .flatExtracting(new TitleExtractor()) //
                 .containsOnly("a", "b");
+        assertThat((BasicDBList) dbo.get(MongoDbOfferConstants.SUBSCRIBED)) //
+                .flatExtracting(new EmailExtractor()) //
+                .containsOnly("e1", "e2");
 
     }
 
@@ -54,6 +57,14 @@ public class OfferToMongoTransformer0Test {
         @Override
         public List<String> extract(Object input) {
             String title = (String) ((BasicDBObject) input).get(MongoDbOfferConstants.TITLE);
+            return Collections.singletonList(title);
+        }
+    }
+
+    public class EmailExtractor implements Extractor<Object, List<String>> {
+        @Override
+        public List<String> extract(Object input) {
+            String title = (String) ((BasicDBObject) input).get(MongoDbOfferConstants.SUBSCRIBED);
             return Collections.singletonList(title);
         }
     }
