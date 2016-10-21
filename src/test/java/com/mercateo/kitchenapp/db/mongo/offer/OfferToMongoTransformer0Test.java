@@ -37,7 +37,7 @@ public class OfferToMongoTransformer0Test {
         Set<String> meals = Sets.newHashSet("a", "b");
         LocalDate day = LocalDate.of(2016, Month.OCTOBER, 7);
         Set<Email> subscribed = Sets.newHashSet(Email.of("e1"), Email.of("e2"));
-        Offer offer = new Offer(day, meals, subscribed);
+        Offer offer = Offer.builder().day(day).meals(meals).subscribed(subscribed).build();
 
         // when
         DBObject dbo = uut.apply(offer);

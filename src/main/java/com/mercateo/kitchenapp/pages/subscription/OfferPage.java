@@ -3,6 +3,7 @@ package com.mercateo.kitchenapp.pages.subscription;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 import javax.inject.Inject;
 
@@ -12,11 +13,12 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.string.StringValue;
 
 import com.mercateo.kitchenapp.data.Email;
+import com.mercateo.kitchenapp.data.Offer;
 import com.mercateo.kitchenapp.db.OffersDao;
 import com.mercateo.kitchenapp.pages.general.GeneralPageSignInNeeded;
 import com.mercateo.kitchenapp.sso.authorization.UserWebSession;
 
-public class SubscriptionPage extends GeneralPageSignInNeeded {
+public class OfferPage extends GeneralPageSignInNeeded {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,7 +33,7 @@ public class SubscriptionPage extends GeneralPageSignInNeeded {
 
     private Email email;
 
-    public SubscriptionPage(PageParameters params) {
+    public OfferPage(PageParameters params) {
         super(params);
     }
 
@@ -48,11 +50,15 @@ public class SubscriptionPage extends GeneralPageSignInNeeded {
 
         add(new Label("date", new Model<>(LocalDateTime.now())));
         add(new OfferForm("subscriptionsForm", from, to));
-        add(new Label("from", new Model<>(from)));
-        add(new Label("to", new Model<>(to)));
+        // add(new Label("from", new Model<>(from)));
+        // add(new Label("to", new Model<>(to)));
 
-        // TODO was wenn empty?
-        add(new OfferPanel("offerPanel", offers.get(from).get()));
+        Optional<Offer> optional = offers.get(from);
+        if (optional.isPresent()) {
+            add(new OfferPanel2("offerPanel", optional.get()));
+        } else {
+            add(new EmptyOfferPanel("offerPanel", from));
+        }
 
     }
 

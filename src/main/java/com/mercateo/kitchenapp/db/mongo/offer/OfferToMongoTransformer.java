@@ -1,8 +1,11 @@
 package com.mercateo.kitchenapp.db.mongo.offer;
 
 import java.util.HashMap;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Function;
 
+import com.mercateo.kitchenapp.data.Email;
 import com.mercateo.kitchenapp.data.Offer;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
@@ -16,8 +19,8 @@ public class OfferToMongoTransformer implements Function<Offer, DBObject> {
         BasicDBObject dbUserObject = new BasicDBObject(new HashMap<String, Object>() {
             {
                 put(MongoDbOfferConstants.DAY, day(offer));
-                put(MongoDbOfferConstants.MEALS, meals(offer));
-                put(MongoDbOfferConstants.SUBSCRIBED, subscribed(offer));
+                meals(offer).ifPresent(meals -> put(MongoDbOfferConstants.MEALS, meals));
+                subscribed(offer).ifPresent(s -> put(MongoDbOfferConstants.SUBSCRIBED, s));
             }
 
         });
@@ -30,20 +33,36 @@ public class OfferToMongoTransformer implements Function<Offer, DBObject> {
         return MongoDbOfferConstants.FORMATTER.format(offer.getDay());
     }
 
-    private BasicDBList meals(Offer offer) {
+    private Optional<BasicDBList> meals(Offer offer) {
+
+        Optional<Set<String>> meals = offer.getMeals();
+        if (!meals.isPresent()) {
+            return Optional.empty();
+        }
+
         BasicDBList list = new BasicDBList();
-        offer.getMeals().ifPresent(set -> set.stream() //
+        meals.get().stream() //
                 .map(title -> new BasicDBObject(MongoDbOfferConstants.TITLE, title)) //
-                .forEach(list::add));
-        return list;
+                .forEach(list::add);
+
+        return Optional.of(list);
+
     }
 
-    private BasicDBList subscribed(Offer offer) {
+    private Optional<BasicDBList> subscribed(Offer offer) {
+
+        Optional<Set<Email>> subscribed = offer.getSubscribed();
+        if (!subscribed.isPresent()) {
+            return Optional.empty();
+        }
+
         BasicDBList list = new BasicDBList();
-        offer.getSubscribed().ifPresent(set -> set.stream() //
+        subscribed.get().stream() //
                 .map(mail -> new BasicDBObject(MongoDbOfferConstants.SUBSCRIBED, mail.asString())) //
-                .forEach(list::add));
-        return list;
+                .forEach(list::add);
+
+        return Optional.of(list);
+
     }
 
 }

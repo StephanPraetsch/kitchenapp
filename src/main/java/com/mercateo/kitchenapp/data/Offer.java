@@ -1,14 +1,17 @@
 package com.mercateo.kitchenapp.data;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Set;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 
 @Data
-public class Offer {
+@Builder
+public class Offer implements Serializable {
 
     @NonNull
     private final LocalDate day;

@@ -1,7 +1,6 @@
 package com.mercateo.kitchenapp.pages.subscription;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.apache.wicket.behavior.AttributeAppender;
@@ -11,18 +10,24 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 
-import com.mercateo.kitchenapp.data.Offer;
+public abstract class OfferPanel extends Panel {
 
-public class OfferPanel extends Panel {
+    private final LocalDate day;
 
-    OfferPanel(String id, Offer offer) {
+    OfferPanel(String id, LocalDate day) {
         super(id);
+        this.day = day;
 
-        add(new Label("offerDay", String.valueOf(offer.getDay())));
+    }
 
-        List<String> titles = new ArrayList<>(offer.getMeals().orElse(Collections.emptySet()));
+    @Override
+    protected void onBeforeRender() {
 
-        ListView<String> lv = new ListView<String>("offerMeals", titles) {
+        super.onBeforeRender();
+
+        add(new Label("offerDay", String.valueOf(day)));
+
+        ListView<String> lv = new ListView<String>("offerMeals", getMeals()) {
 
             @Override
             protected void populateItem(ListItem<String> item) {
@@ -36,5 +41,7 @@ public class OfferPanel extends Panel {
         add(lv);
 
     }
+
+    abstract List<String> getMeals();
 
 }

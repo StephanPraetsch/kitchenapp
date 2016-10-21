@@ -31,10 +31,46 @@ public class MongoToOfferTransformer0Test {
     public void testApply() throws Exception {
 
         // given
+        LocalDate day = LocalDate.of(2016, Month.OCTOBER, 7);
         Set<String> meals = Sets.newHashSet("a", "b");
+        Set<Email> subscribed = Sets.newHashSet(Email.of("a"), Email.of("b"), Email.of("c"));
+        Offer offer = Offer.builder().day(day).meals(meals).subscribed(subscribed).build();
+
+        DBObject dbObject = transformer.apply(offer);
+
+        // when
+        Offer mapped = uut.apply(dbObject);
+
+        // then
+        assertThat(mapped).isEqualTo(offer);
+
+    }
+
+    @Test
+    public void testApply_no_meals() throws Exception {
+
+        // given
         LocalDate day = LocalDate.of(2016, Month.OCTOBER, 7);
         Set<Email> subscribed = Sets.newHashSet(Email.of("a"), Email.of("b"), Email.of("c"));
-        Offer offer = new Offer(day, meals, subscribed);
+        Offer offer = Offer.builder().day(day).subscribed(subscribed).build();
+
+        DBObject dbObject = transformer.apply(offer);
+
+        // when
+        Offer mapped = uut.apply(dbObject);
+
+        // then
+        assertThat(mapped).isEqualTo(offer);
+
+    }
+
+    @Test
+    public void testApply_no_subscribers() throws Exception {
+
+        // given
+        LocalDate day = LocalDate.of(2016, Month.OCTOBER, 7);
+        Set<String> meals = Sets.newHashSet("a", "b");
+        Offer offer = Offer.builder().day(day).meals(meals).build();
 
         DBObject dbObject = transformer.apply(offer);
 
