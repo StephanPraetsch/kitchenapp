@@ -12,6 +12,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.string.StringValue;
 
 import com.mercateo.kitchenapp.data.Email;
+import com.mercateo.kitchenapp.db.OffersDao;
 import com.mercateo.kitchenapp.db.SubscriptionsDao;
 import com.mercateo.kitchenapp.pages.general.GeneralPageSignInNeeded;
 import com.mercateo.kitchenapp.sso.authorization.UserWebSession;
@@ -24,6 +25,9 @@ public class SubscriptionPage extends GeneralPageSignInNeeded {
 
     @Inject
     private SubscriptionsDao subscriptions;
+
+    @Inject
+    private OffersDao offers;
 
     private LocalDate from;
 
@@ -52,6 +56,8 @@ public class SubscriptionPage extends GeneralPageSignInNeeded {
         add(new Label("to", new Model<>(to)));
         add(new SubscriptionsTable("subscriptionsTable", new SubscriptionsSortableDataProvider(
                 subscriptions, email, from, to)));
+
+        add(new OfferPanel("offerPanel", offers.get(from)));
 
     }
 
