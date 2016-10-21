@@ -7,9 +7,6 @@ import org.apache.wicket.util.string.StringValue;
 
 import lombok.NonNull;
 
-import com.mercateo.kitchenapp.panels.footer.FooterPanel;
-import com.mercateo.kitchenapp.panels.header.HeaderPanel;
-import com.mercateo.kitchenapp.panels.menu.MenuPanel;
 import com.mercateo.kitchenapp.util.WicketConstants;
 
 public abstract class GeneralPage extends WebPage {

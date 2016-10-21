@@ -1,4 +1,4 @@
-package com.mercateo.kitchenapp.panels.header;
+package com.mercateo.kitchenapp.pages.general;
 
 import org.apache.wicket.markup.html.panel.Panel;
 

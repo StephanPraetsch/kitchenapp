@@ -42,6 +42,11 @@ db.offers.insert( { "day" : "2016-10-18" , "meals" : [ { "title" : "Lachs, Bandn
 db.offers.insert( { "day" : "2016-10-19" , "meals" : [ { "title" : "Lachs, Bandnudeln und Spinat" } ] } )
 db.offers.insert( { "day" : "2016-10-20" , "meals" : [ { "title" : "Lachs, Bandnudeln und Spinat" } ] } )
 db.offers.insert( { "day" : "2016-10-21" , "meals" : [ { "title" : "Lachs, Bandnudeln und Spinat" } , { "title" : "22 Pizza Boston" } ] } )
+db.offers.insert( { "day" : "2016-10-24" , "meals" : [ { "title" : "Lachs, Bandnudeln und Spinat" } ] } )
+db.offers.insert( { "day" : "2016-10-25" , "meals" : [ { "title" : "Lachs, Bandnudeln und Spinat" } ] } )
+db.offers.insert( { "day" : "2016-10-26" , "meals" : [ { "title" : "Lachs, Bandnudeln und Spinat" } ] } )
+db.offers.insert( { "day" : "2016-10-27" , "meals" : [ { "title" : "Lachs, Bandnudeln und Spinat" } ] } )
+db.offers.insert( { "day" : "2016-10-28" , "meals" : [ { "title" : "Lachs, Bandnudeln und Spinat" } , { "title" : "22 Pizza Boston" } ] } )
 db.offers.find()
 
 db.subscriptions.drop()

@@ -60,7 +60,7 @@ public class SubscriptionPage extends GeneralPageSignInNeeded {
     }
 
     private LocalDate to(PageParameters params) {
-        return readParams(params, "to", LocalDate.now().plusDays(2));
+        return readParams(params, "to", LocalDate.now().plusDays(5));
     }
 
     private LocalDate readParams(PageParameters params, String name, LocalDate defaultValue) {
