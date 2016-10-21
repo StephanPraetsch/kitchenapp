@@ -51,7 +51,7 @@ class OfferForm extends Form<LocalDate> {
     private String convert(DateField field) {
         Date date = field.getModel().getObject();
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        return SubscriptionPage.FORMATTER.format(localDate);
+        return OfferPage.FORMATTER.format(localDate);
     }
 
 }

@@ -9,7 +9,7 @@ import com.mercateo.kitchenapp.pages.home.HomePage;
 import com.mercateo.kitchenapp.pages.meals.MealsPage;
 import com.mercateo.kitchenapp.pages.profile.ProfilePage;
 import com.mercateo.kitchenapp.pages.signin.SignInPage;
-import com.mercateo.kitchenapp.pages.subscription.SubscriptionPage;
+import com.mercateo.kitchenapp.pages.subscription.OfferPage;
 
 public class PagesRegistry {
 
@@ -42,7 +42,7 @@ public class PagesRegistry {
     }
 
     public Class<? extends WebPage> getOffersPage() {
-        return SubscriptionPage.class;
+        return OfferPage.class;
     }
 
 }
