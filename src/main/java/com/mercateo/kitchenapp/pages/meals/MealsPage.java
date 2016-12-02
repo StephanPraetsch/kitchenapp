@@ -19,16 +19,8 @@ public class MealsPage extends GeneralPageSignInNeeded {
 
     public MealsPage(PageParameters params) {
         super(params);
-    }
-
-    @Override
-    protected void onBeforeRender() {
-
-        super.onBeforeRender();
-
         add(new NewMealForm("newMeal"));
         add(new MealsTable("mealTable", meals));
-
     }
 
 }
