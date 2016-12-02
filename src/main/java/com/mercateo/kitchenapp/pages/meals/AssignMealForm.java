@@ -18,6 +18,7 @@ import com.mercateo.kitchenapp.data.Meal;
 import com.mercateo.kitchenapp.db.MealsDao;
 import com.mercateo.kitchenapp.db.OffersDao;
 import com.mercateo.kitchenapp.pages.PagesRegistry;
+import com.mercateo.kitchenapp.util.WicketConstants;
 
 public class AssignMealForm extends Form<LocalDate> {
 
@@ -61,8 +62,16 @@ public class AssignMealForm extends Form<LocalDate> {
         if (meal.isPresent()) {
             LocalDate day = convert(dayField.getModelObject());
             offers.add(day, meal.get());
+        } else {
+            unknownMeal(content);
         }
 
+    }
+
+    private void unknownMeal(String meal) {
+        PageParameters pageParameters = new PageParameters();
+        pageParameters.add(WicketConstants.STATUS, "Das gibt es nicht '" + meal + "'");
+        setResponsePage(pagesRegistry.getMealsPage(), pageParameters);
     }
 
     private Date convert(LocalDate ld) {
