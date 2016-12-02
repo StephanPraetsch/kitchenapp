@@ -64,11 +64,6 @@ public class MongoMealsDao implements MealsDao {
     }
 
     @Override
-    public void updateMeal(Meal meal) {
-        collection.update(toDbObjectTransformer.apply(meal));
-    }
-
-    @Override
     public Stream<Meal> get() {
         return collection.findAll().stream().map(toMealTransformer::apply);
     }

@@ -40,8 +40,8 @@ public class MongoDbCollection {
         collection.insert(newDbObject);
     }
 
-    public void update(DBObject updateDbObject) {
-        collection.update(updateDbObject, updateDbObject);
+    public void update(DBObject select, DBObject update) {
+        collection.update(select, update);
     }
 
     public List<DBObject> find(DBObject dbObject) {

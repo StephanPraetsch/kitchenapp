@@ -9,22 +9,34 @@
 <body>
     <wicket:extend>
         <div>Hello Editor</div>
-		<form id="newMeal" method="get" wicket:id="newMeal">
-			<fieldset>
-				<legend style="color: #F90">New Meal</legend>
-				<span>Titel: </span><input wicket:id="title" type="text" id="title" /><br/>
-				<span>Beschreibung: </span><input wicket:id="description" type="text" id="description" />
-				<span>Preis: <select wicket:id="price">
-					<option value="RED">rot</option>
-					<option value="YELLOW">gelb</option>
-					<option value="GREEN">grün</option>
-					<option value="BLUE">blau</option>
-				</select></span>
-				<p>
-					<input type="submit" name="create" value="Erstellen"/>
-				</p>
-			</fieldset>
-		</form>
+        <div>
+            <form id="assignForm" method="get" wicket:id="assignForm">
+                <fieldset>
+                    <legend style="color: #F90">Gericht einem Tag zuweisen</legend>
+                    <span>Tag: <div wicket:id="filterDay" type="date" id="filterDay" /></span>
+                    <span>Gericht: <input wicket:id="filterMeal" type="text" id="filterMeal" /></span>
+                    <span><input type="submit" name="Zuweisen" value="Zuweisen"/></span>
+                </fieldset>
+            </form>
+        </div>
+        <div>
+    		<form id="newMeal" method="get" wicket:id="newMeal">
+    			<fieldset>
+    				<legend style="color: #F90">New Meal</legend>
+    				<span>Titel: </span><input wicket:id="title" type="text" id="title" /><br/>
+    				<span>Beschreibung: </span><input wicket:id="description" type="text" id="description" />
+    				<span>Preis: <select wicket:id="price">
+    					<option value="RED">rot</option>
+    					<option value="YELLOW">gelb</option>
+    					<option value="GREEN">grün</option>
+    					<option value="BLUE">blau</option>
+    				</select></span>
+    				<p>
+    					<input type="submit" name="create" value="Erstellen"/>
+    				</p>
+    			</fieldset>
+    		</form>
+    	</div>
 		<div>
 			all registered meals
 			<table wicket:id="mealTable"></table>

@@ -11,8 +11,6 @@ public interface MealsDao {
 
     public void addMeal(Meal meal) throws AlreadyExistsExcpetion;
 
-    public void updateMeal(Meal meal);
-
     public Stream<Meal> get();
 
 }
